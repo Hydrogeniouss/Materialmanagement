@@ -2,6 +2,6 @@
 
 Here you'll be able to view all the steps we took to get our project successful
 
-1. [[Brainstorming]]
-2. [[UserStories]]
+1. [Brainstorming](./Brainstorming.md)
+2. [UserStories](./UserStories.md)
 
