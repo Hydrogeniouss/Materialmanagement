@@ -3,9 +3,9 @@
 Our Project is an administration software to rent equipment inside the organisation of the Friends of Nature (NF). The goal is that less material gets lost and the expenses for replacements is sinking.
 
 **Must Haves**
-Equipment can be lent quick and easily over the application. That is needed because otherwise members will forget or skip it. The same goes for giving back equipment. The application must load fast and has a smooth flow. For the sake of member identification, a name and small password is needed to log in. 
+Equipment can be lent quick and easily over the application. That is needed because otherwise members will forget or skip it. The same goes for giving back equipment. The application must load fast and has a smooth flow. For the sake of member identification, a name and small password is needed to log in. Moreover a view of the currently borrowed equipment of a member is necessary to ensure the return of the equipment.
 
-An Administrator has to have the possibility to add new Equipment in case the NF increases complement equipment. Moreover old or broken equipment should be removable.
+An Administrator has to have the possibility to add new Equipment in case the NF complements equipment. Moreover old or broken equipment should be removable.
 To Know who has what materials, the administrator should be able to follow who rent which equipment. The Administrator has to log in with his name and a strong password[^1].
 
 **Nice to Have**
