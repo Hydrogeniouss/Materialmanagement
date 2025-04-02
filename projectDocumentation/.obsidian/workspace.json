@@ -49,8 +49,7 @@
               "title": "ProjectGoal"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       },
       {
         "id": "ce5428d19f3a8dbf",
@@ -218,11 +217,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "671f517d12a05100",
+  "active": "83db852eebed6657",
   "lastOpenFiles": [
+    "ProjectGoal.md",
     "index.md",
     "Userstories.md",
-    "ProjectGoal.md",
     "ReasoningForUserstories.md",
     "EconomicalValue.md",
     "Brainstorming.md",
