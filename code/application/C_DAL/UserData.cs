@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace application.C_DAL
 {
-    abstract public class UserData
+    public class UserData
     {
-        protected UserData(int id, string firstName, string lastName, string email, string phone)
+        public UserData(int id, string firstName, string lastName, string email, string phone)
         {
             Id = id;
             FirstName = firstName;
