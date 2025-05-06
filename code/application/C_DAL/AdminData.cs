@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,12 @@ namespace application.C_DAL
         }
 
         public string Password { get; } = string.Empty;
+    }
+    public static List<AdminData> FromDatabase()
+    {
+        using (MySqlConnection conn = new("server=localhost;user=root;database=materialmanagement"))
+        {
+
+        }
     }
 }
