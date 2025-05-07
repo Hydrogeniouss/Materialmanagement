@@ -2,6 +2,9 @@
 
 namespace application.C_DAL
 {
+    /// <summary>
+    /// Represents the data of admins as declared in the DB
+    /// </summary>
     internal class AdminData : UserData
     {
         public AdminData(int id, string firstName, string lastName, string email, string phone, string password) : base(id, firstName, lastName, email, phone)
@@ -18,34 +21,20 @@ namespace application.C_DAL
             using (MySqlConnection conn = DataAccessHelper.MakeConnection())
             {
                 conn.Open();
-                using (MySqlCommand adminCMD = new("SELECT * FROM admin", conn))
+                using (MySqlCommand cmd = new("Select * FROM admin JOIN user ON admin.user_id = user.user_id"))
                 {
-                    using (MySqlDataReader adminReader = adminCMD.ExecuteReader())
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        while (adminReader.Read())
+                        while (reader.Read())
                         {
-                            UserData user;
-                            using (MySqlCommand userCMD = new($"SELECT * FROM user WHERE user.user_id = ${adminReader["user_id"]}"))
-                            {
-                                using (MySqlDataReader userReader = userCMD.ExecuteReader())
-                                {
-                                    user = new(
-                                        userReader.GetInt32("user_id"),
-                                        userReader.GetString("first_name"),
-                                        userReader.GetString("last_name"),
-                                        userReader.GetString("email"),
-                                        userReader.GetString("phone")
-                                        );
-                                }
-                            }
                             collection.Add(new(
-                                user.Id,
-                                user.FirstName,
-                                user.LastName,
-                                user.Email,
-                                user.Phone,
-                                adminReader.GetString("password"))
-                                );
+                                reader.GetInt32("user_id"),
+                                reader.GetString("first_name"),
+                                reader.GetString("last_name"),
+                                reader.GetString("email"),
+                                reader.GetString("phone"),
+                                reader.GetString("password")
+                                ));
                         }
                     }
                 }

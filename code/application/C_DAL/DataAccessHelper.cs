@@ -1,14 +1,15 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace application.C_DAL
 {
+    /// <summary>
+    /// Contains multiple helper methods for interacting with the DB
+    /// </summary>
     internal static class DataAccessHelper
     {
+        /// <summary>
+        /// Returns a MySqlConnection with our DB
+        /// </summary>
         public static MySqlConnection MakeConnection() => new("DataSource=localhost;DataBase=materialmanagement;UserID=root;Password=");
     }
 }

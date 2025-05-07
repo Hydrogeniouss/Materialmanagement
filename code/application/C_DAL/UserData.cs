@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace application.C_DAL
+﻿namespace application.C_DAL
 {
-    public class UserData
+    /// <summary>
+    /// Represents the data of users as declared in the DB. Cannot be instanciated
+    /// </summary>
+
+    public abstract class UserData
     {
         public UserData(int id, string firstName, string lastName, string email, string phone)
         {
