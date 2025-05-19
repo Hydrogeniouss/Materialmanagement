@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using MySql.Data.MySqlClient;
 
 namespace application.C_DAL
 {
@@ -42,13 +43,17 @@ namespace application.C_DAL
             }
             return collection;
         }
-
-        //TODO: Ask Frau Mayer if its Possible to override InsertIntoDatabase without params 
-        public override void InsertIntoDatabase(UserData user = null)
+        /// <summary>
+        /// Inserts the current admin data into the database.
+        /// </summary>
+        /// <returns>
+        /// The ID of the newly inserted user record in the database.
+        /// </returns>
+        public long InsertIntoDatabase()
         {
-            base.InsertIntoDatabase(this);
 
-            //TODO: Ask Frau Mayer if a select for getting the primary key of the new user is needed, or if there is another way
+            //Create user in the user table
+            long id = InsertIntoDatabase(this);
 
             using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {
@@ -56,10 +61,13 @@ namespace application.C_DAL
 
                 using (MySqlCommand cmd = new MySqlCommand("INSERT INTO `admin`(`user_id`, `password`) VALUES (@userID, @password)", conn))
                 {
-                    cmd.Parameters.AddWithValue("@userID", /*See lines above*/ null);
+                    cmd.Parameters.AddWithValue("@userID", id);
                     cmd.Parameters.AddWithValue("@password", Password);
                 }
             }
+            return id;
         }
+
+
     }
 }

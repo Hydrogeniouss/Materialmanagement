@@ -26,7 +26,14 @@ namespace application.C_DAL
         public string Email { get; } = string.Empty;
         public string Phone { get; } = string.Empty;
 
-        public virtual void InsertIntoDatabase(UserData user) { 
+        /// <summary>
+        /// Inserts a new user record into the database.
+        /// </summary>
+        /// <param name="user">The <see cref="UserData"/> object containing user details to be inserted.</param>
+        /// <returns>The ID of the newly inserted user record.</returns>
+        /// <exception cref="MySqlException">Thrown when a database error occurs during the operation.</exception>
+        public long InsertIntoDatabase(UserData user)
+        {
 
             using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {
@@ -35,12 +42,13 @@ namespace application.C_DAL
                 using (MySqlCommand cmd = new MySqlCommand("INSERT INTO `user`(`first_name`, `last_name`, `email`, `phone`)" +
                     " VALUES(@firstname, @lastname, @email, @phone)", conn))
                 {
-                    cmd.Parameters.AddWithValue("@firstname",user.FirstName);
+                    cmd.Parameters.AddWithValue("@firstname", user.FirstName);
                     cmd.Parameters.AddWithValue("@lastname", user.LastName);
                     cmd.Parameters.AddWithValue("@email", user.Email);
                     cmd.Parameters.AddWithValue("@phone", user.Phone);
-                
+
                     cmd.ExecuteNonQuery();
+                    return cmd.LastInsertedId;
                 }
             }
         }
