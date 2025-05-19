@@ -4,7 +4,7 @@ namespace application.C_DAL
 {
     public class MaterialData
     {
-        public MaterialData(int id, string name, string description, int quantityTotal, int quantityAvailable, string brand, string type, string? img_filepath)
+        public MaterialData(int id, string name, string description, int quantityTotal, int quantityAvailable, BrandData brand, TypeData type, string? img_filepath)
         {
             Id = id;
             Name = name;
@@ -22,38 +22,38 @@ namespace application.C_DAL
         public int Amount_available { get; }
         public string Name { get; } = string.Empty;
         public string Description { get; } = string.Empty;
-        public string Brand { get; }
-        public string Type { get; }
+        public BrandData Brand { get; }
+        public TypeData Type { get; }
         public string? ImageFilepath { get; } = string.Empty;
 
 
         public static List<MaterialData> FromDatabase()
         {
-            List<MaterialData> collection = new();
-            using (MySqlConnection conn = DataAccessHelper.MakeConnection())
+            List<MaterialData> materials = new();
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {
                 conn.Open();
-                using (MySqlCommand cmd = new("Select * FROM material LEFT JOIN brand ON material.brand_id = brand.brand_id LEFT JOIN type ON material.type_id = type.type_id"))
+                using (MySqlCommand cmd = new("Select * FROM material LEFT JOIN brand ON material.brand_id = brand.brand_id LEFT JOIN type ON material.type_id = type.type_id", conn))
                 {
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            collection.Add(new(
+                            materials.Add(new(
                                 reader.GetInt32("material_id"),
                                 reader.GetString("material"),
                                 reader.GetString("description"),
                                 reader.GetInt32("amount_total"),
                                 reader.GetInt32("amount_available"),
-                                reader.GetString("brand"),
-                                reader.GetString("type"),
+                                BrandData.FromDatabase(reader.GetInt32("brand_id")),
+                                TypeData.FromDatabase(reader.GetInt32("type_id")),
                                 reader.IsDBNull(reader.GetOrdinal("img_filepath")) ? null : reader.GetString("img_filepath")
                                 ));
                         }
                     }
                 }
             }
-            return collection;
+            return materials;
 
         }
     }

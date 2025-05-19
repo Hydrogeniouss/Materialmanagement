@@ -8,7 +8,8 @@ namespace application.C_DAL
 
     internal class MemberData : UserData
     {
-        public MemberData(int id, string firstName, string lastName, string email, string phone, int pin) : base(id, firstName, lastName, email, phone)
+        public MemberData(int id, string firstName, string lastName, string email, string phone, int pin) 
+            : base(id, firstName, lastName, email, phone)
         {
             Pin = pin;
         }
@@ -19,10 +20,10 @@ namespace application.C_DAL
         public static List<MemberData> FromDatabase()
         {
             List<MemberData> collection = new();
-            using (MySqlConnection conn = DataAccessHelper.MakeConnection())
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {
                 conn.Open();
-                using (MySqlCommand cmd = new("Select * FROM member JOIN user ON member.user_id = user.user_id"))
+                using (MySqlCommand cmd = new("Select * FROM member JOIN user ON member.user_id = user.user_id", conn))
                 {
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {

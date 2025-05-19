@@ -10,6 +10,6 @@ namespace application.C_DAL
         /// <summary>
         /// Returns a MySqlConnection with our DB
         /// </summary>
-        public static MySqlConnection MakeConnection() => new("DataSource=localhost;DataBase=materialmanagement;UserID=root;Password=");
+        public static MySqlConnection CreateConnection() => new("DataSource=localhost;DataBase=materialmanagement;UserID=root;Password=");
     }
 }
