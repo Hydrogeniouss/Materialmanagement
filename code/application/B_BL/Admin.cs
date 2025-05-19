@@ -1,13 +1,19 @@
 ﻿using application.C_DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace application.B_BL
 {
     internal class Admin : AdminData
     {
+        public Admin(int id, string firstName, string lastName, string email, string phone, string password)
+            : base(id, firstName, lastName, email, phone, password)
+        {
+        }
+
+        static new List<Admin> FromDatabase()
+        {
+            return AdminData.FromDatabase()
+            .Select(x => new Admin(x.Id, x.FirstName, x.LastName, x.Email, x.Phone, x.Password))
+            .ToList();
+        }
     }
 }
