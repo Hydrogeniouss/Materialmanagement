@@ -61,6 +61,7 @@ namespace application.C_DAL
             //Create user in the user table
             long id = InsertIntoDatabase(this);
 
+            //Create Admin Account
             using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {
                 conn.Open();

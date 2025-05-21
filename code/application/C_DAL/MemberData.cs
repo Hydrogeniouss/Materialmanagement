@@ -8,7 +8,7 @@ namespace application.C_DAL
 
     internal class MemberData : UserData
     {
-        public MemberData(int id, string firstName, string lastName, string email, string phone, int pin) 
+        public MemberData(string firstName, string lastName, string email, string phone, int pin, int? id = null) 
             : base(id, firstName, lastName, email, phone)
         {
             Pin = pin;
@@ -35,12 +35,12 @@ namespace application.C_DAL
                     {
                         while (reader.Read())
                         {
-                            collection.Add(new(
-                                reader.GetInt32("user_id"),
+                            collection.Add(new MemberData(
                                 reader.GetString("first_name"),
                                 reader.GetString("last_name"),
                                 reader.GetString("email"),
                                 reader.GetString("phone"),
+                                reader.GetInt32("user_id"),
                                 reader.GetInt32("pin")
                                 ));
                         }
@@ -48,6 +48,27 @@ namespace application.C_DAL
                 }
             }
             return collection;
+        }
+
+
+        public long InsertIntoDatabase()
+        {
+
+            //Create user in the user table
+            long id = InsertIntoDatabase(this);
+
+            //Create Member Account
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO `member`(`user_id`, `pin`) VALUES (@userID, @pin)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userID", id);
+                    cmd.Parameters.AddWithValue("@pin", Pin);
+                }
+            }
+            return id;
         }
 
     }
