@@ -16,6 +16,12 @@ namespace application.C_DAL
 
         public int Pin { get; }
 
+        /// <summary>
+        /// Retrieves a list of all member data from the database.
+        /// </summary>
+        /// <returns>
+        /// A list of <see cref="MemberData"/> objects representing the member records in the database.
+        /// </returns>
 
         public static List<MemberData> FromDatabase()
         {

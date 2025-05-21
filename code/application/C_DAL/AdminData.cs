@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 
 namespace application.C_DAL
 {
@@ -8,7 +7,7 @@ namespace application.C_DAL
     /// </summary>
     internal class AdminData : UserData
     {
-        public AdminData(string firstName, string lastName, string email, string phone, string password, int? id = null) : 
+        public AdminData(string firstName, string lastName, string email, string phone, string password, int? id = null) :
             base(id, firstName, lastName, email, phone)
         {
             Password = password;
@@ -17,6 +16,12 @@ namespace application.C_DAL
         public string Password { get; } = string.Empty;
 
 
+        /// <summary>
+        /// Retrieves a list of all admin data from the database.
+        /// </summary>
+        /// <returns>
+        /// A list of <see cref="AdminData"/> objects representing the admin records in the database.
+        /// </returns>
         public static List<AdminData> FromDatabase()
         {
             List<AdminData> collection = new();
@@ -43,6 +48,7 @@ namespace application.C_DAL
             }
             return collection;
         }
+
         /// <summary>
         /// Inserts the current admin data into the database.
         /// </summary>
