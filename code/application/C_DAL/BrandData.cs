@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using application.B_BL;
+using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +56,22 @@ namespace application.C_DAL
                 }
             }
             return types;
+        }
+
+        public void InsertIntoDatabase()
+        {
+            using(MySqlConnection conn = DataAccessHelper.CreateConnection()) 
+            { 
+                conn.Open();
+
+                using (MySqlCommand cmd = new("INSERT INTO `brand`(`brand`) " +
+                    "VALUES(@brand)"))
+                {
+                    cmd.Parameters.AddWithValue("@brand", Name);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

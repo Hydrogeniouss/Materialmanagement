@@ -59,6 +59,22 @@ namespace application.C_DAL
             return types;
         }
 
+        public void InsertIntoDatabase()
+        {
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new("INSERT INTO `type`(`type`) " +
+                    "VALUES(@type)"))
+                {
+                    cmd.Parameters.AddWithValue("@type", Name);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
 
     }
 }
