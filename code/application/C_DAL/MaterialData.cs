@@ -9,8 +9,8 @@ namespace application.C_DAL
             Id = id;
             Name = name;
             Description = description;
-            Amount_total = quantityTotal;
-            Amount_available = quantityAvailable;
+            AmountTotal = quantityTotal;
+            AmountAvailable = quantityAvailable;
             Brand = brand;
             Type = type;
             ImageFilepath = img_filepath;
@@ -18,8 +18,8 @@ namespace application.C_DAL
 
 
         public int Id { get; }
-        public int Amount_total { get; }
-        public int Amount_available { get; }
+        public int AmountTotal { get; }
+        public int AmountAvailable { get; }
         public string Name { get; } = string.Empty;
         public string Description { get; } = string.Empty;
         public BrandData Brand { get; }
@@ -55,6 +55,28 @@ namespace application.C_DAL
             }
             return materials;
 
+        }
+
+        public void InsertIntoDatabase()
+        {
+            using(MySqlConnection conn = DataAccessHelper.CreateConnection()) {
+                
+                conn.Open();
+
+                using (MySqlCommand cmd = new("INSERT INTO `material`(`material`, `description`, `amount_total`, `amount_available`, `img_filepath`, `brand_id`, `type_id`) " +
+                    "VALUES (@material, @description, @amountTotal,@amountAvailable, @imgFilepath, @brandId, @typeId)"))
+                {
+                    cmd.Parameters.AddWithValue("@material", Name);
+                    cmd.Parameters.AddWithValue("@description", Description);
+                    cmd.Parameters.AddWithValue("@amountTotal", AmountTotal);
+                    cmd.Parameters.AddWithValue("@amountAvailable", AmountAvailable);
+                    cmd.Parameters.AddWithValue("@imgFilepath", ImageFilepath);
+                    cmd.Parameters.AddWithValue("@brandId", Brand.Id);
+                    cmd.Parameters.AddWithValue("@typeId", Type.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

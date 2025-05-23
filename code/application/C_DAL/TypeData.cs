@@ -33,7 +33,9 @@ namespace application.C_DAL
 
             return types[0];
         }
+        
 
+        //TODO: Implement optional param
         private static List<TypeData> FromDatabaseBase(int? id = null)
         {
             List<TypeData> types = new();
