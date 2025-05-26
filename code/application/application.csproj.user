@@ -4,6 +4,9 @@
     <Compile Update="A_PL\Login.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="A_PL\MaterialCard.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="A_PL\RentView.cs">
       <SubType>Form</SubType>
     </Compile>

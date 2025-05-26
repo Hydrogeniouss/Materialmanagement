@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RentView));
             sct_rentMaterial = new SplitContainer();
             lbl_MatText = new Label();
             btn_filter = new Button();
@@ -124,18 +125,21 @@
             // lbl_Ausleihen
             // 
             lbl_Ausleihen.AutoSize = true;
-            lbl_Ausleihen.Font = new Font("Segoe UI", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Ausleihen.Location = new Point(120, 0);
+            lbl_Ausleihen.Font = new Font("Segoe UI", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_Ausleihen.Location = new Point(269, 23);
             lbl_Ausleihen.Name = "lbl_Ausleihen";
-            lbl_Ausleihen.Size = new Size(837, 128);
+            lbl_Ausleihen.Size = new Size(561, 86);
             lbl_Ausleihen.TabIndex = 0;
             lbl_Ausleihen.Text = "Material Ausleihen";
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(26, 36);
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, 9);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 50);
+            pictureBox1.Size = new Size(251, 119);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 

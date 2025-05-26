@@ -10,7 +10,7 @@ namespace application.B_BL
 
         }
 
-        static new List<Material> FromDatabase()
+        public static new List<Material> FromDatabase()
         {
             return MaterialData.FromDatabase()
             .Select(x => new Material(x.Name, x.Description, x.AmountTotal, x.AmountAvailable, x.Brand, x.Type, x.ImageFilepath, x.Id))

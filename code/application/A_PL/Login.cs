@@ -28,7 +28,6 @@ namespace application
                 if (mem.Pin.ToString() == tbx_pin.Text.Trim())
                 {
                     new RentView().ShowDialog();
-                    MessageBox.Show("Test");
                     Close();
                 }
                 else

@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReturnView));
             btn_discard = new Button();
             sct_rentMaterial = new SplitContainer();
             lbl_MatText = new Label();
             btn_filter = new Button();
-            btn_borrow = new Button();
+            btn_return = new Button();
             lbl_selectedMaterials = new Label();
             lbl_material = new Label();
             lbl_return = new Label();
@@ -74,7 +75,7 @@
             // 
             sct_rentMaterial.Panel2.AutoScroll = true;
             sct_rentMaterial.Panel2.Controls.Add(btn_discard);
-            sct_rentMaterial.Panel2.Controls.Add(btn_borrow);
+            sct_rentMaterial.Panel2.Controls.Add(btn_return);
             sct_rentMaterial.Panel2.Controls.Add(lbl_selectedMaterials);
             sct_rentMaterial.Size = new Size(1904, 900);
             sct_rentMaterial.SplitterDistance = 952;
@@ -101,15 +102,15 @@
             btn_filter.Text = "Filter";
             btn_filter.UseVisualStyleBackColor = true;
             // 
-            // btn_borrow
+            // btn_return
             // 
-            btn_borrow.Location = new Point(662, 603);
-            btn_borrow.Margin = new Padding(3, 2, 3, 2);
-            btn_borrow.Name = "btn_borrow";
-            btn_borrow.Size = new Size(117, 43);
-            btn_borrow.TabIndex = 1;
-            btn_borrow.Text = "GENERATED PROGRAMATICALLY";
-            btn_borrow.UseVisualStyleBackColor = true;
+            btn_return.Location = new Point(662, 603);
+            btn_return.Margin = new Padding(3, 2, 3, 2);
+            btn_return.Name = "btn_return";
+            btn_return.Size = new Size(117, 43);
+            btn_return.TabIndex = 1;
+            btn_return.Text = "GENERATED PROGRAMATICALLY";
+            btn_return.UseVisualStyleBackColor = true;
             // 
             // lbl_selectedMaterials
             // 
@@ -161,36 +162,40 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(26, 36);
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 50);
-            pictureBox1.TabIndex = 8;
+            pictureBox1.Size = new Size(251, 119);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 14;
             pictureBox1.TabStop = false;
             // 
             // lbl_returnText
             // 
             lbl_returnText.AutoSize = true;
-            lbl_returnText.Font = new Font("Segoe UI", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_returnText.Location = new Point(120, 0);
+            lbl_returnText.Font = new Font("Segoe UI", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_returnText.Location = new Point(269, 26);
             lbl_returnText.Name = "lbl_returnText";
-            lbl_returnText.Size = new Size(837, 128);
-            lbl_returnText.TabIndex = 7;
-            lbl_returnText.Text = "Material Ausleihen";
+            lbl_returnText.Size = new Size(658, 86);
+            lbl_returnText.TabIndex = 13;
+            lbl_returnText.Text = "Material Zurückgeben";
             // 
             // ReturnView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
+            Controls.Add(pictureBox1);
+            Controls.Add(lbl_returnText);
             Controls.Add(sct_rentMaterial);
             Controls.Add(lbl_material);
             Controls.Add(lbl_return);
             Controls.Add(lbl_borrow);
             Controls.Add(pictureBox2);
-            Controls.Add(pictureBox1);
-            Controls.Add(lbl_returnText);
             Name = "ReturnView";
             Text = "ReturnView";
+            Load += ReturnView_Load;
             sct_rentMaterial.Panel1.ResumeLayout(false);
             sct_rentMaterial.Panel1.PerformLayout();
             sct_rentMaterial.Panel2.ResumeLayout(false);
@@ -209,7 +214,7 @@
         private SplitContainer sct_rentMaterial;
         private Label lbl_MatText;
         private Button btn_filter;
-        private Button btn_borrow;
+        private Button btn_return;
         private Label lbl_selectedMaterials;
         private Label lbl_material;
         private Label lbl_return;
