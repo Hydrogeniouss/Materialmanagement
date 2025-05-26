@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
+using System.Configuration.Internal;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace application.C_DAL
@@ -53,7 +54,26 @@ namespace application.C_DAL
             }
         }
 
+        public void DeleteOnDatabase()
+            => DeleteOnDatabaseBase(Id);
 
+        public static void DeleteOnDatabase(int id) 
+            => DeleteOnDatabaseBase(id);
+        
+   
+        private static void DeleteOnDatabaseBase(int? id) 
+        {
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `user` WHERE @id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("User not in Database/userId is null") : id);
+                }
+            }
+
+        }
 
     }
 }

@@ -78,5 +78,26 @@ namespace application.C_DAL
                 }
             }
         }
+
+        public void DeleteOnDatabase()
+            => DeleteOnDatabaseBase(Id);
+
+        public static void DeleteOnDatabase(int id)
+            => DeleteOnDatabaseBase(id);
+
+
+        private static void DeleteOnDatabaseBase(int? id)
+        {
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `material` WHERE @id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Material not in Database/materialId is null") : id);
+                }
+            }
+
+        }
     }
 }
