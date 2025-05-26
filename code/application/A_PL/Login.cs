@@ -1,3 +1,4 @@
+using application.A_PL;
 using application.B_BL;
 
 namespace application
@@ -26,8 +27,13 @@ namespace application
 
                 if (mem.Pin.ToString() == tbx_pin.Text.Trim()) 
                 {
-                    
-
+                    new RentView().ShowDialog();
+                    MessageBox.Show("Test");
+                    Close();
+                }
+                else
+                {
+                    lbl_errorMessage.Text = "Der Vor- oder Nachname oder der PIN ist Falsch.";
                 }
             }
             catch

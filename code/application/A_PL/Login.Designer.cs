@@ -45,10 +45,9 @@
             // 
             // btn_adminLogin
             // 
-            btn_adminLogin.Location = new Point(1764, 13);
-            btn_adminLogin.Margin = new Padding(3, 4, 3, 4);
+            btn_adminLogin.Location = new Point(1544, 10);
             btn_adminLogin.Name = "btn_adminLogin";
-            btn_adminLogin.Size = new Size(126, 31);
+            btn_adminLogin.Size = new Size(110, 23);
             btn_adminLogin.TabIndex = 0;
             btn_adminLogin.Text = "Log in as Admin";
             btn_adminLogin.UseVisualStyleBackColor = true;
@@ -64,32 +63,35 @@
             panel1.Controls.Add(tbx_firstName);
             panel1.Controls.Add(lbl_pin);
             panel1.Controls.Add(lbl_firstName);
-            panel1.Location = new Point(860, 327);
+            panel1.Location = new Point(752, 245);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(235, 219);
+            panel1.Size = new Size(206, 164);
             panel1.TabIndex = 1;
             // 
             // tbx_lastName
             // 
-            tbx_lastName.Location = new Point(13, 90);
+            tbx_lastName.Location = new Point(11, 68);
+            tbx_lastName.Margin = new Padding(3, 2, 3, 2);
             tbx_lastName.Name = "tbx_lastName";
-            tbx_lastName.Size = new Size(212, 27);
+            tbx_lastName.Size = new Size(186, 23);
             tbx_lastName.TabIndex = 8;
             // 
             // lbl_lastName
             // 
-            lbl_lastName.Location = new Point(13, 66);
+            lbl_lastName.Location = new Point(11, 50);
             lbl_lastName.Name = "lbl_lastName";
-            lbl_lastName.Size = new Size(114, 21);
+            lbl_lastName.Size = new Size(100, 16);
             lbl_lastName.TabIndex = 7;
             lbl_lastName.Tag = "";
             lbl_lastName.Text = "Nachname";
             // 
             // btn_submit
             // 
-            btn_submit.Location = new Point(13, 177);
+            btn_submit.Location = new Point(11, 133);
+            btn_submit.Margin = new Padding(3, 2, 3, 2);
             btn_submit.Name = "btn_submit";
-            btn_submit.Size = new Size(212, 29);
+            btn_submit.Size = new Size(186, 22);
             btn_submit.TabIndex = 3;
             btn_submit.Text = "Einloggen";
             btn_submit.UseVisualStyleBackColor = true;
@@ -97,31 +99,33 @@
             // 
             // tbx_pin
             // 
-            tbx_pin.Location = new Point(13, 144);
+            tbx_pin.Location = new Point(11, 108);
+            tbx_pin.Margin = new Padding(3, 2, 3, 2);
             tbx_pin.Name = "tbx_pin";
-            tbx_pin.Size = new Size(212, 27);
+            tbx_pin.Size = new Size(186, 23);
             tbx_pin.TabIndex = 6;
             // 
             // tbx_firstName
             // 
-            tbx_firstName.Location = new Point(13, 36);
+            tbx_firstName.Location = new Point(11, 27);
+            tbx_firstName.Margin = new Padding(3, 2, 3, 2);
             tbx_firstName.Name = "tbx_firstName";
-            tbx_firstName.Size = new Size(212, 27);
+            tbx_firstName.Size = new Size(186, 23);
             tbx_firstName.TabIndex = 5;
             // 
             // lbl_pin
             // 
-            lbl_pin.Location = new Point(13, 120);
+            lbl_pin.Location = new Point(11, 90);
             lbl_pin.Name = "lbl_pin";
-            lbl_pin.Size = new Size(89, 21);
+            lbl_pin.Size = new Size(78, 16);
             lbl_pin.TabIndex = 4;
             lbl_pin.Text = "PIN";
             // 
             // lbl_firstName
             // 
-            lbl_firstName.Location = new Point(13, 12);
+            lbl_firstName.Location = new Point(11, 9);
             lbl_firstName.Name = "lbl_firstName";
-            lbl_firstName.Size = new Size(114, 21);
+            lbl_firstName.Size = new Size(100, 16);
             lbl_firstName.TabIndex = 3;
             lbl_firstName.Text = "Vorname";
             // 
@@ -129,18 +133,18 @@
             // 
             lbl_login.AutoSize = true;
             lbl_login.Font = new Font("Segoe UI", 20F);
-            lbl_login.Location = new Point(873, 278);
+            lbl_login.Location = new Point(764, 208);
             lbl_login.Name = "lbl_login";
-            lbl_login.Size = new Size(112, 46);
+            lbl_login.Size = new Size(91, 37);
             lbl_login.TabIndex = 2;
             lbl_login.Text = "Log in";
             // 
             // lbl_register
             // 
             lbl_register.AutoSize = true;
-            lbl_register.Location = new Point(873, 549);
+            lbl_register.Location = new Point(764, 412);
             lbl_register.Name = "lbl_register";
-            lbl_register.Size = new Size(88, 20);
+            lbl_register.Size = new Size(69, 15);
             lbl_register.TabIndex = 3;
             lbl_register.Text = "Registrieren";
             // 
@@ -148,23 +152,22 @@
             // 
             lbl_errorMessage.AutoSize = true;
             lbl_errorMessage.ForeColor = Color.Red;
-            lbl_errorMessage.Location = new Point(873, 578);
+            lbl_errorMessage.Location = new Point(764, 434);
             lbl_errorMessage.Name = "lbl_errorMessage";
-            lbl_errorMessage.Size = new Size(0, 20);
+            lbl_errorMessage.Size = new Size(0, 15);
             lbl_errorMessage.TabIndex = 4;
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1902, 1033);
+            ClientSize = new Size(1904, 1041);
             Controls.Add(lbl_errorMessage);
             Controls.Add(lbl_register);
             Controls.Add(lbl_login);
             Controls.Add(panel1);
             Controls.Add(btn_adminLogin);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "Login";
             Text = "Form1";

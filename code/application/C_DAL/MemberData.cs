@@ -40,8 +40,8 @@ namespace application.C_DAL
                                 reader.GetString("last_name"),
                                 reader.GetString("email"),
                                 reader.GetString("phone"),
-                                reader.GetInt32("user_id"),
-                                reader.GetInt32("pin")
+                                reader.GetInt32("pin"),
+                                reader.GetInt32("user_id")
                                 ));
                         }
                     }
