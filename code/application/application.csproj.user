@@ -7,5 +7,8 @@
     <Compile Update="A_PL\RentView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="A_PL\ReturnView.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

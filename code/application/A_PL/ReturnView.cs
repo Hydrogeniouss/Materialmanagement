@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace application.A_PL
 {
-    public partial class RentView : Form
+    public partial class ReturnView : Form
     {
-        public RentView()
+        public ReturnView()
         {
             InitializeComponent();
-        }
-
-        private void RentView_Load(object sender, EventArgs e)
-        {
-            btn_borrow.Text = $"Ausleihen\n{DateTime.Now}";
         }
     }
 }
