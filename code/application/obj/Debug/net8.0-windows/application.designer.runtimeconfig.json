@@ -13,8 +13,7 @@
     ],
     "additionalProbingPaths": [
       "C:\\Users\\ASUS\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\43664\\.nuget\\packages",
-      "C:\\Users\\43664\\Documents\\Gabriel\\VisualStudio1\\NuGetPackages"
+      "C:\\Users\\ASUS\\.nuget\\packages"
     ],
     "configProperties": {
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,

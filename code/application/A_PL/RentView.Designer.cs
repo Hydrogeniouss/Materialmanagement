@@ -35,7 +35,14 @@
             lbl_borrow = new Label();
             lbl_return = new Label();
             lbl_material = new Label();
+            btn_filter = new Button();
+            lbl_MatText = new Label();
+            lbl_selectedMaterials = new Label();
+            btn_borrow = new Button();
+            btn_discard = new Button();
             ((System.ComponentModel.ISupportInitialize)sct_rentMaterial).BeginInit();
+            sct_rentMaterial.Panel1.SuspendLayout();
+            sct_rentMaterial.Panel2.SuspendLayout();
             sct_rentMaterial.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -45,6 +52,19 @@
             // 
             sct_rentMaterial.Location = new Point(0, 140);
             sct_rentMaterial.Name = "sct_rentMaterial";
+            // 
+            // sct_rentMaterial.Panel1
+            // 
+            sct_rentMaterial.Panel1.AutoScroll = true;
+            sct_rentMaterial.Panel1.Controls.Add(lbl_MatText);
+            sct_rentMaterial.Panel1.Controls.Add(btn_filter);
+            // 
+            // sct_rentMaterial.Panel2
+            // 
+            sct_rentMaterial.Panel2.AutoScroll = true;
+            sct_rentMaterial.Panel2.Controls.Add(btn_discard);
+            sct_rentMaterial.Panel2.Controls.Add(btn_borrow);
+            sct_rentMaterial.Panel2.Controls.Add(lbl_selectedMaterials);
             sct_rentMaterial.Size = new Size(1904, 900);
             sct_rentMaterial.SplitterDistance = 952;
             sct_rentMaterial.TabIndex = 0;
@@ -105,6 +125,55 @@
             lbl_material.TabIndex = 5;
             lbl_material.Text = "Material";
             // 
+            // btn_filter
+            // 
+            btn_filter.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_filter.Location = new Point(803, 32);
+            btn_filter.Name = "btn_filter";
+            btn_filter.Size = new Size(109, 45);
+            btn_filter.TabIndex = 0;
+            btn_filter.Text = "Filter";
+            btn_filter.UseVisualStyleBackColor = true;
+            // 
+            // lbl_MatText
+            // 
+            lbl_MatText.AutoSize = true;
+            lbl_MatText.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_MatText.Location = new Point(26, 24);
+            lbl_MatText.Name = "lbl_MatText";
+            lbl_MatText.Size = new Size(205, 50);
+            lbl_MatText.TabIndex = 1;
+            lbl_MatText.Text = "Materialien";
+            // 
+            // lbl_selectedMaterials
+            // 
+            lbl_selectedMaterials.AutoSize = true;
+            lbl_selectedMaterials.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_selectedMaterials.Location = new Point(24, 24);
+            lbl_selectedMaterials.Name = "lbl_selectedMaterials";
+            lbl_selectedMaterials.Size = new Size(392, 50);
+            lbl_selectedMaterials.TabIndex = 0;
+            lbl_selectedMaterials.Text = "Ausgewähltes Material";
+            // 
+            // btn_borrow
+            // 
+            btn_borrow.Location = new Point(757, 804);
+            btn_borrow.Name = "btn_borrow";
+            btn_borrow.Size = new Size(134, 57);
+            btn_borrow.TabIndex = 1;
+            btn_borrow.Text = "GENERATED PROGRAMATICALLY";
+            btn_borrow.UseVisualStyleBackColor = true;
+            // 
+            // btn_discard
+            // 
+            btn_discard.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_discard.Location = new Point(576, 804);
+            btn_discard.Name = "btn_discard";
+            btn_discard.Size = new Size(160, 57);
+            btn_discard.TabIndex = 2;
+            btn_discard.Text = "verwerfen";
+            btn_discard.UseVisualStyleBackColor = true;
+            // 
             // RentView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -119,6 +188,10 @@
             Controls.Add(sct_rentMaterial);
             Name = "RentView";
             Text = "RentView";
+            sct_rentMaterial.Panel1.ResumeLayout(false);
+            sct_rentMaterial.Panel1.PerformLayout();
+            sct_rentMaterial.Panel2.ResumeLayout(false);
+            sct_rentMaterial.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)sct_rentMaterial).EndInit();
             sct_rentMaterial.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -136,5 +209,10 @@
         private Label lbl_borrow;
         private Label lbl_return;
         private Label lbl_material;
+        private Button btn_filter;
+        private Label lbl_MatText;
+        private Label lbl_selectedMaterials;
+        private Button btn_discard;
+        private Button btn_borrow;
     }
 }
