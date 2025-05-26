@@ -30,19 +30,22 @@
         {
             btn_adminLogin = new Button();
             panel1 = new Panel();
-            lbl_login = new Label();
-            lbl_username = new Label();
-            lbl_pin = new Label();
-            tbx_username = new TextBox();
-            tbx_pin = new TextBox();
+            tbx_lastName = new TextBox();
+            lbl_lastName = new Label();
             btn_submit = new Button();
+            tbx_pin = new TextBox();
+            tbx_firstName = new TextBox();
+            lbl_pin = new Label();
+            lbl_firstName = new Label();
+            lbl_login = new Label();
             lbl_register = new Label();
+            lbl_errorMessage = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // btn_adminLogin
             // 
-            btn_adminLogin.Location = new Point(776, 13);
+            btn_adminLogin.Location = new Point(1764, 13);
             btn_adminLogin.Margin = new Padding(3, 4, 3, 4);
             btn_adminLogin.Name = "btn_adminLogin";
             btn_adminLogin.Size = new Size(126, 31);
@@ -54,87 +57,118 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ControlLight;
+            panel1.Controls.Add(tbx_lastName);
+            panel1.Controls.Add(lbl_lastName);
             panel1.Controls.Add(btn_submit);
             panel1.Controls.Add(tbx_pin);
-            panel1.Controls.Add(tbx_username);
+            panel1.Controls.Add(tbx_firstName);
             panel1.Controls.Add(lbl_pin);
-            panel1.Controls.Add(lbl_username);
-            panel1.Location = new Point(334, 171);
+            panel1.Controls.Add(lbl_firstName);
+            panel1.Location = new Point(860, 327);
             panel1.Name = "panel1";
-            panel1.Size = new Size(211, 201);
+            panel1.Size = new Size(235, 219);
             panel1.TabIndex = 1;
             // 
-            // lbl_login
+            // tbx_lastName
             // 
-            lbl_login.AutoSize = true;
-            lbl_login.Font = new Font("Segoe UI", 20F);
-            lbl_login.Location = new Point(347, 122);
-            lbl_login.Name = "lbl_login";
-            lbl_login.Size = new Size(112, 46);
-            lbl_login.TabIndex = 2;
-            lbl_login.Text = "Log in";
-            lbl_login.Click += this.label1_Click;
+            tbx_lastName.Location = new Point(13, 90);
+            tbx_lastName.Name = "tbx_lastName";
+            tbx_lastName.Size = new Size(212, 27);
+            tbx_lastName.TabIndex = 8;
             // 
-            // lbl_username
+            // lbl_lastName
             // 
-            lbl_username.Location = new Point(23, 27);
-            lbl_username.Name = "lbl_username";
-            lbl_username.Size = new Size(114, 21);
-            lbl_username.TabIndex = 3;
-            lbl_username.Text = "Benutzername";
+            lbl_lastName.Location = new Point(13, 66);
+            lbl_lastName.Name = "lbl_lastName";
+            lbl_lastName.Size = new Size(114, 21);
+            lbl_lastName.TabIndex = 7;
+            lbl_lastName.Tag = "";
+            lbl_lastName.Text = "Nachname";
+            // 
+            // btn_submit
+            // 
+            btn_submit.Location = new Point(13, 177);
+            btn_submit.Name = "btn_submit";
+            btn_submit.Size = new Size(212, 29);
+            btn_submit.TabIndex = 3;
+            btn_submit.Text = "Einloggen";
+            btn_submit.UseVisualStyleBackColor = true;
+            btn_submit.Click += btn_submit_Click;
+            // 
+            // tbx_pin
+            // 
+            tbx_pin.Location = new Point(13, 144);
+            tbx_pin.Name = "tbx_pin";
+            tbx_pin.Size = new Size(212, 27);
+            tbx_pin.TabIndex = 6;
+            // 
+            // tbx_firstName
+            // 
+            tbx_firstName.Location = new Point(13, 36);
+            tbx_firstName.Name = "tbx_firstName";
+            tbx_firstName.Size = new Size(212, 27);
+            tbx_firstName.TabIndex = 5;
             // 
             // lbl_pin
             // 
-            lbl_pin.Location = new Point(23, 94);
+            lbl_pin.Location = new Point(13, 120);
             lbl_pin.Name = "lbl_pin";
             lbl_pin.Size = new Size(89, 21);
             lbl_pin.TabIndex = 4;
             lbl_pin.Text = "PIN";
             // 
-            // tbx_username
+            // lbl_firstName
             // 
-            tbx_username.Location = new Point(23, 51);
-            tbx_username.Name = "tbx_username";
-            tbx_username.Size = new Size(165, 27);
-            tbx_username.TabIndex = 5;
+            lbl_firstName.Location = new Point(13, 12);
+            lbl_firstName.Name = "lbl_firstName";
+            lbl_firstName.Size = new Size(114, 21);
+            lbl_firstName.TabIndex = 3;
+            lbl_firstName.Text = "Vorname";
             // 
-            // tbx_pin
+            // lbl_login
             // 
-            tbx_pin.Location = new Point(23, 118);
-            tbx_pin.Name = "tbx_pin";
-            tbx_pin.Size = new Size(165, 27);
-            tbx_pin.TabIndex = 6;
-            // 
-            // btn_submit
-            // 
-            btn_submit.Location = new Point(23, 151);
-            btn_submit.Name = "btn_submit";
-            btn_submit.Size = new Size(165, 29);
-            btn_submit.TabIndex = 3;
-            btn_submit.Text = "Einloggen";
-            btn_submit.UseVisualStyleBackColor = true;
+            lbl_login.AutoSize = true;
+            lbl_login.Font = new Font("Segoe UI", 20F);
+            lbl_login.Location = new Point(873, 278);
+            lbl_login.Name = "lbl_login";
+            lbl_login.Size = new Size(112, 46);
+            lbl_login.TabIndex = 2;
+            lbl_login.Text = "Log in";
             // 
             // lbl_register
             // 
             lbl_register.AutoSize = true;
-            lbl_register.Location = new Point(358, 375);
+            lbl_register.Location = new Point(873, 549);
             lbl_register.Name = "lbl_register";
             lbl_register.Size = new Size(88, 20);
             lbl_register.TabIndex = 3;
             lbl_register.Text = "Registrieren";
             // 
+            // lbl_errorMessage
+            // 
+            lbl_errorMessage.AutoSize = true;
+            lbl_errorMessage.ForeColor = Color.Red;
+            lbl_errorMessage.Location = new Point(873, 578);
+            lbl_errorMessage.Name = "lbl_errorMessage";
+            lbl_errorMessage.Size = new Size(0, 20);
+            lbl_errorMessage.TabIndex = 4;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
+            ClientSize = new Size(1902, 1033);
+            Controls.Add(lbl_errorMessage);
             Controls.Add(lbl_register);
             Controls.Add(lbl_login);
             Controls.Add(panel1);
             Controls.Add(btn_adminLogin);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "Login";
             Text = "Form1";
+            Load += Login_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -147,10 +181,13 @@
         private Panel panel1;
         private Label lbl_login;
         private TextBox tbx_pin;
-        private TextBox tbx_username;
+        private TextBox tbx_firstName;
         private Label lbl_pin;
-        private Label lbl_username;
+        private Label lbl_firstName;
         private Button btn_submit;
+        private TextBox tbx_lastName;
+        private Label lbl_lastName;
         private Label lbl_register;
+        private Label lbl_errorMessage;
     }
 }
