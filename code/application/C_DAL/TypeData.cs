@@ -97,23 +97,24 @@ namespace application.C_DAL
         }
 
         public void UpdateOnDatabase()
-            => UpdateOnDatabaseBase(Id);
+            => UpdateOnDatabaseBase(Id, this);
 
-        public static void UpdateOnDatabase(int id)
-            => UpdateOnDatabaseBase(id);
+        public static void UpdateOnDatabase(int id, TypeData type)
+            => UpdateOnDatabaseBase(id, type);
 
 
-        private static void UpdateOnDatabaseBase(int? id)
+        private static void UpdateOnDatabaseBase(int? id, TypeData type)
         {
             using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {
                 conn.Open();
 
-                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `type` WHERE @id", conn))
+                using (MySqlCommand cmd = new MySqlCommand("UPDATE `type` SET `type`='@type' WHERE @id", conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Type not in Database/typeId is null") : id);
+                    cmd.Parameters.AddWithValue("@type", type.Name);
                 }
-            }
+            }   
 
         }
     }
