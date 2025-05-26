@@ -25,7 +25,7 @@ namespace application
                 Member mem = Member.FromDatabase().Where(mem => mem.FirstName == tbx_firstName.Text
                     && mem.LastName == tbx_lastName.Text).ToArray()[0];
 
-                if (mem.Pin.ToString() == tbx_pin.Text.Trim()) 
+                if (mem.Pin.ToString() == tbx_pin.Text.Trim())
                 {
                     new RentView().ShowDialog();
                     MessageBox.Show("Test");
@@ -41,11 +41,6 @@ namespace application
                 lbl_errorMessage.Text = "Der Vor- oder Nachname oder der PIN ist Falsch.";
             }
 
-            
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
 
         }
     }
