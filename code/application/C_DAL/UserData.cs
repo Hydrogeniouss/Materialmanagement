@@ -75,5 +75,30 @@ namespace application.C_DAL
 
         }
 
+        public void UpdateOnDatabase()
+            => UpdateOnDatabaseBase(Id, this);
+
+        public static void UpdateOnDatabase(int id, UserData user)
+            => UpdateOnDatabaseBase(id, user);
+
+
+        private static void UpdateOnDatabaseBase(int? id, UserData user)
+        {
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+                conn.Open();
+
+                using (MySqlCommand cmd = new MySqlCommand("UPDATE `user` SET `first_name`= @firstName,`last_name`= @lastName,`email`= @email',`phone`=@phone WHERE @id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Type not in Database/typeId is null") : id);
+                    cmd.Parameters.AddWithValue("@firstName", user.FirstName);
+                    cmd.Parameters.AddWithValue("@lastName", user.LastName);
+                    cmd.Parameters.AddWithValue("@email", user.Email);
+                    cmd.Parameters.AddWithValue("@phone", user.Phone);
+                }
+            }
+
+        }
+
     }
 }
