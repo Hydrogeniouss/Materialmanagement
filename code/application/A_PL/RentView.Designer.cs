@@ -94,23 +94,25 @@
             // btn_discard
             // 
             btn_discard.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_discard.Location = new Point(504, 603);
+            btn_discard.Location = new Point(661, 847);
             btn_discard.Margin = new Padding(3, 2, 3, 2);
             btn_discard.Name = "btn_discard";
             btn_discard.Size = new Size(140, 43);
             btn_discard.TabIndex = 2;
             btn_discard.Text = "verwerfen";
             btn_discard.UseVisualStyleBackColor = true;
+            btn_discard.Click += btn_discard_Click;
             // 
             // btn_borrow
             // 
-            btn_borrow.Location = new Point(662, 603);
+            btn_borrow.Location = new Point(819, 847);
             btn_borrow.Margin = new Padding(3, 2, 3, 2);
             btn_borrow.Name = "btn_borrow";
             btn_borrow.Size = new Size(117, 43);
             btn_borrow.TabIndex = 1;
             btn_borrow.Text = "GENERATED PROGRAMATICALLY";
             btn_borrow.UseVisualStyleBackColor = true;
+            //btn_borrow.Click += this.btn_borrow_Click; //showed as error, not sure if needed later
             // 
             // lbl_selectedMaterials
             // 
