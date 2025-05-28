@@ -1,17 +1,13 @@
 ﻿namespace application.A_PL
 {
-    internal class MaterialCard : Panel
+    internal class MaterialCardLarge : Card
     {
-        public Label lbl_Name;
-        public Label lbl_Brand;
-        public Label lbl_Description;
-        public PictureBox? Img = null;
-        public int Margin = 10;
-
-        public MaterialCard(string name, string brand, string description, string? imgFilepath)
+       public MaterialCardLarge(string name, string brand, string description, string? imgFilepath)
         {
-            this.BackColor = Color.RebeccaPurple;
-            this.Size = new Size(930, 190);
+
+            this.Height = 190;
+
+
             lbl_Name = new Label()
             {
                 Size = new Size(232, 49),
@@ -49,6 +45,10 @@
 
         }
 
+        public Label lbl_Name;
+        public Label lbl_Brand;
+        public Label lbl_Description;
+        public PictureBox? Img = null;
 
     }
 }

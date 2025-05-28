@@ -14,67 +14,94 @@ namespace application.A_PL
         private void RentView_Load(object sender, EventArgs e)
         {
             btn_borrow.Text = $"Ausleihen\n({DateTime.Now})";
+            //TODO: Here, material brand Name and Type is switched :(
             AddMaterials(Material.FromDatabase());
+
         }
         private void AddMaterials(List<Material> materials)
         {
-            sct_rentMaterial.Panel1.Controls.OfType<MaterialCard>().ToList().Clear();
-            List<MaterialCard> cards = new(materials.Select(mat => new MaterialCard(mat.Name, mat.Brand.Name, mat.Description, null)));
+            sct_rentMaterial.Panel1.Controls.OfType<Card>().ToList().Clear();
+            List<MaterialCardLarge> mclList = new(materials.Select(mat => new MaterialCardLarge(mat.Name, mat.Brand.Name, mat.Description, null)));
 
-            for (var i = 0; i < cards.Count; i++)
+            for (var i = 0; i < mclList.Count; i++)
             {
-                MaterialCard card = cards[i];
-                card.Location = new Point(card.Margin, (card.Height + card.Margin) * i + 100);
-                card.Click += Card_Click;
-                sct_rentMaterial.Panel1.Controls.Add(card);
+                Card mcl = mclList[i];
+                mcl.Location = new Point(Card.MARGIN, (mcl.Height + Card.MARGIN) * i + Card.MARGIN);
+                mcl.Click += MaterialCard_Click;
+                sct_rentMaterial.Panel1.Controls.Add(mcl);
             }
         }
 
-        private void Card_Click(object? sender, EventArgs e)
-        {
-            if (sender is MaterialCard card)
-            {
-                if (card.Parent == sct_rentMaterial.Panel1)
-                {
-                    int itemsCount = sct_rentMaterial.Panel2.Controls.OfType<MaterialCard>().Count();
-                    card.Location = new Point(card.Margin, (card.Height + card.Margin) * itemsCount + 100);
-                    
 
-                    sct_rentMaterial.Panel2.Controls.Add(card);
-                    UpdateCards();
+        private void MaterialCard_Click(object? sender, EventArgs e)
+        {
+            if (sender is MaterialCardLarge mcl)
+            {
+                if (mcl.Parent == sct_rentMaterial.Panel1)
+                {
+                    if (mcl.BackColor != Color.MediumPurple)
+                    {
+                        mcl.BackColor = Color.MediumPurple;
+
+                        //TODO fix placements (buggy when scrolling starts working)
+                        int itemsCount = sct_rentMaterial.Panel2.Controls.OfType<Card>().Count();
+                        MaterialCardSmall mcs = new MaterialCardSmall(mcl)
+                        {
+                            Location = new Point(Card.MARGIN, (Card.STANDARDHEIGHT + Card.MARGIN) * itemsCount + Card.MARGIN)
+                        };
+
+                        mcs.Click += MaterialCard_Click;
+                        mcs.btn_Delete.Click += MaterialCard_Click; //TODO: Doesnt Work, why??
+
+                        sct_rentMaterial.Panel2.Controls.Add(mcs);
+                    }
+
+                    else
+                    {
+                        mcl.BackColor = Color.RebeccaPurple;
+
+                        sct_rentMaterial.Panel2.Controls.Remove(
+                            sct_rentMaterial.Panel2.Controls.OfType<MaterialCardSmall>().Where(
+                                mcs => mcs.Origin == mcl).ToArray()[0]
+                        );
+
+                        UpdateCards();
+                    }
                 }
 
-                else if (card.Parent == sct_rentMaterial.Panel2)
+            }
+            else if (sender is MaterialCardSmall mcs)
+            {
+                if (mcs.Parent == sct_rentMaterial.Panel2)
                 {
-                    int itemsCount = sct_rentMaterial.Panel1.Controls.Count;
-                    card.Location = new Point(card.Margin, (card.Height + card.Margin) * itemsCount + 100);
+                    mcs.Origin.BackColor = Color.RebeccaPurple;
+                    mcs.Click -= MaterialCard_Click;
+                    mcs.btn_Delete.Click -= MaterialCard_Click;
+                    sct_rentMaterial.Panel2.Controls.Remove(mcs);
 
-                    sct_rentMaterial.Panel1.Controls.Add(card);
                     UpdateCards();
                 }
             }
+
+
         }
 
         private void UpdateCards()
-        {   
-            List<MaterialCard> cards = sct_rentMaterial.Panel1.Controls.OfType<MaterialCard>().ToList();
-            for (int i = 0; i < cards.Count; i++)
-            {
-                MaterialCard card = cards[i];
-                card.Location = new Point(card.Margin, (card.Height + card.Margin) * i + 100);
-            }
-
-            cards = sct_rentMaterial.Panel2.Controls.OfType<MaterialCard>().ToList();
-            for (int i = 0; i < cards.Count; i++)
-            {
-                MaterialCard card = cards[i];
-                card.Location = new Point(card.Margin, (card.Height + card.Margin) * i + 100);
-            }
-        }
-
-        private void btn_discard_Click(object sender, EventArgs e)
         {
+            List<Card> cards = sct_rentMaterial.Panel1.Controls.OfType<Card>().ToList();
+            for (int i = 0; i < cards.Count; i++)
+            {
+                Card card = cards[i];
+                card.Location = new Point(Card.MARGIN, (card.Height + Card.MARGIN) * i + Card.MARGIN);
+            }
 
+            cards = sct_rentMaterial.Panel2.Controls.OfType<Card>().ToList();
+            for (int i = 0; i < cards.Count; i++)
+            {
+                Card card = cards[i];
+                card.Location = new Point(Card.MARGIN, (card.Height + Card.MARGIN) * i + Card.MARGIN);
+            }
         }
+
     }
 }
