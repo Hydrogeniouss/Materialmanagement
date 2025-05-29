@@ -1,14 +1,14 @@
-﻿namespace application
+﻿namespace application.A_PL
 {
-    partial class Login
+    partial class LoginAdmin
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,12 +23,14 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            btn_adminLogin = new Button();
+            lbl_errorMessage = new Label();
+            lbl_register = new Label();
+            lbl_login = new Label();
             panel1 = new Panel();
             btn_submit = new Button();
             tbx_pin = new TextBox();
@@ -37,24 +39,39 @@
             lbl_lastName = new Label();
             tbx_firstName = new TextBox();
             lbl_firstName = new Label();
-            lbl_login = new Label();
-            lbl_register = new Label();
-            lbl_errorMessage = new Label();
+            btn_memberLogin = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // btn_adminLogin
+            // lbl_errorMessage
             // 
-            btn_adminLogin.BackColor = Color.FromArgb(92, 168, 46);
-            btn_adminLogin.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_adminLogin.ForeColor = Color.White;
-            btn_adminLogin.Location = new Point(1631, 12);
-            btn_adminLogin.Name = "btn_adminLogin";
-            btn_adminLogin.Size = new Size(261, 50);
-            btn_adminLogin.TabIndex = 0;
-            btn_adminLogin.Text = "Log in as Admin";
-            btn_adminLogin.UseVisualStyleBackColor = false;
-            btn_adminLogin.Click += btn_loginAsAdmin_Click;
+            lbl_errorMessage.AutoSize = true;
+            lbl_errorMessage.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_errorMessage.ForeColor = Color.FromArgb(177, 46, 39);
+            lbl_errorMessage.Location = new Point(821, 713);
+            lbl_errorMessage.Name = "lbl_errorMessage";
+            lbl_errorMessage.Size = new Size(0, 30);
+            lbl_errorMessage.TabIndex = 8;
+            // 
+            // lbl_register
+            // 
+            lbl_register.AutoSize = true;
+            lbl_register.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_register.Location = new Point(821, 674);
+            lbl_register.Name = "lbl_register";
+            lbl_register.Size = new Size(122, 30);
+            lbl_register.TabIndex = 7;
+            lbl_register.Text = "Registrieren";
+            // 
+            // lbl_login
+            // 
+            lbl_login.AutoSize = true;
+            lbl_login.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_login.Location = new Point(812, 297);
+            lbl_login.Name = "lbl_login";
+            lbl_login.Size = new Size(108, 45);
+            lbl_login.TabIndex = 6;
+            lbl_login.Text = "Log in";
             // 
             // panel1
             // 
@@ -66,11 +83,11 @@
             panel1.Controls.Add(lbl_lastName);
             panel1.Controls.Add(tbx_firstName);
             panel1.Controls.Add(lbl_firstName);
-            panel1.Location = new Point(752, 245);
+            panel1.Location = new Point(800, 344);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(305, 328);
-            panel1.TabIndex = 1;
+            panel1.TabIndex = 5;
             // 
             // btn_submit
             // 
@@ -139,50 +156,31 @@
             lbl_firstName.TabIndex = 3;
             lbl_firstName.Text = "Vorname";
             // 
-            // lbl_login
+            // btn_memberLogin
             // 
-            lbl_login.AutoSize = true;
-            lbl_login.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_login.Location = new Point(764, 198);
-            lbl_login.Name = "lbl_login";
-            lbl_login.Size = new Size(108, 45);
-            lbl_login.TabIndex = 2;
-            lbl_login.Text = "Log in";
+            btn_memberLogin.BackColor = Color.FromArgb(92, 168, 46);
+            btn_memberLogin.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btn_memberLogin.ForeColor = Color.White;
+            btn_memberLogin.Location = new Point(1631, 12);
+            btn_memberLogin.Name = "btn_memberLogin";
+            btn_memberLogin.Size = new Size(261, 50);
+            btn_memberLogin.TabIndex = 9;
+            btn_memberLogin.Text = "Log in as Member";
+            btn_memberLogin.UseVisualStyleBackColor = false;
+            btn_memberLogin.Click += btn_loginMember_Click;
             // 
-            // lbl_register
-            // 
-            lbl_register.AutoSize = true;
-            lbl_register.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_register.Location = new Point(773, 575);
-            lbl_register.Name = "lbl_register";
-            lbl_register.Size = new Size(122, 30);
-            lbl_register.TabIndex = 3;
-            lbl_register.Text = "Registrieren";
-            // 
-            // lbl_errorMessage
-            // 
-            lbl_errorMessage.AutoSize = true;
-            lbl_errorMessage.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_errorMessage.ForeColor = Color.FromArgb(177, 46, 39);
-            lbl_errorMessage.Location = new Point(773, 614);
-            lbl_errorMessage.Name = "lbl_errorMessage";
-            lbl_errorMessage.Size = new Size(0, 30);
-            lbl_errorMessage.TabIndex = 4;
-            // 
-            // Login
+            // LoginAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
+            Controls.Add(btn_memberLogin);
             Controls.Add(lbl_errorMessage);
             Controls.Add(lbl_register);
             Controls.Add(lbl_login);
             Controls.Add(panel1);
-            Controls.Add(btn_adminLogin);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            MaximizeBox = false;
-            Name = "Login";
-            Text = "Form1";
+            Name = "LoginAdmin";
+            Text = "LoginAdmin";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -191,17 +189,17 @@
 
         #endregion
 
-        private Button btn_adminLogin;
-        private Panel panel1;
-        private Label lbl_login;
-        private TextBox tbx_firstName;
-        private Label lbl_firstName;
-        private Label lbl_register;
         private Label lbl_errorMessage;
+        private Label lbl_register;
+        private Label lbl_login;
+        private Panel panel1;
+        private Button btn_submit;
         private TextBox tbx_pin;
         private Label lbl_pin;
         private TextBox tbx_lastName;
         private Label lbl_lastName;
-        private Button btn_submit;
+        private TextBox tbx_firstName;
+        private Label lbl_firstName;
+        private Button btn_memberLogin;
     }
 }

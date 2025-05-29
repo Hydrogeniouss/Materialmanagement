@@ -1,15 +1,24 @@
-using application.A_PL;
-using application.B_BL;
+﻿using application.B_BL;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace application
+namespace application.A_PL
 {
-    public partial class Login : Form
+    public partial class LoginAdmin : Form
     {
-        public Login()
+        public LoginAdmin()
         {
-            InitializeComponent();
-        }
 
+            InitializeComponent();
+            
+        }
         private void btn_submit_Click(object sender, EventArgs e)
         {
             try
@@ -20,7 +29,7 @@ namespace application
                 if (mem.Pin.ToString() == tbx_pin.Text.Trim())
                 {
                     new RentView().Show();
-                    this.Close();
+                    Close();
                 }
                 else
                 {
@@ -32,11 +41,12 @@ namespace application
                 lbl_errorMessage.Text = "Der Vor- oder Nachname oder der PIN ist Falsch.";
             }
 
+
         }
 
-        private void btn_loginAsAdmin_Click(object sender, EventArgs e)
+        private void btn_loginMember_Click(object sender, EventArgs e)
         {
-            new LoginAdmin().Show();
+            new Login().Show();
             Close();
         }
     }
