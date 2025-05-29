@@ -20,7 +20,7 @@ namespace application.A_PL
         }
         private void AddMaterials(List<Material> materials)
         {
-            sct_rentMaterial.Panel1.Controls.OfType<Card>().ToList().Clear();
+            sct_rentMaterial.Panel1.Controls.Clear(); //apparently filtering via ofType<Card>() doesnt work, so full clear it is
             List<MaterialCardLarge> mclList = new(materials.Select(mat => new MaterialCardLarge(mat.Name, mat.Brand.Name, mat.Description, null)));
 
             for (var i = 0; i < mclList.Count; i++)
@@ -103,5 +103,14 @@ namespace application.A_PL
             }
         }
 
+        private void btn_filter_Click(object sender, EventArgs e)
+        {
+            var filterView = new MaterialFilter();
+            filterView.ShowDialog();
+            if (filterView.DialogResult == DialogResult.OK)
+            {
+                AddMaterials(filterView.materials);
+            }
+        }
     }
 }

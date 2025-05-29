@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Text;
 
 namespace application.C_DAL
 {
@@ -27,20 +28,63 @@ namespace application.C_DAL
         public string? ImageFilepath { get; } = string.Empty;
 
 
-        public static List<MaterialData> FromDatabase()
+        public static List<MaterialData> FromDatabase(MaterialFilterData? filter = null)
         {
             List<MaterialData> materials = new();
             using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {
                 conn.Open();
-                using (MySqlCommand cmd = new("Select * FROM material LEFT JOIN brand ON material.brand_id = brand.brand_id LEFT JOIN type ON material.type_id = type.type_id", conn))
+                using (MySqlCommand cmd = new())
                 {
+                    StringBuilder sql = new("SELECT * FROM material " +
+                        "LEFT JOIN brand ON material.brand_id = brand.brand_id " +
+                        "LEFT JOIN type ON material.type_id = type.type_id");
+
+                    if (filter != null)
+                    {
+                        List<string> conditions = new();
+
+                        if (!string.IsNullOrEmpty(filter.Name))
+                        {
+                            conditions.Add("material.material LIKE @name");
+                            cmd.Parameters.AddWithValue("@name", "%" + filter.Name + "%");
+                        }
+
+                        if (!string.IsNullOrEmpty(filter.Description))
+                        {
+                            conditions.Add("material.Description LIKE @description");
+                            cmd.Parameters.AddWithValue("@description", "%" + filter.Description + "%");
+                        }
+
+                        if (filter.Brand != null)
+                        {
+                            conditions.Add("brand.brand_id = @brand_id");
+                            cmd.Parameters.AddWithValue("@brand_id", filter.Brand);
+                        }
+
+                        if (filter.Type != null)
+                        {
+                            conditions.Add("type.type_id = @type_id");
+                            cmd.Parameters.AddWithValue("@type_id", filter.Type);
+                        }
+
+                        if (conditions.Count > 0)
+                        {
+                            sql.Append(" WHERE " + string.Join(" AND ", conditions));
+                        }
+                    }
+
+                    cmd.CommandText = sql.ToString();
+                    cmd.Connection = conn;
+
+
+
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             materials.Add(new(
-                                
+
                                 reader.GetString("material"),
                                 reader.GetString("description"),
                                 reader.GetInt32("amount_total"),
@@ -52,16 +96,18 @@ namespace application.C_DAL
                                 ));
                         }
                     }
-                }
-            }
-            return materials;
 
+                }
+                return materials;
+            }
         }
+
 
         public void InsertIntoDatabase()
         {
-            using(MySqlConnection conn = DataAccessHelper.CreateConnection()) {
-                
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+
                 conn.Open();
 
                 using (MySqlCommand cmd = new("INSERT INTO `material`(`material`, `description`, `amount_total`, `amount_available`, `img_filepath`, `brand_id`, `type_id`) " +
@@ -99,6 +145,19 @@ namespace application.C_DAL
                 }
             }
 
+        }
+    }
+
+    public sealed class MaterialFilterData
+    {
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public int? AmountTotal { get; set; }
+        public int? AmountAvailable { get; set; }
+        public BrandData? Brand { get; set; }
+        public TypeData? Type { get; set; }
+        public MaterialFilterData()
+        {
         }
     }
 }

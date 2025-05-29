@@ -84,6 +84,7 @@
             btn_borrow.TabIndex = 1;
             btn_borrow.Text = "GENERATED PROGRAMATICALLY";
             btn_borrow.UseVisualStyleBackColor = true;
+            // 
             // lbl_MatText
             // 
             lbl_MatText.AutoSize = true;
@@ -104,6 +105,7 @@
             btn_filter.TabIndex = 0;
             btn_filter.Text = "Filter";
             btn_filter.UseVisualStyleBackColor = true;
+            btn_filter.Click += btn_filter_Click;
             // 
             // lbl_selectedMaterials
             // 
