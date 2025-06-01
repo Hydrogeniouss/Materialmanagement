@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace application.B_BL
 {
-    internal class Brand : BrandData
+    public class Brand : BrandData
     {
         public Brand(string name, int? id = null)
             : base(name, id)

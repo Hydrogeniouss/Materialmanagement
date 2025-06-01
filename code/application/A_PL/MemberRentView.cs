@@ -4,9 +4,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace application.A_PL
 {
-    public partial class RentView : Form
+    public partial class MemberRentView : Form
     {
-        public RentView()
+        public MemberRentView()
         {
             InitializeComponent();
         }
@@ -18,6 +18,7 @@ namespace application.A_PL
             AddMaterials(Material.FromDatabase());
 
         }
+
         private void AddMaterials(List<Material> materials)
         {
             sct_rentMaterial.Panel1.Controls.Clear(); //apparently filtering via ofType<Card>() doesnt work, so full clear it is
@@ -26,7 +27,7 @@ namespace application.A_PL
             for (var i = 0; i < mclList.Count; i++)
             {
                 Card mcl = mclList[i];
-                mcl.Location = new Point(Card.MARGIN, (mcl.Height + Card.MARGIN) * i + Card.MARGIN);
+                mcl.Location = new Point(Card.MARGIN, (MaterialCardLarge.STANDARDHEIGHT + Card.MARGIN) * i + Card.MARGIN);
                 mcl.Click += MaterialCard_Click;
                 sct_rentMaterial.Panel1.Controls.Add(mcl);
             }
@@ -105,11 +106,11 @@ namespace application.A_PL
 
         private void btn_filter_Click(object sender, EventArgs e)
         {
-            var filterView = new MaterialFilter();
+            MaterialFilter filterView = new MaterialFilter();
             filterView.ShowDialog();
             if (filterView.DialogResult == DialogResult.OK)
             {
-                AddMaterials(filterView.materials);
+                AddMaterials(filterView.Materials);
             }
         }
     }

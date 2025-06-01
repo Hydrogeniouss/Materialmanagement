@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using application.B_BL;
 
 namespace application.A_PL
 {
@@ -47,9 +43,13 @@ namespace application.A_PL
 
         }
 
-        public int Count { get; set; }
-        public MaterialCardLarge Origin { get; set; }
+        
 
+        public new const int STANDARDHEIGHT = 50;
+
+        public int Count { get; set; }
+        
+        public MaterialCardLarge? Origin { get; set; }
         public Label lbl_Name { get; set; }
         public Label lbl_Brand { get; set; }
         public Button btn_Delete { get; set; }

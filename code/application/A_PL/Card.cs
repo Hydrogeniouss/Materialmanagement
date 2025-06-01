@@ -17,7 +17,8 @@ namespace application.A_PL
 
         public const int STANDARDWIDTH = 930;
         public const int STANDARDHEIGHT = 50;
-        public static readonly Color STANDARDBACKCOLOR = Color.RebeccaPurple; // const not working
+
+        public static readonly Color STANDARDBACKCOLOR = Color.LightGray; // const not working
         public const int MARGIN = 10;
         public const int PADDING = 5;
         

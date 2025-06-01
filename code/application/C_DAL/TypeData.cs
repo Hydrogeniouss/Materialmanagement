@@ -11,8 +11,8 @@ namespace application.C_DAL
     {
         public TypeData(string name, int? id = null)
         {
-            Id = id;
-            Name = name;
+            this.Id = id;
+            this.Name = name;
         }
 
         public int? Id { get; set; }
@@ -38,25 +38,53 @@ namespace application.C_DAL
         //TODO: Implement optional param
         private static List<TypeData> FromDatabaseBase(int? id = null)
         {
-            List<TypeData> types = new();
-            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            List<TypeData> brands = new();
+            if (id == null)
             {
-                conn.Open();
-                using (MySqlCommand cmd = new("Select * FROM type", conn))
+                using (MySqlConnection conn = DataAccessHelper.CreateConnection())
                 {
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    conn.Open();
+                    using (MySqlCommand cmd = new("Select * FROM type", conn))
                     {
-                        while (reader.Read())
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            types.Add(new(
-                                reader.GetString("type"),
-                                reader.GetInt32("type_id")
-                            ));
+                            while (reader.Read())
+                            {
+                                brands.Add(new(
+                                    reader.GetString("type"),
+                                    reader.GetInt32("type_id")
+                                ));
+                            }
                         }
                     }
                 }
+                return brands;
             }
-            return types;
+            else
+            {
+                using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new("Select * FROM type WHERE type_id = @id", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                brands.Add(new(
+                                    reader.GetString("type"),
+                                    reader.GetInt32("type_id")
+                                ));
+                            }
+                        }
+                    }
+
+                }
+                return brands;
+            }
+
         }
 
         public void InsertIntoDatabase()

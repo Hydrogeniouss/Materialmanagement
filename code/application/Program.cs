@@ -13,10 +13,10 @@ namespace application
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            //Application.Run(new RentView());
             
-            Login login = new Login();
-            login.ShowDialog();
+            //new Login().Show();
+            new AdminStoragaeVeiw().Show();
+
             Application.Run();
         }
     }

@@ -19,7 +19,7 @@ namespace application
 
                 if (mem.Pin.ToString() == tbx_pin.Text.Trim())
                 {
-                    new RentView().Show();
+                    new MemberRentView().Show();
                     this.Close();
                 }
                 else
@@ -29,7 +29,8 @@ namespace application
             }
             catch
             {
-                lbl_errorMessage.Text = "Der Vor- oder Nachname oder der PIN ist Falsch.";
+                lbl_errorMessage.Text = "Der Vor- oder Nachname oder der PIN ist Falsch.\n" +
+                    "Möglicherweise hat die Verbindung zur Datenbank Fehlgesschlagen";
             }
 
         }

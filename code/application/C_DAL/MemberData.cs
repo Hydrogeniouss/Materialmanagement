@@ -6,7 +6,7 @@ namespace application.C_DAL
     /// Represents the data of members as declared in the DB
     /// </summary>
 
-    internal class MemberData : UserData
+    public class MemberData : UserData
     {
         public MemberData(string firstName, string lastName, string email, string phone, int pin, int? id = null) 
             : base(id, firstName, lastName, email, phone)
@@ -25,29 +25,71 @@ namespace application.C_DAL
 
         public static List<MemberData> FromDatabase()
         {
-            List<MemberData> collection = new();
-            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            return FromDatabaseBase();
+        }
+        public static MemberData FromDatabase(int id)
+        {
+            return FromDatabaseBase(id)[0];
+        }
+
+        private static List<MemberData> FromDatabaseBase(int? id = null)
+        {
+            if (id == null)
             {
-                conn.Open();
-                using (MySqlCommand cmd = new("Select * FROM member JOIN user ON member.user_id = user.user_id", conn))
+
+                List<MemberData> members = new();
+                using (MySqlConnection conn = DataAccessHelper.CreateConnection())
                 {
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    conn.Open();
+                    using (MySqlCommand cmd = new("Select * FROM member JOIN user ON member.user_id = user.user_id", conn))
                     {
-                        while (reader.Read())
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            collection.Add(new MemberData(
-                                reader.GetString("first_name"),
-                                reader.GetString("last_name"),
-                                reader.GetString("email"),
-                                reader.GetString("phone"),
-                                reader.GetInt32("pin"),
-                                reader.GetInt32("user_id")
+                            while (reader.Read())
+                            {
+                                members.Add(new MemberData(
+                                    reader.GetString("first_name"),
+                                    reader.GetString("last_name"),
+                                    reader.GetString("email"),
+                                    reader.GetString("phone"),
+                                    reader.GetInt32("pin"),
+                                    reader.GetInt32("user_id")
                                 ));
+                            }
                         }
                     }
                 }
+                return members;
             }
-            return collection;
+            else
+            {
+                
+                List<MemberData> members = new();
+                using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new("Select * FROM member JOIN user ON member.user_id = user.user_id WHERE member.user_id = @id", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                members.Add(new MemberData(
+                                    reader.GetString("first_name"),
+                                    reader.GetString("last_name"),
+                                    reader.GetString("email"),
+                                    reader.GetString("phone"),
+                                    reader.GetInt32("pin"),
+                                    reader.GetInt32("user_id")
+                                    ));
+                            }
+                        }
+                    }
+                }
+                return members;
+            }
         }
 
 

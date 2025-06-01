@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             btn_adminLogin = new Button();
             panel1 = new Panel();
             btn_submit = new Button();
@@ -40,7 +41,9 @@
             lbl_login = new Label();
             lbl_register = new Label();
             lbl_errorMessage = new Label();
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btn_adminLogin
@@ -169,11 +172,23 @@
             lbl_errorMessage.Size = new Size(0, 30);
             lbl_errorMessage.TabIndex = 4;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(174, 115);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
+            Controls.Add(pictureBox1);
             Controls.Add(lbl_errorMessage);
             Controls.Add(lbl_register);
             Controls.Add(lbl_login);
@@ -185,6 +200,7 @@
             Text = "Form1";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -203,5 +219,6 @@
         private TextBox tbx_lastName;
         private Label lbl_lastName;
         private Button btn_submit;
+        private PictureBox pictureBox1;
     }
 }

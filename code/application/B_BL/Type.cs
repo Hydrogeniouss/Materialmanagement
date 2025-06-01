@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace application.B_BL
 {
-    internal class Type : TypeData
+    public class Type : TypeData
     {
         public Type(string name, int? id = null)
             : base(name, id)

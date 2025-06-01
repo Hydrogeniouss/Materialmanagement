@@ -5,7 +5,7 @@ namespace application.C_DAL
     /// <summary>
     /// Represents the data of admins as declared in the DB
     /// </summary>
-    internal class AdminData : UserData
+    public class AdminData : UserData
     {
         public AdminData(string firstName, string lastName, string email, string phone, string password, int? id = null) :
             base(id, firstName, lastName, email, phone)

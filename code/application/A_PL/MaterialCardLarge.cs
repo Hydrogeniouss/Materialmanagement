@@ -2,10 +2,10 @@
 {
     internal class MaterialCardLarge : Card
     {
-       public MaterialCardLarge(string name, string brand, string description, string? imgFilepath)
+        public MaterialCardLarge(string name, string brand, string description, string? imgFilepath)
         {
 
-            this.Height = 190;
+            this.Height = STANDARDHEIGHT;
 
 
             lbl_Name = new Label()
@@ -45,10 +45,14 @@
 
         }
 
+        public new const int STANDARDHEIGHT = 190;
+
+
         public Label lbl_Name;
         public Label lbl_Brand;
         public Label lbl_Description;
         public PictureBox? Img = null;
+
 
     }
 }

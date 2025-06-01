@@ -38,24 +38,53 @@ namespace application.C_DAL
         private static List<BrandData> FromDatabaseBase(int? id = null)
         {
             List<BrandData> types = new();
-            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
-            {
-                conn.Open();
-                using (MySqlCommand cmd = new("Select * FROM type", conn))
+            if (id == null) 
+            { 
+                using (MySqlConnection conn = DataAccessHelper.CreateConnection())
                 {
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    conn.Open();
+                    using (MySqlCommand cmd = new("Select * FROM brand", conn))
                     {
-                        while (reader.Read())
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            types.Add(new(
-                                reader.GetString("type"),
-                                reader.GetInt32("type_id")
-                            ));
+                            while (reader.Read())
+                            {
+                                types.Add(new(
+                                    reader.GetString("brand"),
+                                    reader.GetInt32("brand_id")
+                                ));
+                            }
                         }
                     }
                 }
+                return types;
             }
-            return types;
+            else
+            {
+                using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new("Select * FROM brand WHERE brand_id = @id", conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                types.Add(new(
+                                    reader.GetString("brand"),
+                                    reader.GetInt32("brand_id")
+                                ));
+                            }
+                        }
+                    }
+
+                }
+                return types;
+            }
+
+
         }
 
         public void InsertIntoDatabase()

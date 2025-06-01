@@ -2,7 +2,7 @@
 
 namespace application.B_BL
 {
-    internal class Member : MemberData
+    public class Member : MemberData
     {
         public Member(string firstName, string lastName, string email, string phone, int pin, int? id = null)
             : base(firstName, lastName, email, phone, pin, id)
@@ -14,6 +14,12 @@ namespace application.B_BL
             return MemberData.FromDatabase()
                 .Select(x => new Member(x.FirstName, x.LastName, x.Email, x.Phone, x.Pin, x.Id))
                 .ToList();
+        }
+
+        public static new Member FromDatabase(int id)
+        {
+            MemberData mem = MemberData.FromDatabase(id);
+            return new Member(mem.FirstName, mem.LastName, mem.Email, mem.Phone, mem.Pin, mem.Id);
         }
     }
 }

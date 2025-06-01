@@ -2,10 +2,10 @@
 
 namespace application.B_BL
 {
-    internal class Material : MaterialData
+    public class Material : MaterialData
     {
-        public Material(string name, string description, int quantityTotal, int quantityAvailable, BrandData brand, TypeData type, string? img_filepath, int? id = null)
-            : base(name, description, quantityTotal, quantityAvailable, brand, type, img_filepath, id)
+        public Material(string name, string description, int amountTotal, int amountAvailable, BrandData brand, TypeData type, string? imageFilepath, int? id = null)
+            : base(name, description, amountTotal, amountAvailable, brand, type, imageFilepath, id)
         {
 
         }
@@ -15,6 +15,12 @@ namespace application.B_BL
             return MaterialData.FromDatabase(filter)
             .Select(x => new Material(x.Name, x.Description, x.AmountTotal, x.AmountAvailable, x.Brand, x.Type, x.ImageFilepath, x.Id))
             .ToList();
+        }
+
+        public static new Material FromDatabase(int id)
+        {
+            MaterialData md = MaterialData.FromDatabase(id);
+            return new Material(md.Name, md.Description, md.AmountTotal, md.AmountAvailable, md.Brand, md.Type, md.ImageFilepath);
         }
 
 

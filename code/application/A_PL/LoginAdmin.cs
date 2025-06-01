@@ -23,22 +23,23 @@ namespace application.A_PL
         {
             try
             {
-                Member mem = Member.FromDatabase().Where(mem => mem.FirstName == tbx_firstName.Text
-                    && mem.LastName == tbx_lastName.Text).ToArray()[0];
+                Admin admin = Admin.FromDatabase().Where(admin => admin.FirstName == tbx_firstName.Text
+                    && admin.LastName == tbx_lastName.Text).ToArray()[0];
 
-                if (mem.Pin.ToString() == tbx_pin.Text.Trim())
+                if (admin.Password.ToString() == tbx_password.Text.Trim())
                 {
-                    new RentView().Show();
+                    new AdminStoragaeVeiw().Show();
                     Close();
                 }
                 else
                 {
-                    lbl_errorMessage.Text = "Der Vor- oder Nachname oder der PIN ist Falsch.";
+                    lbl_errorMessage.Text = "Der Vor- oder Nachname oder das Passwort ist Falsch.";
                 }
             }
             catch
             {
-                lbl_errorMessage.Text = "Der Vor- oder Nachname oder der PIN ist Falsch.";
+                lbl_errorMessage.Text = "Der Vor- oder Nachname oder das Passwort ist Falsch.\n" +
+                    "Möglicherweise hat die Verbindung zur Datenbank Fehlgesschlagen";
             }
 
 

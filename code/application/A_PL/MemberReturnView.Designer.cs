@@ -1,6 +1,6 @@
 ﻿namespace application.A_PL
 {
-    partial class ReturnView
+    partial class MemberReturnView
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReturnView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemberReturnView));
             btn_discard = new Button();
             sct_rentMaterial = new SplitContainer();
             lbl_MatText = new Label();

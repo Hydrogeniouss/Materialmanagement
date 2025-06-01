@@ -1,6 +1,6 @@
 ﻿namespace application.A_PL
 {
-    partial class RentView
+    partial class MemberRentView
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RentView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemberRentView));
             sct_rentMaterial = new SplitContainer();
             btn_discard = new Button();
             btn_borrow = new Button();
@@ -131,9 +131,9 @@
             // 
             pictureBox1.BackgroundImageLayout = ImageLayout.None;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 9);
+            pictureBox1.Location = new Point(12, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(251, 119);
+            pictureBox1.Size = new Size(174, 115);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -176,7 +176,7 @@
             lbl_material.TabIndex = 5;
             lbl_material.Text = "Material";
             // 
-            // RentView
+            // MemberRentView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -193,7 +193,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(lbl_Ausleihen);
             Controls.Add(sct_rentMaterial);
-            Name = "RentView";
+            Name = "MemberRentView";
             Text = "RentView";
             Load += RentView_Load;
             ((System.ComponentModel.ISupportInitialize)sct_rentMaterial).EndInit();

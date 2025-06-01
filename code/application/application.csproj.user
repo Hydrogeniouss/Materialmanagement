@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="A_PL\AdminStoragaeVeiw.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="A_PL\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -19,11 +22,14 @@
     <Compile Update="A_PL\MaterialFilter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="A_PL\RentView.cs">
+    <Compile Update="A_PL\MemberRentView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="A_PL\ReturnView.cs">
+    <Compile Update="A_PL\MemberReturnView.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="A_PL\RentedMaterialCardSmall.cs">
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
 </Project>

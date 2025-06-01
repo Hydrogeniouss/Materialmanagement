@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace application.A_PL
 {
-    public partial class ReturnView : Form
+    public partial class MemberReturnView : Form
     {
-        public ReturnView()
+        public MemberReturnView()
         {
             InitializeComponent();
         }

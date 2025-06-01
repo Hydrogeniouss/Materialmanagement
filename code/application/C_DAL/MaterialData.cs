@@ -28,6 +28,43 @@ namespace application.C_DAL
         public string? ImageFilepath { get; } = string.Empty;
 
 
+        public static MaterialData FromDatabase(int id)
+        {
+            List<MaterialData> materials = new();
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new("SELECT * FROM material " +
+                        "LEFT JOIN brand ON material.brand_id = brand.brand_id " +
+                        "LEFT JOIN type ON material.type_id = type.type_id WHERE material_id = @id",
+                        conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            materials.Add(new(
+
+                                reader.GetString("material"),
+                                reader.GetString("description"),
+                                reader.GetInt32("amount_total"),
+                                reader.GetInt32("amount_available"),
+                                BrandData.FromDatabase(reader.GetInt32("brand_id")),
+                                TypeData.FromDatabase(reader.GetInt32("type_id")),
+                                reader.IsDBNull(reader.GetOrdinal("img_filepath")) ? null : reader.GetString("img_filepath"),
+                                reader.GetInt32("material_id")
+                                ));
+                        }
+                    }
+
+                }
+                return materials[0];
+            }
+        }
+
+
         public static List<MaterialData> FromDatabase(MaterialFilterData? filter = null)
         {
             List<MaterialData> materials = new();
@@ -102,7 +139,6 @@ namespace application.C_DAL
             }
         }
 
-
         public void InsertIntoDatabase()
         {
             using (MySqlConnection conn = DataAccessHelper.CreateConnection())
@@ -154,10 +190,11 @@ namespace application.C_DAL
         public string? Description { get; set; }
         public int? AmountTotal { get; set; }
         public int? AmountAvailable { get; set; }
-        public BrandData? Brand { get; set; }
+        public TypeData? Brand { get; set; }
         public TypeData? Type { get; set; }
         public MaterialFilterData()
         {
+
         }
     }
 }

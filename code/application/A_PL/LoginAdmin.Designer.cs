@@ -28,19 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginAdmin));
             lbl_errorMessage = new Label();
             lbl_register = new Label();
             lbl_login = new Label();
             panel1 = new Panel();
             btn_submit = new Button();
-            tbx_pin = new TextBox();
+            tbx_password = new TextBox();
             lbl_pin = new Label();
             tbx_lastName = new TextBox();
             lbl_lastName = new Label();
             tbx_firstName = new TextBox();
             lbl_firstName = new Label();
             btn_memberLogin = new Button();
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lbl_errorMessage
@@ -77,7 +80,7 @@
             // 
             panel1.BackColor = SystemColors.ControlLight;
             panel1.Controls.Add(btn_submit);
-            panel1.Controls.Add(tbx_pin);
+            panel1.Controls.Add(tbx_password);
             panel1.Controls.Add(lbl_pin);
             panel1.Controls.Add(tbx_lastName);
             panel1.Controls.Add(lbl_lastName);
@@ -102,14 +105,14 @@
             btn_submit.UseVisualStyleBackColor = false;
             btn_submit.Click += btn_submit_Click;
             // 
-            // tbx_pin
+            // tbx_password
             // 
-            tbx_pin.Font = new Font("Segoe UI", 16F);
-            tbx_pin.Location = new Point(20, 226);
-            tbx_pin.Margin = new Padding(3, 2, 3, 2);
-            tbx_pin.Name = "tbx_pin";
-            tbx_pin.Size = new Size(264, 36);
-            tbx_pin.TabIndex = 9;
+            tbx_password.Font = new Font("Segoe UI", 16F);
+            tbx_password.Location = new Point(20, 226);
+            tbx_password.Margin = new Padding(3, 2, 3, 2);
+            tbx_password.Name = "tbx_password";
+            tbx_password.Size = new Size(264, 36);
+            tbx_password.TabIndex = 9;
             // 
             // lbl_pin
             // 
@@ -169,11 +172,23 @@
             btn_memberLogin.UseVisualStyleBackColor = false;
             btn_memberLogin.Click += btn_loginMember_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImageLayout = ImageLayout.None;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(174, 115);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 10;
+            pictureBox1.TabStop = false;
+            // 
             // LoginAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
+            Controls.Add(pictureBox1);
             Controls.Add(btn_memberLogin);
             Controls.Add(lbl_errorMessage);
             Controls.Add(lbl_register);
@@ -183,6 +198,7 @@
             Text = "LoginAdmin";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -194,12 +210,13 @@
         private Label lbl_login;
         private Panel panel1;
         private Button btn_submit;
-        private TextBox tbx_pin;
+        private TextBox tbx_password;
         private Label lbl_pin;
         private TextBox tbx_lastName;
         private Label lbl_lastName;
         private TextBox tbx_firstName;
         private Label lbl_firstName;
         private Button btn_memberLogin;
+        private PictureBox pictureBox1;
     }
 }
