@@ -14,7 +14,7 @@ namespace application.A_PL
 
         private void MaterialFilter_Load(object sender, EventArgs e)
         {
-            cbx_brand.Items.AddRange(C_DAL.TypeData.FromDatabase().ToArray());
+            cbx_brand.Items.AddRange(C_DAL.BrandData.FromDatabase().ToArray());
             cbx_type.Items.AddRange(C_DAL.TypeData.FromDatabase().ToArray());
         }
 

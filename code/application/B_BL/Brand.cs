@@ -20,5 +20,7 @@ namespace application.B_BL
                 .Select(x => new Brand(x.Name, x.Id))
                 .ToList();
         }
+        public override string ToString() => this.Name;
+        
     }
 }

@@ -145,5 +145,7 @@ namespace application.C_DAL
             }   
 
         }
+
+        public override string ToString() => this.Name;
     }
 }

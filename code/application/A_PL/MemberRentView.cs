@@ -71,11 +71,12 @@ namespace application.A_PL
                 }
 
             }
-            else if (sender is MaterialCardSmall mcs)
+            else if (sender is Button btn)
             {
+                MaterialCardSmall mcs = btn.Parent as MaterialCardSmall;
                 if (mcs.Parent == sct_rentMaterial.Panel2)
                 {
-                    mcs.Origin.BackColor = Color.RebeccaPurple;
+                    mcs.Origin.BackColor = Color.LightGray;
                     mcs.Click -= MaterialCard_Click;
                     mcs.btn_Delete.Click -= MaterialCard_Click;
                     sct_rentMaterial.Panel2.Controls.Remove(mcs);
