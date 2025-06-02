@@ -28,7 +28,7 @@
     <Compile Update="A_PL\Member\MemberReturnView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="A_PL\Cards\RentedCard.cs">
+    <Compile Update="A_PL\Cards\RentCard.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="A_PL\Cards\RentHistoryCard.cs">

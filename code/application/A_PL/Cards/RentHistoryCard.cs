@@ -12,13 +12,11 @@ namespace application.A_PL.Cards
         public RentHistoryCard(Material originMaterial, Member originMember, Rent originRent)
             : base()
         {
-            BackColor = Parent!.BackColor;
-            if (originRent.DateOfReturnal == null)
-            {
-                BackColor = Parent.BackColor != Color.Green ? Color.Green : Color.Blue;
-            }
 
             Height = STANDARDHEIGHT;
+            OriginRent = originRent;
+
+            ParentChanged += UpdateBackColor;
 
             Controls.Add(lbl_dateOfAquisition = new Label()
             {
@@ -72,7 +70,9 @@ namespace application.A_PL.Cards
 
         }
 
-        public new const int STANDARDHEIGHT = 20;
+        public new const int STANDARDHEIGHT = 24;
+        public new const int MARGIN = 0;
+        public new const int PADDING = 1;
 
         public Label lbl_dateOfAquisition { get; set; }
         public Label lbl_count { get; set; }
@@ -80,5 +80,20 @@ namespace application.A_PL.Cards
         public Label lbl_brand { get; set; }
         public Label lbl_type { get; set; }
         public Label lbl_memberName { get; set; }
+
+        public Rent OriginRent { get; set; }
+
+
+        public void UpdateBackColor(object sender, EventArgs e)
+        {
+            if (Parent != null)
+            {
+                BackColor = Parent.BackColor;
+                if (OriginRent.DateOfReturnal == null)
+                {
+                    BackColor = Parent.BackColor != PLHelper.GREEN ? PLHelper.GREEN : PLHelper.RED;
+                }
+            }
+        }
     }
 }

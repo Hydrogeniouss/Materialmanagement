@@ -69,7 +69,7 @@ namespace application.C_DAL
                                 hasRented.Add(new RentData(
                                     reader.GetInt32("quantity"),
                                     reader.GetDateTime("date_of_aquisition"),
-                                    reader.IsDBNull(reader.GetOrdinal("date_of_returnal")) ? null : reader.GetDateTime("img_filepath"),
+                                    reader.IsDBNull(reader.GetOrdinal("date_of_returnal")) ? null : reader.GetDateTime("date_of_returnal"),
                                     reader.GetInt32("user_id"),
                                     reader.GetInt32("material_id")
                                 ));

@@ -17,10 +17,11 @@ namespace application.A_PL
         public AdminStoragaeVeiw()
         {
             InitializeComponent();
-            AddRentedMaterials();
+            AddRentCards();
+            AddRentHistoryCards();
         }
 
-        public void AddRentedMaterials()
+        public void AddRentCards()
         {
             sct_storage.Panel1.Controls.Clear();
 
@@ -36,18 +37,52 @@ namespace application.A_PL
 
             for (int i = 0; i < materialToMember.Count; i++)
             {
-                RentedCard rmcs = new RentedCard(
+                RentCard rmcs = new RentCard(
                     materialToMember.Keys.ToArray()[i],
                     materialToMember.Values.ToArray()[i],
                     rents[i])
                 {
                     Location = new Point(
-                        RentedCard.MARGIN,
-                        i * (RentedCard.STANDARDHEIGHT + RentedCard.MARGIN) + RentedCard.MARGIN
+                        RentCard.MARGIN,
+                        i * (RentCard.STANDARDHEIGHT + RentCard.MARGIN) + RentCard.MARGIN
                     )
                 };
 
                 sct_storage.Panel1.Controls.Add(rmcs);
+
+            }
+
+        }
+
+        public void AddRentHistoryCards()
+        {
+            sct_storage.Panel2.Controls.Clear();
+
+            Rent[] rents = Rent.FromDatabase().ToArray();
+            Dictionary<Material, Member> materialToMember = new();
+
+            // Adding Material and Member over n to m relation of rent
+            foreach (Rent rent in rents)
+            {
+                materialToMember.Add(
+                    Material.FromDatabase((int)rent.MaterialId!), Member.FromDatabase((int)rent.UserId!)
+                    );
+            }
+
+            for (int i = 0; i < materialToMember.Count; i++)
+            {
+                RentHistoryCard rmcs = new RentHistoryCard(
+                    materialToMember.Keys.ToArray()[i],
+                    materialToMember.Values.ToArray()[i],
+                    rents[i])
+                {
+                    Location = new Point(
+                        RentHistoryCard.MARGIN,
+                        i * (RentHistoryCard.STANDARDHEIGHT + RentHistoryCard.MARGIN) + RentHistoryCard.MARGIN
+                    )
+                };
+
+                sct_storage.Panel2.Controls.Add(rmcs);
 
             }
 

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace application.A_PL.Cards
 {
-    public class RentedCard : Card
+    public class RentCard : Card
     {
-        public RentedCard (Material originMaterial, Member originMember, Rent originRent)
+        public RentCard (Material originMaterial, Member originMember, Rent originRent)
             : base()
         {
             Height = STANDARDHEIGHT;
