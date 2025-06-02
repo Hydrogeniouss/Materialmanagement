@@ -5,3 +5,5 @@ projectDocumentation/.obsidian/workspace.json
 /code/application/.vs
 /code/application/bin
 /code/application/obj
+code/application/obj/application.csproj.nuget.dgspec.json
+/code/application/obj

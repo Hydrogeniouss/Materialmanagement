@@ -1,11 +1,11 @@
-﻿namespace application.A_PL
+﻿namespace application.A_PL.Cards
 {
-    internal class MaterialCardLarge : Card
+    public class MaterialCardLarge : Card
     {
         public MaterialCardLarge(string name, string brand, string description, string? imgFilepath)
         {
 
-            this.Height = STANDARDHEIGHT;
+            Height = STANDARDHEIGHT;
 
 
             lbl_Name = new Label()
@@ -37,11 +37,11 @@
                     Image = Image.FromFile(imgFilepath),
                     SizeMode = PictureBoxSizeMode.StretchImage,
                 };
-                this.Controls.Add(Img);
+                Controls.Add(Img);
             }
-            this.Controls.Add(lbl_Name);
-            this.Controls.Add(lbl_Brand);
-            this.Controls.Add(lbl_Description);
+            Controls.Add(lbl_Name);
+            Controls.Add(lbl_Brand);
+            Controls.Add(lbl_Description);
 
         }
 

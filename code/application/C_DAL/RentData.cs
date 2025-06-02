@@ -8,9 +8,9 @@ using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace application.C_DAL
 {
-    public class MemberHasRentedMaterialData
+    public class RentData
     {
-        public MemberHasRentedMaterialData(int quantity, DateTime dateOfAquisition, DateTime? dateOfRetunal = null, int? userId = null, int? materialId = null)
+        public RentData(int quantity, DateTime dateOfAquisition, DateTime? dateOfRetunal = null, int? userId = null, int? materialId = null)
         {
             Quantity = quantity;
             DateOfAquisition = dateOfAquisition;
@@ -25,9 +25,9 @@ namespace application.C_DAL
         public int? UserId { get; set; }
         public int? MaterialId{ get; set; }
 
-        public static List<MemberHasRentedMaterialData> FromDatabase(bool isOnlyRented = false)
+        public static List<RentData> FromDatabase(bool isOnlyRented = false)
         {
-            List<MemberHasRentedMaterialData> materials = new List<MemberHasRentedMaterialData>();
+            List<RentData> materials = new List<RentData>();
 
             using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {
@@ -39,10 +39,10 @@ namespace application.C_DAL
                     {
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            List<MemberHasRentedMaterialData> hasRented = new();
+                            List<RentData> hasRented = new();
                             while (reader.Read())
                             {
-                                hasRented.Add(new MemberHasRentedMaterialData(
+                                hasRented.Add(new RentData(
                                     reader.GetInt32("quantity"),
                                     reader.GetDateTime("date_of_aquisition"),
                                     null,
@@ -63,10 +63,10 @@ namespace application.C_DAL
                     {
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            List<MemberHasRentedMaterialData> hasRented = new();
+                            List<RentData> hasRented = new();
                             while (reader.Read())
                             {
-                                hasRented.Add(new MemberHasRentedMaterialData(
+                                hasRented.Add(new RentData(
                                     reader.GetInt32("quantity"),
                                     reader.GetDateTime("date_of_aquisition"),
                                     reader.IsDBNull(reader.GetOrdinal("date_of_returnal")) ? null : reader.GetDateTime("img_filepath"),

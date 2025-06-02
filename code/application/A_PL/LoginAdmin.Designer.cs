@@ -121,7 +121,7 @@
             lbl_pin.Name = "lbl_pin";
             lbl_pin.Size = new Size(123, 30);
             lbl_pin.TabIndex = 8;
-            lbl_pin.Text = "PIN";
+            lbl_pin.Text = "Password";
             // 
             // tbx_lastName
             // 

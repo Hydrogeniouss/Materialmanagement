@@ -2,31 +2,34 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace application.A_PL
+namespace application.A_PL.Cards
 {
-    internal class RentedMaterialCardSmall : Card
+    public class RentHistoryCard : Card
     {
-        public RentedMaterialCardSmall (Material originMaterial, Member originMember, MemberHasRentedMaterial originRent)
+        public RentHistoryCard(Material originMaterial, Member originMember, Rent originRent)
             : base()
         {
-            this.Height = STANDARDHEIGHT;
+            BackColor = Parent!.BackColor;
+            if (originRent.DateOfReturnal == null)
+            {
+                BackColor = Parent.BackColor != Color.Green ? Color.Green : Color.Blue;
+            }
 
-            this.Controls.Add(lbl_dateOfAquisition = new Label()
+            Height = STANDARDHEIGHT;
+
+            Controls.Add(lbl_dateOfAquisition = new Label()
             {
                 AutoSize = true,
                 Location = Location = new Point(PADDING, PADDING),
                 Text = originRent.DateOfAquisition.ToString(),
-                Font = new Font("Segoe UI", 13, FontStyle.Regular),
+                Font = new Font("Segoe UI", 12, FontStyle.Regular),
                 ForeColor = Color.DarkSlateGray,
-                
             });
 
-            this.Controls.Add(lbl_count = new Label()
+            Controls.Add(lbl_count = new Label()
             {
                 AutoSize = true,
                 Location = new Point(lbl_dateOfAquisition.Right + PADDING * 3, PADDING),
@@ -34,7 +37,7 @@ namespace application.A_PL
                 Font = new Font("Segoe UI", 12, FontStyle.Regular),
             });
 
-            this.Controls.Add(lbl_materialName = new Label()
+            Controls.Add(lbl_materialName = new Label()
             {
                 AutoSize = true,
                 Location = new Point(225 + PADDING * 3, PADDING),
@@ -42,7 +45,7 @@ namespace application.A_PL
                 Font = new Font("Segoe UI", 12, FontStyle.Regular)
             });
 
-            this.Controls.Add(lbl_brand = new Label()
+            Controls.Add(lbl_brand = new Label()
             {
                 AutoSize = true,
                 Location = new Point(lbl_materialName.Right + PADDING, PADDING),
@@ -50,7 +53,7 @@ namespace application.A_PL
                 Font = new Font("Segoe UI", 12, FontStyle.Regular)
             });
 
-            this.Controls.Add(lbl_type = new Label()
+            Controls.Add(lbl_type = new Label()
             {
                 AutoSize = true,
                 Location = new Point(600 + PADDING, PADDING),
@@ -58,7 +61,7 @@ namespace application.A_PL
                 Font = new Font("Segoe UI", 12, FontStyle.Regular)
             });
 
-            this.Controls.Add(lbl_memberName = new Label()
+            Controls.Add(lbl_memberName = new Label()
             {
                 AutoSize = true,
                 Location = new Point(750, PADDING),
@@ -69,14 +72,13 @@ namespace application.A_PL
 
         }
 
-        public new const int STANDARDHEIGHT = 38;
-        
-        public Label lbl_dateOfAquisition{ get; set; }
+        public new const int STANDARDHEIGHT = 20;
+
+        public Label lbl_dateOfAquisition { get; set; }
         public Label lbl_count { get; set; }
         public Label lbl_materialName { get; set; }
         public Label lbl_brand { get; set; }
         public Label lbl_type { get; set; }
         public Label lbl_memberName { get; set; }
-
     }
 }

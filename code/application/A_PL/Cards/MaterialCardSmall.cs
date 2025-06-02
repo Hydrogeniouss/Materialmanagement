@@ -1,8 +1,8 @@
 ﻿using application.B_BL;
 
-namespace application.A_PL
+namespace application.A_PL.Cards
 {
-    internal class MaterialCardSmall : Card
+    public class MaterialCardSmall : Card
     {
         /// <summary>
         /// 
@@ -14,27 +14,27 @@ namespace application.A_PL
         {
             Origin = origin;
 
-            this.Controls.Add(btn_Delete = new Button()
+            Controls.Add(btn_Delete = new Button()
             {
                 Location = new Point(0, 0),
-                Height = this.Height,
-                Width = this.Height,
+                Height = Height,
+                Width = Height,
                 Text = "X",
                 BackColor = Color.Red,
             });
 
-            this.Controls.Add(lbl_Brand = new Label()
+            Controls.Add(lbl_Brand = new Label()
             {
                 AutoSize = true,
-                Height = this.Height - PADDING * 2,
+                Height = Height - PADDING * 2,
                 Location = new Point(btn_Delete.Right + PADDING, PADDING),
                 Text = Origin.lbl_Brand.Text,
             });
 
-            this.Controls.Add(lbl_Name = new Label()
+            Controls.Add(lbl_Name = new Label()
             {
                 AutoSize = true,
-                Height = this.Height - PADDING * 2,
+                Height = Height - PADDING * 2,
                 Location = new Point(lbl_Brand.Right + PADDING, PADDING),
                 Text = Origin.lbl_Name.Text,
             });

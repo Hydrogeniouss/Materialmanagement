@@ -1,4 +1,5 @@
-﻿using application.B_BL;
+﻿using application.A_PL.Cards;
+using application.B_BL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,10 +24,10 @@ namespace application.A_PL
         {
             sct_storage.Panel1.Controls.Clear();
 
-            MemberHasRentedMaterial[] rents = MemberHasRentedMaterial.FromDatabase(true).ToArray();
+            Rent[] rents = Rent.FromDatabase(true).ToArray();
             Dictionary<Material, Member> materialToMember = new();
 
-            foreach (MemberHasRentedMaterial rent in rents)
+            foreach (Rent rent in rents)
             {
                 materialToMember.Add(
                     Material.FromDatabase((int)rent.MaterialId!), Member.FromDatabase((int)rent.UserId!)
@@ -35,14 +36,14 @@ namespace application.A_PL
 
             for (int i = 0; i < materialToMember.Count; i++)
             {
-                RentedMaterialCardSmall rmcs = new RentedMaterialCardSmall(
+                RentedCard rmcs = new RentedCard(
                     materialToMember.Keys.ToArray()[i],
                     materialToMember.Values.ToArray()[i],
                     rents[i])
                 {
                     Location = new Point(
-                        RentedMaterialCardSmall.MARGIN,
-                        i * (RentedMaterialCardSmall.STANDARDHEIGHT + RentedMaterialCardSmall.MARGIN) + RentedMaterialCardSmall.MARGIN
+                        RentedCard.MARGIN,
+                        i * (RentedCard.STANDARDHEIGHT + RentedCard.MARGIN) + RentedCard.MARGIN
                     )
                 };
 
