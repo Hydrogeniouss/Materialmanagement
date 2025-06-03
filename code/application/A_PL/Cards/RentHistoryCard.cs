@@ -71,7 +71,7 @@ namespace application.A_PL.Cards
         }
 
         public new const int STANDARDHEIGHT = 24;
-        public new const int MARGIN = 0;
+        public new const int MARGIN = 10;
         public new const int PADDING = 1;
 
         public Label lbl_dateOfAquisition { get; set; }
@@ -89,7 +89,7 @@ namespace application.A_PL.Cards
             if (Parent != null)
             {
                 BackColor = Parent.BackColor;
-                if (OriginRent.DateOfReturnal == null)
+                if (OriginRent.DateOfReturnal != null)
                 {
                     BackColor = Parent.BackColor != PLHelper.GREEN ? PLHelper.GREEN : PLHelper.RED;
                 }
