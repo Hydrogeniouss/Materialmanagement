@@ -22,25 +22,51 @@ namespace application.A_PL.Cards
             {
                 AutoSize = true,
                 Location = Location = new Point(PADDING, PADDING),
-                Text = originRent.DateOfAquisition.ToString(),
+                Text = DateOnly.FromDateTime(originRent.DateOfAquisition).ToString(),
                 Font = new Font("Segoe UI", 12, FontStyle.Regular),
                 ForeColor = Color.DarkSlateGray,
             });
 
+            if (originRent.DateOfReturnal != null)
+            {
+
+                Controls.Add(lbl_dateOfRetrunal = new Label()
+                {
+                    AutoSize = true,
+                    Location = Location = new Point(lbl_dateOfAquisition.Right + MARGIN, PADDING),
+                    Text = DateOnly.FromDateTime((DateTime)originRent.DateOfReturnal).ToString(),
+                    Font = new Font("Segoe UI", 12, FontStyle.Regular),
+                    ForeColor = Color.DarkSlateGray
+                });
+            }
+            else
+            {
+                Controls.Add(lbl_dateOfRetrunal = new Label()
+                {
+                    AutoSize = true,
+                    Location = Location = new Point(lbl_dateOfAquisition.Right + MARGIN, PADDING),
+                    Text = "-",
+                    Font = new Font("Segoe UI", 12, FontStyle.Regular),
+                    ForeColor = Color.DarkSlateGray
+                });
+            }
+
+            //MessageBox.Show(lbl_dateOfRetrunal.Right.ToString() + "|" +lbl_dateOfRetrunal.Text);
+
             Controls.Add(lbl_count = new Label()
             {
                 AutoSize = true,
-                Location = new Point(lbl_dateOfAquisition.Right + PADDING * 3, PADDING),
+                Location = new Point(187 + MARGIN, PADDING), //187 is the largest possible lbl_dateOfReturnal.Right (tested)
                 Text = originRent.Quantity.ToString(),
                 Font = new Font("Segoe UI", 12, FontStyle.Regular),
             });
-
+                     
             Controls.Add(lbl_materialName = new Label()
             {
                 AutoSize = true,
-                Location = new Point(225 + PADDING * 3, PADDING),
+                Location = new Point(230 + MARGIN, PADDING), // 230 is a good spacing to Count (lbl_count)
                 Text = originMaterial.Name,
-                Font = new Font("Segoe UI", 12, FontStyle.Regular)
+                Font = new Font("Segoe UI", 12, FontStyle.Regular)  
             });
 
             Controls.Add(lbl_brand = new Label()
@@ -74,6 +100,7 @@ namespace application.A_PL.Cards
         public new const int MARGIN = 10;
         public new const int PADDING = 1;
 
+        public Label lbl_dateOfRetrunal { get; set; }
         public Label lbl_dateOfAquisition { get; set; }
         public Label lbl_count { get; set; }
         public Label lbl_materialName { get; set; }
