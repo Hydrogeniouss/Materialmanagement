@@ -12,7 +12,6 @@ namespace application.A_PL.Cards
     public class RentCard : Card
     {
         public RentCard (Material originMaterial, Member originMember, Rent originRent)
-            : base()
         {
             Height = STANDARDHEIGHT;
 

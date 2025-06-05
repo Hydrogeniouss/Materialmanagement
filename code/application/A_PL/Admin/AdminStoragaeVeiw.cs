@@ -34,7 +34,7 @@ namespace application.A_PL
 
             for (int i = 0; i < materialToMember.Count; i++)
             {
-                RentCard rmcs = new RentCard(
+                RentCard rentCard = new RentCard(
                     materialToMember.Keys.ToArray()[i],
                     materialToMember.Values.ToArray()[i],
                     rents[i])
@@ -45,7 +45,7 @@ namespace application.A_PL
                     )
                 };
 
-                sct_storage.Panel1.Controls.Add(rmcs);
+                sct_storage.Panel1.Controls.Add(rentCard);
 
             }
 
