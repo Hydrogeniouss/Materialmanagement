@@ -1,5 +1,5 @@
 using application.A_PL;
-using application.A_PL.Admin;
+using application.A_PL.AdminView;
 
 namespace application
 {
@@ -16,7 +16,7 @@ namespace application
             ApplicationConfiguration.Initialize();
             
             //new Login().Show();
-            new AdminStoragaeVeiw().Show();
+            //new AdminStoragaeVeiw().Show();
             new AdminMemberView().Show(); 
 
             Application.Run();

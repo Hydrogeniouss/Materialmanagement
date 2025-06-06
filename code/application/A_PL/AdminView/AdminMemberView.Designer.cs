@@ -1,4 +1,4 @@
-﻿namespace application.A_PL.Admin
+﻿namespace application.A_PL.AdminView
 {
     partial class AdminMemberView
     {
