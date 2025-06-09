@@ -17,7 +17,7 @@ namespace application
             
             //new Login().Show();
             //new AdminStoragaeVeiw().Show();
-            new AdminMemberView().Show(); 
+            new Login().Show(); 
 
             Application.Run();
         }

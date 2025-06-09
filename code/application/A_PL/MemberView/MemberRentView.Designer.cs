@@ -84,6 +84,7 @@
             btn_borrow.TabIndex = 1;
             btn_borrow.Text = "GENERATED PROGRAMATICALLY";
             btn_borrow.UseVisualStyleBackColor = true;
+            btn_borrow.Click += btn_borrow_Click;
             // 
             // lbl_MatText
             // 
