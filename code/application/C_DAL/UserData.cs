@@ -17,7 +17,7 @@ namespace application.C_DAL
             Phone = phone;
         }
 
-        public int? Id { get; }
+        public int? Id { get; set; }
         public string FirstName { get; } = string.Empty;
         public string LastName { get; } = string.Empty;
         public string Email { get; } = string.Empty;
@@ -84,13 +84,15 @@ namespace application.C_DAL
             {
                 conn.Open();
 
-                using (MySqlCommand cmd = new MySqlCommand("UPDATE `user` SET `first_name`= @firstName,`last_name`= @lastName,`email`= @email',`phone`=@phone WHERE @id", conn))
+                using (MySqlCommand cmd = new MySqlCommand("UPDATE `user` SET `first_name`= @firstName,`last_name`= @lastName,`email`= @email,`phone`=@phone WHERE user_id = @id", conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Type not in Database/typeId is null") : id);
                     cmd.Parameters.AddWithValue("@firstName", user.FirstName);
                     cmd.Parameters.AddWithValue("@lastName", user.LastName);
                     cmd.Parameters.AddWithValue("@email", user.Email);
                     cmd.Parameters.AddWithValue("@phone", user.Phone);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
 

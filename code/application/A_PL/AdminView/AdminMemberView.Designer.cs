@@ -30,9 +30,9 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminMemberView));
-            btn_discard = new Button();
+            btn_newMember = new Button();
             lbl_allMembers = new Label();
-            btn_printMember = new Button();
+            btn_save = new Button();
             lbl_selectedMember = new Label();
             btn_filter = new Button();
             pictureBox2 = new PictureBox();
@@ -53,7 +53,6 @@
             lbl_members = new Label();
             lbl_material = new Label();
             lbl_Lager = new Label();
-            btn_printAllMembers = new Button();
             contextMenuStrip1 = new ContextMenuStrip(components);
             textBox2 = new TextBox();
             label3 = new Label();
@@ -65,16 +64,17 @@
             sct_members.SuspendLayout();
             SuspendLayout();
             // 
-            // btn_discard
+            // btn_newMember
             // 
-            btn_discard.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_discard.Location = new Point(1613, 986);
-            btn_discard.Margin = new Padding(3, 2, 3, 2);
-            btn_discard.Name = "btn_discard";
-            btn_discard.Size = new Size(140, 43);
-            btn_discard.TabIndex = 25;
-            btn_discard.Text = "verwerfen";
-            btn_discard.UseVisualStyleBackColor = true;
+            btn_newMember.Font = new Font("Segoe UI", 18F);
+            btn_newMember.Location = new Point(962, 987);
+            btn_newMember.Margin = new Padding(3, 2, 3, 2);
+            btn_newMember.Name = "btn_newMember";
+            btn_newMember.Size = new Size(214, 43);
+            btn_newMember.TabIndex = 25;
+            btn_newMember.Text = "neuer Benutzer";
+            btn_newMember.UseVisualStyleBackColor = true;
+            btn_newMember.Click += btn_newMember_Click;
             // 
             // lbl_allMembers
             // 
@@ -86,15 +86,17 @@
             lbl_allMembers.TabIndex = 22;
             lbl_allMembers.Text = "Alle Mitglieder";
             // 
-            // btn_printMember
+            // btn_save
             // 
-            btn_printMember.Location = new Point(1759, 986);
-            btn_printMember.Margin = new Padding(3, 2, 3, 2);
-            btn_printMember.Name = "btn_printMember";
-            btn_printMember.Size = new Size(117, 43);
-            btn_printMember.TabIndex = 23;
-            btn_printMember.Text = "GENERATED PROGRAMATICALLY";
-            btn_printMember.UseVisualStyleBackColor = true;
+            btn_save.Font = new Font("Segoe UI", 18F);
+            btn_save.Location = new Point(1717, 987);
+            btn_save.Margin = new Padding(3, 2, 3, 2);
+            btn_save.Name = "btn_save";
+            btn_save.Size = new Size(175, 43);
+            btn_save.TabIndex = 23;
+            btn_save.Text = "Speichern";
+            btn_save.UseVisualStyleBackColor = true;
+            btn_save.Click += btn_save_Click;
             // 
             // lbl_selectedMember
             // 
@@ -304,16 +306,6 @@
             lbl_Lager.TabIndex = 27;
             lbl_Lager.Text = "Lager";
             // 
-            // btn_printAllMembers
-            // 
-            btn_printAllMembers.Location = new Point(826, 986);
-            btn_printAllMembers.Margin = new Padding(3, 2, 3, 2);
-            btn_printAllMembers.Name = "btn_printAllMembers";
-            btn_printAllMembers.Size = new Size(117, 43);
-            btn_printAllMembers.TabIndex = 30;
-            btn_printAllMembers.Text = "GENERATED PROGRAMATICALLY";
-            btn_printAllMembers.UseVisualStyleBackColor = true;
-            // 
             // contextMenuStrip1
             // 
             contextMenuStrip1.Name = "contextMenuStrip1";
@@ -351,10 +343,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
-            Controls.Add(btn_printAllMembers);
-            Controls.Add(btn_discard);
+            Controls.Add(btn_newMember);
             Controls.Add(lbl_allMembers);
-            Controls.Add(btn_printMember);
+            Controls.Add(btn_save);
             Controls.Add(lbl_members);
             Controls.Add(lbl_selectedMember);
             Controls.Add(btn_filter);
@@ -378,9 +369,9 @@
 
         #endregion
 
-        private Button btn_discard;
+        private Button btn_newMember;
         private Label lbl_allMembers;
-        private Button btn_printMember;
+        private Button btn_save;
         private Label lbl_selectedMember;
         private Button btn_filter;
         private PictureBox pictureBox2;

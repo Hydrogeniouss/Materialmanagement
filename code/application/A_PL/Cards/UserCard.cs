@@ -1,11 +1,14 @@
 ﻿using application.B_BL;
+using application.C_DAL;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace application.A_PL.Cards
 {
-    internal class UserCard : Card
+    public class UserCard : Card
     {
         public UserCard(Member originMember)
         {
+            OriginUser = originMember;
 
             Height = STANDARDHEIGHT;
 
@@ -72,6 +75,8 @@ namespace application.A_PL.Cards
 
         public UserCard(Admin originalAdmin)
         {
+            OriginUser = originalAdmin;
+
             Height = STANDARDHEIGHT;
             BackColor = UIConfig.GREEN; //For visual difference between Admins and Members
 
@@ -134,7 +139,7 @@ namespace application.A_PL.Cards
             });
 
         }
-
+        
         public new const int STANDARDHEIGHT = 33;
 
         public Label lbl_userId { get; set; }
@@ -145,7 +150,7 @@ namespace application.A_PL.Cards
         public Label lbl_email { get; set; }
         public Label lbl_phone { get; set; }
 
-
+        public UserData OriginUser { get; set; }
 
 
     }
