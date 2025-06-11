@@ -118,7 +118,7 @@ namespace application.A_PL.Cards
                 BackColor = Parent.BackColor;
                 if (OriginRent.DateOfReturnal != null)
                 {
-                    BackColor = Parent.BackColor != PLHelper.GREEN ? PLHelper.GREEN : PLHelper.RED;
+                    BackColor = Parent.BackColor != UIConfig.GREEN ? UIConfig.GREEN : UIConfig.RED;
                 }
             }
         }

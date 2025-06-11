@@ -15,9 +15,9 @@ namespace application.A_PL.AdminView
 
         public void FillInUsers()
         {
-            int yLastLocation= 0;
+            int yLastLocation = 0;
             List<Admin> admins = Admin.FromDatabase().OrderBy(ad => ad.Id).ToList();
-            
+
             for (int i = 0; i < admins.Count; i++)
             {
                 UserCard userCard = new UserCard(admins[i])
@@ -53,12 +53,12 @@ namespace application.A_PL.AdminView
 
         private void MemberCard_Click(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
-        }
-
-        private void btn_filter_Click(object sender, EventArgs e)
-        {
+            UserCard user = (UserCard)sender!;
+            //TODO: Testing!
+            lbl_selectedMember.Text = user.lbl_isAdmin.Text == "M" ? "Member" : "Admin" + " " + user.lbl_userId.Text;
 
         }
+
+
     }
 }

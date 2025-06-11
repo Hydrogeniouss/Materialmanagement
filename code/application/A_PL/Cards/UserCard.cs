@@ -73,7 +73,7 @@ namespace application.A_PL.Cards
         public UserCard(Admin originalAdmin)
         {
             Height = STANDARDHEIGHT;
-            BackColor = PLHelper.GREEN; //For visual difference between Admins and Members
+            BackColor = UIConfig.GREEN; //For visual difference between Admins and Members
             
             Controls.Add(lbl_userId = new Label()
             {
