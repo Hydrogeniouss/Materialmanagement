@@ -39,7 +39,7 @@
             pictureBox1 = new PictureBox();
             lbl_Mitglieder = new Label();
             sct_members = new SplitContainer();
-            textBox1 = new TextBox();
+            tbx_phone = new TextBox();
             lbl_phone = new Label();
             tbx_email = new TextBox();
             lbl_email = new Label();
@@ -49,7 +49,7 @@
             lbl_lastName = new Label();
             tbx_firstName = new TextBox();
             lbl_firstName = new Label();
-            label1 = new Label();
+            lbl_memberHeading = new Label();
             lbl_members = new Label();
             lbl_material = new Label();
             lbl_Lager = new Label();
@@ -159,7 +159,7 @@
             // sct_members.Panel2
             // 
             sct_members.Panel2.AutoScroll = true;
-            sct_members.Panel2.Controls.Add(textBox1);
+            sct_members.Panel2.Controls.Add(tbx_phone);
             sct_members.Panel2.Controls.Add(lbl_phone);
             sct_members.Panel2.Controls.Add(tbx_email);
             sct_members.Panel2.Controls.Add(lbl_email);
@@ -169,19 +169,19 @@
             sct_members.Panel2.Controls.Add(lbl_lastName);
             sct_members.Panel2.Controls.Add(tbx_firstName);
             sct_members.Panel2.Controls.Add(lbl_firstName);
-            sct_members.Panel2.Controls.Add(label1);
+            sct_members.Panel2.Controls.Add(lbl_memberHeading);
             sct_members.Size = new Size(1920, 781);
             sct_members.SplitterDistance = 958;
             sct_members.TabIndex = 21;
             // 
-            // textBox1
+            // tbx_phone
             // 
-            textBox1.Font = new Font("Segoe UI", 16F);
-            textBox1.Location = new Point(207, 357);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(600, 36);
-            textBox1.TabIndex = 41;
+            tbx_phone.Font = new Font("Segoe UI", 16F);
+            tbx_phone.Location = new Point(207, 357);
+            tbx_phone.Margin = new Padding(3, 2, 3, 2);
+            tbx_phone.Name = "tbx_phone";
+            tbx_phone.Size = new Size(600, 36);
+            tbx_phone.TabIndex = 41;
             // 
             // lbl_phone
             // 
@@ -264,15 +264,15 @@
             lbl_firstName.TabIndex = 32;
             lbl_firstName.Text = "Vorname";
             // 
-            // label1
+            // lbl_memberHeading
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(17, 18);
-            label1.Name = "label1";
-            label1.Size = new Size(350, 50);
-            label1.TabIndex = 31;
-            label1.Text = "[Mitgliedernummer]";
+            lbl_memberHeading.AutoSize = true;
+            lbl_memberHeading.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_memberHeading.Location = new Point(17, 18);
+            lbl_memberHeading.Name = "lbl_memberHeading";
+            lbl_memberHeading.Size = new Size(350, 50);
+            lbl_memberHeading.TabIndex = 31;
+            lbl_memberHeading.Text = "[Mitgliedernummer]";
             // 
             // lbl_members
             // 
@@ -391,7 +391,7 @@
         private Label lbl_material;
         private Label lbl_Lager;
         private Button btn_printAllMembers;
-        private Label label1;
+        private Label lbl_memberHeading;
         private ContextMenuStrip contextMenuStrip1;
         private TextBox textBox2;
         private Label label3;
@@ -404,7 +404,7 @@
         private Label lbl_firstName;
         private TextBox tbx_email;
         private Label lbl_email;
-        private TextBox textBox1;
+        private TextBox tbx_phone;
         private Label lbl_phone;
     }
 }

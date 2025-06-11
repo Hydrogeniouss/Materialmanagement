@@ -1,8 +1,4 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using MySql.Data.MySqlClient;
-using Mysqlx.Crud;
-using System.Configuration.Internal;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+﻿using MySql.Data.MySqlClient;
 
 namespace application.C_DAL
 {
@@ -57,11 +53,11 @@ namespace application.C_DAL
         public void DeleteOnDatabase()
             => DeleteOnDatabaseBase(Id);
 
-        public static void DeleteOnDatabase(int id) 
+        public static void DeleteOnDatabase(int id)
             => DeleteOnDatabaseBase(id);
-        
-   
-        private static void DeleteOnDatabaseBase(int? id) 
+
+
+        private static void DeleteOnDatabaseBase(int? id)
         {
             using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {

@@ -1,5 +1,4 @@
-﻿using application.B_BL;
-using application.C_DAL;
+﻿using application.C_DAL;
 
 namespace application.A_PL.Cards
 {
@@ -11,7 +10,7 @@ namespace application.A_PL.Cards
         /// <param name="origin"></param>
         /// whose contents are the basis for this
         public MaterialCardSmall(MaterialCardLarge origin)
-            :base() 
+            : base()
         {
             Origin = origin;
 
@@ -52,12 +51,12 @@ namespace application.A_PL.Cards
 
         }
 
-        
+
 
         public new const int STANDARDHEIGHT = 50;
 
         public int Count { get; set; }
-        
+
         public MaterialCardLarge? Origin { get; set; }
         public Label lbl_Name { get; set; }
         public Label lbl_Brand { get; set; }

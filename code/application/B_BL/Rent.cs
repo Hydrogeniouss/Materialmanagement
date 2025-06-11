@@ -1,17 +1,11 @@
 ﻿using application.C_DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace application.B_BL
 {
     public class Rent : RentData
     {
         public Rent(int quantity, DateTime dateOfAquisition, DateTime? dateOfRetunal = null, int? userId = null, int? materialId = null)
-            :base  (quantity, dateOfAquisition, dateOfRetunal, userId, materialId)
+            : base(quantity, dateOfAquisition, dateOfRetunal, userId, materialId)
         {
         }
 

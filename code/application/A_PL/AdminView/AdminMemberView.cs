@@ -1,6 +1,5 @@
-﻿using application.B_BL;
-using application.A_PL.Cards;
-using System.Security.Cryptography.X509Certificates;
+﻿using application.A_PL.Cards;
+using application.B_BL;
 
 namespace application.A_PL.AdminView
 {
@@ -27,6 +26,7 @@ namespace application.A_PL.AdminView
                         i * (UserCard.STANDARDHEIGHT + UserCard.MARGIN) + UserCard.MARGIN
                     ),
                 };
+
                 userCard.Click += MemberCard_Click;
                 sct_members.Panel1.Controls.Add(userCard);
 
@@ -44,8 +44,8 @@ namespace application.A_PL.AdminView
                         yLastLocation + i * (UserCard.STANDARDHEIGHT + UserCard.MARGIN) + UserCard.MARGIN
                     ),
                 };
+                memberCard.Controls.OfType<Label>().ToList().ForEach(lbl => lbl.Click += MemberCard_Click);
                 memberCard.Click += MemberCard_Click;
-
                 sct_members.Panel1.Controls.Add(memberCard);
             }
 
@@ -53,12 +53,27 @@ namespace application.A_PL.AdminView
 
         private void MemberCard_Click(object? sender, EventArgs e)
         {
-            UserCard user = (UserCard)sender!;
-            //TODO: Testing!
-            lbl_selectedMember.Text = user.lbl_isAdmin.Text == "M" ? "Member" : "Admin" + " " + user.lbl_userId.Text;
+            if (sender is UserCard uc)
+            {
+                LoadUserData(uc);
+            }
+            else if (sender is Label lbl)
+            {
+                uc = (UserCard)lbl.Parent!;
+                LoadUserData(uc);
+            }
 
         }
 
+        private void LoadUserData(UserCard uc)
+        {
+            lbl_memberHeading.Text = (uc.lbl_isAdmin.Text == "M" ? "Member" : "Admin") + " (Id: " + uc.lbl_userId.Text + ")";
+            tbx_firstName.Text = uc.lbl_firstName.Text;
+            tbx_lastName.Text = uc.lbl_lastName.Text;
+            tbx_passKey.Text = uc.lbl_passKey.Text;
+            tbx_email.Text = uc.lbl_email.Text; // looks better :)
+            tbx_phone.Text = uc.lbl_phone.Text;
+        }
 
     }
 }

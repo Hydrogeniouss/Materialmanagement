@@ -74,7 +74,7 @@ namespace application.A_PL.Cards
         {
             Height = STANDARDHEIGHT;
             BackColor = UIConfig.GREEN; //For visual difference between Admins and Members
-            
+
             Controls.Add(lbl_userId = new Label()
             {
                 AutoSize = true,
@@ -90,7 +90,7 @@ namespace application.A_PL.Cards
                 AutoSize = true,
                 Location = new Point(62, PADDING),
                 Font = new Font("Segoe UI", 12, FontStyle.Regular),
-                Text = "M",
+                Text = "A",
             });
 
             Controls.Add(lbl_firstName = new Label()

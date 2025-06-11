@@ -8,7 +8,7 @@ namespace application.C_DAL
 
     public class MemberData : UserData
     {
-        public MemberData(string firstName, string lastName, string email, string phone, int pin, int? id = null) 
+        public MemberData(string firstName, string lastName, string email, string phone, int pin, int? id = null)
             : base(id, firstName, lastName, email, phone)
         {
             Pin = pin;
@@ -63,7 +63,7 @@ namespace application.C_DAL
             }
             else
             {
-                
+
                 List<MemberData> members = new();
                 using (MySqlConnection conn = DataAccessHelper.CreateConnection())
                 {

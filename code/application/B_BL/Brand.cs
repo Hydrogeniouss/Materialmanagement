@@ -1,9 +1,4 @@
 ﻿using application.C_DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace application.B_BL
 {
@@ -21,6 +16,6 @@ namespace application.B_BL
                 .ToList();
         }
         public override string ToString() => this.Name;
-        
+
     }
 }

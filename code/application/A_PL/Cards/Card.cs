@@ -1,11 +1,4 @@
-﻿using Org.BouncyCastle.Tls.Crypto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace application.A_PL.Cards
+﻿namespace application.A_PL.Cards
 {
     public abstract class Card : Panel
     {
@@ -21,7 +14,7 @@ namespace application.A_PL.Cards
         public static readonly Color STANDARDBACKCOLOR = Color.LightGray; // const not working
         public const int MARGIN = 10;
         public const int PADDING = 5;
-        
+
 
     }
 }

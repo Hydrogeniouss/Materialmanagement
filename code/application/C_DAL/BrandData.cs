@@ -1,11 +1,4 @@
-﻿using application.B_BL;
-using MySql.Data.MySqlClient;
-using Mysqlx.Crud;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MySql.Data.MySqlClient;
 
 namespace application.C_DAL
 {
@@ -38,8 +31,8 @@ namespace application.C_DAL
         private static List<BrandData> FromDatabaseBase(int? id = null)
         {
             List<BrandData> types = new();
-            if (id == null) 
-            { 
+            if (id == null)
+            {
                 using (MySqlConnection conn = DataAccessHelper.CreateConnection())
                 {
                     conn.Open();
@@ -89,8 +82,8 @@ namespace application.C_DAL
 
         public void InsertIntoDatabase()
         {
-            using(MySqlConnection conn = DataAccessHelper.CreateConnection()) 
-            { 
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
                 conn.Open();
 
                 using (MySqlCommand cmd = new("INSERT INTO `brand`(`brand`) " +

@@ -1,17 +1,10 @@
 ﻿using application.B_BL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace application.A_PL.Cards
 {
     public class RentCard : Card
     {
-        public RentCard (Material originMaterial, Member originMember, Rent originRent)
+        public RentCard(Material originMaterial, Member originMember, Rent originRent)
         {
             Height = STANDARDHEIGHT;
 
@@ -22,7 +15,7 @@ namespace application.A_PL.Cards
                 Text = originRent.DateOfAquisition.ToString(),
                 Font = new Font("Segoe UI", 12, FontStyle.Regular),
                 ForeColor = Color.DarkSlateGray,
-                
+
             });
 
             Controls.Add(lbl_count = new Label()
@@ -68,9 +61,9 @@ namespace application.A_PL.Cards
 
         }
 
-        public new const int STANDARDHEIGHT =   33;
-        
-        public Label lbl_dateOfAquisition{ get; set; }
+        public new const int STANDARDHEIGHT = 33;
+
+        public Label lbl_dateOfAquisition { get; set; }
         public Label lbl_count { get; set; }
         public Label lbl_materialName { get; set; }
         public Label lbl_brand { get; set; }

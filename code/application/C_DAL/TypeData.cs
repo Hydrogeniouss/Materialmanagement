@@ -1,9 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace application.C_DAL
 {
@@ -33,7 +28,7 @@ namespace application.C_DAL
 
             return types[0];
         }
-        
+
 
         //TODO: Implement optional param
         private static List<TypeData> FromDatabaseBase(int? id = null)
@@ -142,7 +137,7 @@ namespace application.C_DAL
                     cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Type not in Database/typeId is null") : id);
                     cmd.Parameters.AddWithValue("@type", type.Name);
                 }
-            }   
+            }
 
         }
 

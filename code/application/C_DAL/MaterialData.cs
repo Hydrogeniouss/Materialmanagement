@@ -164,7 +164,7 @@ namespace application.C_DAL
 
         public void UpdateOnDatabase()
         {
-            using(MySqlConnection conn = DataAccessHelper.CreateConnection())
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {
                 conn.Open();
                 using (MySqlCommand cmd = new("UPDATE `material` SET " +

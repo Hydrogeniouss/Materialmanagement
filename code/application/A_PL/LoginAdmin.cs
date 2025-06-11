@@ -1,5 +1,4 @@
-﻿using application.B_BL;
-using System.Data;
+﻿using System.Data;
 
 
 namespace application.A_PL
@@ -10,7 +9,7 @@ namespace application.A_PL
         {
 
             InitializeComponent();
-            
+
         }
         private void btn_submit_Click(object sender, EventArgs e)
         {

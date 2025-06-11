@@ -1,10 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace application.C_DAL
 {
@@ -23,7 +17,7 @@ namespace application.C_DAL
         public DateTime DateOfAquisition { get; set; }
         public DateTime? DateOfReturnal { get; set; }
         public int? UserId { get; set; }
-        public int? MaterialId{ get; set; }
+        public int? MaterialId { get; set; }
 
         public static List<RentData> FromDatabase(bool isOnlyRented = false)
         {
@@ -33,7 +27,8 @@ namespace application.C_DAL
             {
                 conn.Open();
 
-                if (isOnlyRented) {
+                if (isOnlyRented)
+                {
 
                     using (MySqlCommand cmd = new MySqlCommand("SELECT* FROM `member_has_rented_material` WHERE date_of_returnal IS null", conn))
                     {
@@ -54,7 +49,7 @@ namespace application.C_DAL
                             return hasRented;
                         }
 
-                        
+
                     }
                 }
                 else
@@ -84,7 +79,7 @@ namespace application.C_DAL
 
         public void InsertIntoDatabase()
         {
-            using(MySqlConnection conn = DataAccessHelper.CreateConnection())
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {
                 conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand("INSERT INTO `member_has_rented_material` (`quantity`, `date_of_aquisition`, `user_id`, `material_id`) VALUES (@quantity, @date_of_aquisition, @user_id, @material_id)", conn))

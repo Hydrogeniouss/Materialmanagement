@@ -1,9 +1,4 @@
 ﻿using application.B_BL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace application.A_PL.Cards
 {
@@ -60,13 +55,13 @@ namespace application.A_PL.Cards
                 Text = originRent.Quantity.ToString(),
                 Font = new Font("Segoe UI", 12, FontStyle.Regular),
             });
-                     
+
             Controls.Add(lbl_materialName = new Label()
             {
                 AutoSize = true,
                 Location = new Point(230 + MARGIN, PADDING), // 230 is a good spacing to Count (lbl_count)
                 Text = originMaterial.Name,
-                Font = new Font("Segoe UI", 12, FontStyle.Regular)  
+                Font = new Font("Segoe UI", 12, FontStyle.Regular)
             });
 
             Controls.Add(lbl_brand = new Label()

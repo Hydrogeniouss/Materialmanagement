@@ -24,7 +24,7 @@
             };
             lbl_Description = new Label()
             {
-                Size = new Size(731,86),
+                Size = new Size(731, 86),
                 Text = $"Description:\n{description}",
                 Location = new Point(10, 90),
                 BackColor = Color.Blue,

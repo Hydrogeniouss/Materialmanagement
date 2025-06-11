@@ -1,4 +1,3 @@
-using application.A_PL;
 using application.A_PL.AdminView;
 
 namespace application
@@ -14,10 +13,10 @@ namespace application
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            
+
             //new Login().Show();
-            //new AdminStoragaeVeiw().Show();
-            new Login().Show(); 
+            new AdminMemberView().Show();
+
 
             Application.Run();
         }
