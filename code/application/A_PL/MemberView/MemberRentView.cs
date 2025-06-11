@@ -1,5 +1,6 @@
 ﻿using application.A_PL.Cards;
 using application.B_BL;
+using application.C_DAL;
 using System.Data;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
@@ -7,9 +8,11 @@ namespace application.A_PL
 {
     public partial class MemberRentView : Form
     {
-        public MemberRentView()
+        private int _memberId = 0;
+        public MemberRentView(int memberId)
         {
             InitializeComponent();
+            _memberId = memberId;
         }
 
         private void RentView_Load(object sender, EventArgs e)
@@ -114,6 +117,22 @@ namespace application.A_PL
             {
                 AddMaterials(filterView.Materials);
             }
+        }
+
+        private void btn_borrow_Click(object sender, EventArgs e)
+        {
+            List<RentData> rents = sct_rentMaterial.Panel2.Controls.OfType<MaterialCardSmall>()
+                .Select(mcs => new RentData((int)mcs.Amount.Value, DateTime.Now, null, _memberId, MaterialData.FromDatabase(new MaterialFilterData() { Name = mcs.lbl_Name.Text }).ToList()[0].Id)).ToList();
+
+
+            rents.ForEach(rent =>
+            {
+                MaterialData mat = MaterialData.FromDatabase((int)rent.MaterialId);
+                mat.AmountAvailable -= (int)rent.Quantity;
+                mat.UpdateOnDatabase();
+                rent.InsertIntoDatabase();
+            });
+            sct_rentMaterial.Panel2.Controls.Clear();
         }
     }
 }

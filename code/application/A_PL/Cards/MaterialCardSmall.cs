@@ -1,4 +1,5 @@
 ﻿using application.B_BL;
+using application.C_DAL;
 
 namespace application.A_PL.Cards
 {
@@ -39,7 +40,15 @@ namespace application.A_PL.Cards
                 Text = Origin.lbl_Name.Text,
             });
 
-            
+            Controls.Add(Amount = new NumericUpDown()
+            {
+                Location = new Point(lbl_Name.Right + PADDING, PADDING),
+                Width = 50,
+                Height = Height - PADDING * 2,
+                Minimum = 1,
+                Maximum = MaterialData.FromDatabase(new MaterialFilterData() { Name = lbl_Name.Text }).ToList()[0].AmountAvailable,
+                Value = 1
+            });
 
         }
 
@@ -53,6 +62,7 @@ namespace application.A_PL.Cards
         public Label lbl_Name { get; set; }
         public Label lbl_Brand { get; set; }
         public Button btn_Delete { get; set; }
+        public NumericUpDown Amount { get; set; }
 
     }
 }

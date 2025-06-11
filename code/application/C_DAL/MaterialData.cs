@@ -18,14 +18,14 @@ namespace application.C_DAL
         }
 
 
-        public int? Id { get; }
-        public int AmountTotal { get; }
-        public int AmountAvailable { get; }
-        public string Name { get; } = string.Empty;
-        public string Description { get; } = string.Empty;
-        public BrandData Brand { get; }
-        public TypeData Type { get; }
-        public string? ImageFilepath { get; } = string.Empty;
+        public int? Id { get; set; }
+        public int AmountTotal { get; set; }
+        public int AmountAvailable { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public BrandData Brand { get; set; }
+        public TypeData Type { get; set; }
+        public string? ImageFilepath { get; set; } = string.Empty;
 
 
         public static MaterialData FromDatabase(int id)
@@ -157,6 +157,28 @@ namespace application.C_DAL
                     cmd.Parameters.AddWithValue("@brandId", Brand.Id);
                     cmd.Parameters.AddWithValue("@typeId", Type.Id);
 
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void UpdateOnDatabase()
+        {
+            using(MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new("UPDATE `material` SET " +
+                    "`material` = @material, `description` = @description, `amount_total` = @amountTotal, `amount_available` = @amountAvailable, `img_filepath` = @imgFilepath, `brand_id` = @brandId, `type_id` = @typeId " +
+                    "WHERE material_id = @id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", Id);
+                    cmd.Parameters.AddWithValue("@material", Name);
+                    cmd.Parameters.AddWithValue("@description", Description);
+                    cmd.Parameters.AddWithValue("@amountTotal", AmountTotal);
+                    cmd.Parameters.AddWithValue("@amountAvailable", AmountAvailable);
+                    cmd.Parameters.AddWithValue("@imgFilepath", ImageFilepath);
+                    cmd.Parameters.AddWithValue("@brandId", Brand.Id);
+                    cmd.Parameters.AddWithValue("@typeId", Type.Id);
                     cmd.ExecuteNonQuery();
                 }
             }

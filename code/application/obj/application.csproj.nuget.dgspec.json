@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\43664\\Documents\\Gabriel\\05_GitHub\\repositorys\\Materialmanagement\\code\\application\\application.csproj": {}
+    "E:\\coding\\Materialmanagement\\code\\application\\application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\43664\\Documents\\Gabriel\\05_GitHub\\repositorys\\Materialmanagement\\code\\application\\application.csproj": {
+    "E:\\coding\\Materialmanagement\\code\\application\\application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\43664\\Documents\\Gabriel\\05_GitHub\\repositorys\\Materialmanagement\\code\\application\\application.csproj",
+        "projectUniqueName": "E:\\coding\\Materialmanagement\\code\\application\\application.csproj",
         "projectName": "application",
-        "projectPath": "C:\\Users\\43664\\Documents\\Gabriel\\05_GitHub\\repositorys\\Materialmanagement\\code\\application\\application.csproj",
-        "packagesPath": "C:\\Users\\43664\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\43664\\Documents\\Gabriel\\05_GitHub\\repositorys\\Materialmanagement\\code\\application\\obj\\",
+        "projectPath": "E:\\coding\\Materialmanagement\\code\\application\\application.csproj",
+        "packagesPath": "C:\\Users\\Computer\\.nuget\\packages\\",
+        "outputPath": "E:\\coding\\Materialmanagement\\code\\application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Users\\43664\\Documents\\Gabriel\\VisualStudio1\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\43664\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Computer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

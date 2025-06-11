@@ -81,5 +81,21 @@ namespace application.C_DAL
                 }
             }
         }
+
+        public void InsertIntoDatabase()
+        {
+            using(MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO `member_has_rented_material` (`quantity`, `date_of_aquisition`, `user_id`, `material_id`) VALUES (@quantity, @date_of_aquisition, @user_id, @material_id)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@quantity", Quantity);
+                    cmd.Parameters.AddWithValue("@date_of_aquisition", DateOfAquisition);
+                    cmd.Parameters.AddWithValue("@user_id", UserId);
+                    cmd.Parameters.AddWithValue("@material_id", MaterialId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

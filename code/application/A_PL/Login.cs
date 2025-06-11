@@ -19,7 +19,7 @@ namespace application
 
                 if (mem.Pin.ToString() == tbx_pin.Text.Trim())
                 {
-                    new MemberRentView().Show();
+                    new MemberRentView((int)mem.Id).Show();
                     this.Close();
                 }
                 else
