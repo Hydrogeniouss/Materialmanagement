@@ -21,5 +21,13 @@ namespace application.B_BL
             MemberData mem = MemberData.FromDatabase(id);
             return new Member(mem.FirstName, mem.LastName, mem.Email, mem.Phone, mem.Pin, mem.Id);
         }
+
+        public static new Member FromDatabase(string firstName, string lastName)
+        {
+            MemberData mem = MemberData.FromDatabase(firstName, lastName);
+            return new Member(mem.FirstName, mem.LastName, mem.Email, mem.Phone, mem.Pin, mem.Id);
+        }
+
     }
+
 }

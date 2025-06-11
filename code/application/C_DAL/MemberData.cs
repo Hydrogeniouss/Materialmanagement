@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Runtime.CompilerServices;
 
 namespace application.C_DAL
 {
@@ -30,6 +31,36 @@ namespace application.C_DAL
         public static MemberData FromDatabase(int id)
         {
             return FromDatabaseBase(id)[0];
+        }
+
+        public static MemberData FromDatabase(string firstName, string lastName)
+        {
+            List<MemberData> members = new();
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new("Select * FROM member JOIN user ON user.first_name = @firstName AND user.last_name = @lastName", conn))
+                {
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            members.Add(new MemberData(
+                                reader.GetString("first_name"),
+                                reader.GetString("last_name"),
+                                reader.GetString("email"),
+                                reader.GetString("phone"),
+                                reader.GetInt32("pin"),
+                                reader.GetInt32("user_id")
+                            ));
+                        }
+                    }
+                }
+            }
+            return members[0];
         }
 
         private static List<MemberData> FromDatabaseBase(int? id = null)

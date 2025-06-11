@@ -12,27 +12,28 @@ namespace application
 
         private void btn_submit_Click(object sender, EventArgs e)
         {
+            Member mem;
             try
             {
-                Member mem = Member.FromDatabase().Where(mem => mem.FirstName == tbx_firstName.Text
-                    && mem.LastName == tbx_lastName.Text).ToArray()[0];
-
-                if (mem.Pin.ToString() == tbx_pin.Text.Trim())
-                {
-                    new MemberRentView((int)mem.Id).Show();
-                    this.Close();
-                }
-                else
-                {
-                    lbl_errorMessage.Text = "Der Vor- oder Nachname oder der PIN ist Falsch.";
-                }
+                mem = Member.FromDatabase(tbx_firstName.Text, tbx_lastName.Text);
             }
             catch
             {
                 lbl_errorMessage.Text = "Der Vor- oder Nachname oder der PIN ist Falsch.\n" +
                     "Möglicherweise hat die Verbindung zur Datenbank Fehlgesschlagen";
+
+                return;
             }
 
+            if (mem.Pin.ToString() == tbx_pin.Text.Trim())
+            {
+                new MemberRentView((int)mem.Id!).Show();
+                Close();
+            }
+            else
+            {
+                lbl_errorMessage.Text = "Der Vor- oder Nachname oder der PIN ist Falsch.";
+            }
         }
 
         private void btn_loginAsAdmin_Click(object sender, EventArgs e)
