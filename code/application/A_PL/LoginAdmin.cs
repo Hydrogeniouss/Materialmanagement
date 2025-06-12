@@ -1,4 +1,4 @@
-﻿using System.Data;
+﻿using application.B_BL;
 
 
 namespace application.A_PL
@@ -13,27 +13,27 @@ namespace application.A_PL
         }
         private void btn_submit_Click(object sender, EventArgs e)
         {
+            Admin admin;
             try
             {
-                B_BL.Admin admin = B_BL.Admin.FromDatabase().Where(admin => admin.FirstName == tbx_firstName.Text //TODO: Why does using not work?
-                    && admin.LastName == tbx_lastName.Text).ToArray()[0];
-
-                if (admin.Password.ToString() == tbx_password.Text.Trim())
-                {
-                    new AdminStoragaeVeiw().Show();
-                    Close();
-                }
-                else
-                {
-                    lbl_errorMessage.Text = "Der Vor- oder Nachname oder das Passwort ist Falsch.";
-                }
+                admin = Admin.FromDatabase(tbx_firstName.Text, tbx_lastName.Text);
             }
             catch
             {
                 lbl_errorMessage.Text = "Der Vor- oder Nachname oder das Passwort ist Falsch.\n" +
                     "Möglicherweise hat die Verbindung zur Datenbank Fehlgesschlagen";
+                return;
             }
 
+            if (admin.Password.ToString() == tbx_password.Text.Trim())
+            {
+                new AdminStoragaeVeiw().Show();
+                Close();
+            }
+            else
+            {
+                lbl_errorMessage.Text = "Der Vor- oder Nachname oder das Passwort ist Falsch.";
+            }
 
         }
 

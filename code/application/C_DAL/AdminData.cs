@@ -24,7 +24,7 @@ namespace application.C_DAL
         /// </returns>
         public static List<AdminData> FromDatabase()
         {
-            List<AdminData> collection = new();
+            List<AdminData> admins = new();
             using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {
                 conn.Open();
@@ -34,7 +34,7 @@ namespace application.C_DAL
                     {
                         while (reader.Read())
                         {
-                            collection.Add(new(
+                            admins.Add(new(
                                 reader.GetString("first_name"),
                                 reader.GetString("last_name"),
                                 reader.GetString("email"),
@@ -46,7 +46,36 @@ namespace application.C_DAL
                     }
                 }
             }
-            return collection;
+            return admins;
+        }
+        protected static AdminData FromDatabase(string firstName, string lastName)
+        {
+            List<AdminData> admins = new();
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new("Select * FROM admin JOIN user ON admin.user_id = user.user_id WHERE user.first_name = @firstName AND user.last_name = @lastName", conn))
+                {
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            admins.Add(new(
+                                reader.GetString("first_name"),
+                                reader.GetString("last_name"),
+                                reader.GetString("email"),
+                                reader.GetString("phone"),
+                                reader.GetString("password"),
+                                reader.GetInt32("user_id")
+                                ));
+                        }
+                    }
+                }
+            }
+            return admins[0];
         }
 
         /// <summary>

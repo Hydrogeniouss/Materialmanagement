@@ -15,5 +15,11 @@ namespace application.B_BL
                 .Select(x => new Admin(x.FirstName, x.LastName, x.Email, x.Phone, x.Password, x.Id))
                 .ToList();
         }
+
+        internal static new Admin FromDatabase(string firstName, string lastName)
+        {
+            AdminData ad = AdminData.FromDatabase(firstName, lastName);
+            return new Admin(ad.FirstName, ad.LastName, ad.Email, ad.Phone, ad.Password, ad.Id);
+        }
     }
 }
