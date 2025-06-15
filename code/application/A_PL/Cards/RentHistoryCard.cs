@@ -95,15 +95,15 @@ namespace application.A_PL.Cards
         public new const int MARGIN = 10;
         public new const int PADDING = 1;
 
-        public Label lbl_dateOfRetrunal { get; set; }
-        public Label lbl_dateOfAquisition { get; set; }
-        public Label lbl_count { get; set; }
-        public Label lbl_materialName { get; set; }
-        public Label lbl_brand { get; set; }
-        public Label lbl_type { get; set; }
-        public Label lbl_memberName { get; set; }
+        public Label lbl_dateOfRetrunal { get; }
+        public Label lbl_dateOfAquisition { get; }
+        public Label lbl_count { get; }
+        public Label lbl_materialName { get; }
+        public Label lbl_brand { get; }
+        public Label lbl_type { get; }
+        public Label lbl_memberName { get; }
 
-        public Rent OriginRent { get; set; }
+        public Rent OriginRent { get; }
 
 
         public void UpdateBackColor(object sender, EventArgs e)

@@ -63,12 +63,12 @@ namespace application.A_PL.Cards
 
         public new const int STANDARDHEIGHT = 33;
 
-        public Label lbl_dateOfAquisition { get; set; }
-        public Label lbl_count { get; set; }
-        public Label lbl_materialName { get; set; }
-        public Label lbl_brand { get; set; }
-        public Label lbl_type { get; set; }
-        public Label lbl_memberName { get; set; }
+        public Label lbl_dateOfAquisition { get; }
+        public Label lbl_count { get; }
+        public Label lbl_materialName { get; }
+        public Label lbl_brand { get; }
+        public Label lbl_type { get; }
+        public Label lbl_memberName { get; }
 
     }
 }

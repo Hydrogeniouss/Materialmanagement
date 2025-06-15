@@ -139,18 +139,20 @@ namespace application.A_PL.Cards
             });
 
         }
-        
+
+        // Public because is needed in eg. AdminMemberView when filling in information for selected user.
+
         public new const int STANDARDHEIGHT = 33;
+        
+        public Label lbl_userId { get; }
+        public Label lbl_isAdmin { get; }
+        public Label lbl_firstName { get; }
+        public Label lbl_lastName { get; }
+        public Label lbl_passKey { get; }
+        public Label lbl_email { get; }
+        public Label lbl_phone { get; }
 
-        public Label lbl_userId { get; set; }
-        public Label lbl_isAdmin { get; set; }
-        public Label lbl_firstName { get; set; }
-        public Label lbl_lastName { get; set; }
-        public Label lbl_passKey { get; set; }
-        public Label lbl_email { get; set; }
-        public Label lbl_phone { get; set; }
-
-        public UserData OriginUser { get; set; }
+        public UserData OriginUser { get; }
 
 
     }

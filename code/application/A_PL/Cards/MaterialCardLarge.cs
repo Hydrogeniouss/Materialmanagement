@@ -48,9 +48,10 @@
         public new const int STANDARDHEIGHT = 190;
 
 
-        public Label lbl_Name;
-        public Label lbl_Brand;
-        public Label lbl_Description;
+        public Label lbl_Name { get; }
+        public Label lbl_Brand { get; }
+        public Label lbl_Description { get; }
+
         public PictureBox? Img = null;
 
 
