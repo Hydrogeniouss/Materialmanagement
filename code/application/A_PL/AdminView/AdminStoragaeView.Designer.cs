@@ -1,6 +1,6 @@
 ﻿namespace application.A_PL
 {
-    partial class AdminStoragaeVeiw
+    partial class AdminStoragaeView
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminStoragaeVeiw));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminStoragaeView));
             btn_discard = new Button();
             lbl_MatText = new Label();
             btn_borrow = new Button();
@@ -165,6 +165,7 @@
             lbl_material.Size = new Size(136, 45);
             lbl_material.TabIndex = 31;
             lbl_material.Text = "Material";
+            lbl_material.Click += lbl_material_Click;
             // 
             // lbl_Lager
             // 
@@ -186,7 +187,7 @@
             button1.Text = "GENERATED PROGRAMATICALLY";
             button1.UseVisualStyleBackColor = true;
             // 
-            // AdminStoragaeVeiw
+            // AdminStoragaeView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -204,7 +205,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(lbl_Ausleihen);
             Controls.Add(sct_storage);
-            Name = "AdminStoragaeVeiw";
+            Name = "AdminStoragaeView";
             Text = "AdminStoragaeVeiw";
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

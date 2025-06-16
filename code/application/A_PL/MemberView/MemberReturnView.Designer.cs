@@ -151,6 +151,7 @@
             lbl_borrow.Size = new Size(159, 45);
             lbl_borrow.TabIndex = 10;
             lbl_borrow.Text = "Ausleihen";
+            lbl_borrow.Click += lbl_borrow_Click;
             // 
             // pictureBox2
             // 
@@ -181,7 +182,7 @@
             lbl_returnText.TabIndex = 13;
             lbl_returnText.Text = "Material Zurückgeben";
             // 
-            // ReturnView
+            // MemberReturnView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -193,7 +194,7 @@
             Controls.Add(lbl_return);
             Controls.Add(lbl_borrow);
             Controls.Add(pictureBox2);
-            Name = "ReturnView";
+            Name = "MemberReturnView";
             Text = "ReturnView";
             Load += ReturnView_Load;
             sct_rentMaterial.Panel1.ResumeLayout(false);

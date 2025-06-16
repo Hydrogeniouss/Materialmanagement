@@ -27,7 +27,7 @@ namespace application.A_PL
 
             if (admin.Password.ToString() == tbx_password.Text.Trim())
             {
-                new AdminStoragaeVeiw().Show();
+                new AdminStoragaeView().Show();
                 Close();
             }
             else

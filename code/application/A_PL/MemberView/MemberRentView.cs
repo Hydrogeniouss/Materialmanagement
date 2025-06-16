@@ -7,12 +7,13 @@ namespace application.A_PL
 {
     public partial class MemberRentView : Form
     {
-        private int _memberId = 0;
         public MemberRentView(int memberId)
         {
             InitializeComponent();
             _memberId = memberId;
         }
+        
+        private int _memberId = 0;
 
         private void RentView_Load(object sender, EventArgs e)
         {
@@ -132,6 +133,12 @@ namespace application.A_PL
                 rent.InsertIntoDatabase();
             });
             sct_rentMaterial.Panel2.Controls.Clear();
+        }
+
+        private void lbl_return_Click(object sender, EventArgs e)
+        {
+            new MemberReturnView(_memberId).Show();
+            Close();
         }
     }
 }

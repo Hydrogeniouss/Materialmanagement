@@ -178,6 +178,10 @@ namespace application.A_PL.AdminView
             }
         }
 
-
+        private void lbl_Lager_Click(object sender, EventArgs e)
+        {
+            new AdminStoragaeView().Show();
+            Close();
+        }
     }
 }

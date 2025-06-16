@@ -1,13 +1,14 @@
-﻿using application.A_PL.Cards;
+﻿using application.A_PL.AdminView;
+using application.A_PL.Cards;
 using application.B_BL;
 using System.Data;
 
 
 namespace application.A_PL
 {
-    public partial class AdminStoragaeVeiw : Form
+    public partial class AdminStoragaeView : Form
     {
-        public AdminStoragaeVeiw()
+        public AdminStoragaeView()
         {
             InitializeComponent();
             AddRentCards();
@@ -102,6 +103,12 @@ namespace application.A_PL
 
             }
 
+        }
+
+        private void lbl_material_Click(object sender, EventArgs e)
+        {
+            new AdminMemberView().Show();
+            Close();
         }
     }
 }

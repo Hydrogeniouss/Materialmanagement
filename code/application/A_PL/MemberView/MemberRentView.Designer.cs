@@ -166,6 +166,7 @@
             lbl_return.Size = new Size(206, 45);
             lbl_return.TabIndex = 4;
             lbl_return.Text = "Zurückgeben";
+            lbl_return.Click += lbl_return_Click;
             // 
             // lbl_material
             // 

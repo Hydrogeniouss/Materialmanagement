@@ -306,6 +306,7 @@
             lbl_Lager.Size = new Size(98, 45);
             lbl_Lager.TabIndex = 27;
             lbl_Lager.Text = "Lager";
+            lbl_Lager.Click += lbl_Lager_Click;
             // 
             // contextMenuStrip1
             // 
