@@ -76,7 +76,7 @@ namespace application.A_PL
             }
             else if (sender is Button btn)
             {
-                MaterialCardSmall mcs = btn.Parent as MaterialCardSmall;
+                MaterialCardSmall mcs = (MaterialCardSmall)btn.Parent!;
                 if (mcs.Parent == sct_rentMaterial.Panel2)
                 {
                     mcs.Origin.BackColor = Color.LightGray;
@@ -126,7 +126,7 @@ namespace application.A_PL
 
             rents.ForEach(rent =>
             {
-                MaterialData mat = MaterialData.FromDatabase((int)rent.MaterialId);
+                MaterialData mat = MaterialData.FromDatabase((int)Convert.ToInt32(rent.MaterialId));
                 mat.AmountAvailable -= (int)rent.Quantity;
                 mat.UpdateOnDatabase();
                 rent.InsertIntoDatabase();

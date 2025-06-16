@@ -114,6 +114,8 @@ namespace application.C_DAL
                 using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `type` WHERE @id", conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Type not in Database/typeId is null") : id);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
 
@@ -132,10 +134,12 @@ namespace application.C_DAL
             {
                 conn.Open();
 
-                using (MySqlCommand cmd = new MySqlCommand("UPDATE `type` SET `type`='@type' WHERE @id", conn))
+                using (MySqlCommand cmd = new MySqlCommand("UPDATE `type` SET `type`='@type' WHERE type_id =  @id", conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Type not in Database/typeId is null") : id);
                     cmd.Parameters.AddWithValue("@type", type.Name);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
 

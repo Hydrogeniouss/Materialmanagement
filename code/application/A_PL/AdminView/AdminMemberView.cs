@@ -11,9 +11,11 @@ namespace application.A_PL.AdminView
 
             InsertUsers();
             btn_save.Enabled = false;
+            btn_delete.Enabled = false;
+
         }
 
-        public UserCard SelectedCard { get; set; }
+        public UserCard? SelectedCard { get; set; }
 
         public void InsertUsers()
         {
@@ -61,6 +63,7 @@ namespace application.A_PL.AdminView
         private void MemberCard_Click(object? sender, EventArgs e)
         {
             btn_save.Enabled = true;
+            btn_delete.Enabled = true;
 
             if (sender is UserCard uc)
             {
@@ -82,8 +85,21 @@ namespace application.A_PL.AdminView
             tbx_firstName.Text = uc.lbl_firstName.Text;
             tbx_lastName.Text = uc.lbl_lastName.Text;
             tbx_passKey.Text = uc.lbl_passKey.Text;
-            tbx_email.Text  = uc.lbl_email.Text; // looks better :)
+            tbx_email.Text = uc.lbl_email.Text;
             tbx_phone.Text = uc.lbl_phone.Text;
+        }
+
+        private void ClearUserInfo()
+        {
+            lbl_memberHeading.Text = "[Mitgliedernummer]";
+            tbx_firstName.Text = null;
+            tbx_lastName.Text = null;
+            tbx_passKey.Text = null;
+            tbx_email.Text = null;
+            tbx_phone.Text = null;
+
+            btn_delete.Enabled = false;
+            btn_save.Enabled = false;
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -93,7 +109,7 @@ namespace application.A_PL.AdminView
                 if (lbl_memberHeading.Text.Contains("Member"))
                 {
                     Member mem = new(tbx_firstName.Text, tbx_lastName.Text, tbx_email.Text, tbx_phone.Text, Convert.ToInt32(tbx_passKey.Text));
-                    mem.Id = ((Member)SelectedCard.OriginUser).Id;
+                    mem.Id = ((Member)SelectedCard!.OriginUser).Id; // Button only enabled while card is selected.
 
                     mem.UpdateOnDatabase();
                     InsertUsers();
@@ -102,10 +118,10 @@ namespace application.A_PL.AdminView
                 else
                 {
                     Admin ad = new(tbx_firstName.Text, tbx_lastName.Text, tbx_email.Text, tbx_phone.Text, tbx_passKey.Text);
-                    ad.Id = ((Admin)SelectedCard.OriginUser).Id;
+                    ad.Id = ((Admin)SelectedCard!.OriginUser).Id; // Button only enabled while card is selected.
 
                     ad.UpdateOnDatabase();
-                    InsertUsers();  
+                    InsertUsers();
                 }
             }
             catch (Exception)
@@ -116,8 +132,52 @@ namespace application.A_PL.AdminView
 
         private void btn_newMember_Click(object sender, EventArgs e)
         {
-            
+            DialogResult result = new AdminNewMember().ShowDialog(); // ShowDialog bc we need return value
+
+            if (result == DialogResult.OK)
+            {
+                MessageBox.Show("Erfolgreich angelegt");
+
+                InsertUsers();
+            }
+            else
+            {
+                MessageBox.Show("Es ist ein fehler beim Speichern passiert.");
+            }
         }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Wollen sie diesen Benutzer wirklich löschen?", null, MessageBoxButtons.YesNo))
+            {
+                if (lbl_memberHeading.Text.Contains("Member"))
+                {
+                    int userId = Convert.ToInt32(((Member)SelectedCard!.OriginUser).Id);
+                    if (Member.CheckForeignKeyRelation(userId))
+                    {
+                        Member.DeleteOnDatabase(Convert.ToInt32(userId)); // Button only enabled while card is selected.
+                        ClearUserInfo();
+                        InsertUsers();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Dieses Mitglied kann nicht gelöscht werden. Es ist relevant für die Verleihhistorie.");
+                    }
+
+                }
+                else
+                {
+                    int userId = Convert.ToInt32(((Admin)SelectedCard!.OriginUser).Id);
+                    Admin.DeleteOnDatabase(userId); // Button only enabled while card is selected.
+
+                    ClearUserInfo();
+                    InsertUsers();
+                }
+
+
+            }
+        }
+
 
     }
 }

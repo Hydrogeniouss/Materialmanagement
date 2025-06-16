@@ -16,10 +16,15 @@ namespace application.B_BL
                 .ToList();
         }
 
-        internal static new Admin FromDatabase(string firstName, string lastName)
+        public static new Admin FromDatabase(string firstName, string lastName)
         {
             AdminData ad = AdminData.FromDatabase(firstName, lastName);
             return new Admin(ad.FirstName, ad.LastName, ad.Email, ad.Phone, ad.Password, ad.Id);
+        }
+
+        public static long InsertIntoDatabase(Admin ad)
+        {
+            return ad.InsertIntoDatabase();
         }
     }
 }

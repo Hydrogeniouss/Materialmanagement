@@ -66,6 +66,8 @@ namespace application.C_DAL
                 using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `user` WHERE @id", conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("User not in Database/userId is null") : id);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
 

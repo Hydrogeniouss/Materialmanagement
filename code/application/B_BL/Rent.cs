@@ -9,12 +9,11 @@ namespace application.B_BL
         {
         }
 
-        public new static List<Rent> FromDatabase(bool isOnlyRented = false)
+        public static new List<Rent> FromDatabase(bool isOnlyRented = false)
         {
             return RentData.FromDatabase(isOnlyRented)
                 .Select(x => new Rent(x.Quantity, x.DateOfAquisition, x.DateOfReturnal, x.UserId, x.MaterialId))
                 .ToList();
         }
-
     }
 }

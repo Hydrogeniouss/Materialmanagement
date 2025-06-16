@@ -4,6 +4,9 @@
     <Compile Update="A_PL\AdminView\AdminMemberView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="A_PL\AdminView\AdminNewMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="A_PL\AdminView\AdminStoragaeVeiw.cs">
       <SubType>Form</SubType>
     </Compile>

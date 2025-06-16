@@ -197,9 +197,11 @@ namespace application.C_DAL
             {
                 conn.Open();
 
-                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `material` WHERE @id", conn))
+                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `material` WHERE material_id = @id", conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Material not in Database/materialId is null") : id);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
 

@@ -77,6 +77,29 @@ namespace application.C_DAL
             }
         }
 
+
+        /// <summary>
+        /// Checks if an userId is used
+        /// </summary>
+        /// <param name="id">userId to check</param>
+        /// <returns>Returns `true` when the given Id is used in member_has_rented_material, else `false` table</returns>
+        public static bool CheckForeignKeyRelationForUser(int id)
+        {
+            int howOften; // better name
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM member_has_rented_material WHERE user_id = @id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    howOften = cmd.ExecuteNonQuery();
+                }
+            }
+
+            return howOften > 0 ? true : false;
+        }
+
         public void InsertIntoDatabase()
         {
             using (MySqlConnection conn = DataAccessHelper.CreateConnection())
@@ -88,6 +111,7 @@ namespace application.C_DAL
                     cmd.Parameters.AddWithValue("@date_of_aquisition", DateOfAquisition);
                     cmd.Parameters.AddWithValue("@user_id", UserId);
                     cmd.Parameters.AddWithValue("@material_id", MaterialId);
+
                     cmd.ExecuteNonQuery();
                 }
             }

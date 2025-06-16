@@ -1,5 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System.Runtime.CompilerServices;
 
 namespace application.C_DAL
 {
@@ -139,6 +138,8 @@ namespace application.C_DAL
                 {
                     cmd.Parameters.AddWithValue("@userID", id);
                     cmd.Parameters.AddWithValue("@pin", Pin);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
             return id;
@@ -157,10 +158,21 @@ namespace application.C_DAL
             {
                 conn.Open();
 
-                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `member` WHERE @id", conn))
+                // delete on member Table
+                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `member` WHERE user_id = @id", conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Member not in Database/userId is null") : id);
+
+                    cmd.ExecuteNonQuery();
                 }
+
+                // delete on user Table
+                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `user` WHERE user_id = @id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Member not in Database/userId is null") : id);
+
+                    cmd.ExecuteNonQuery();
+                } 
             }
 
         }

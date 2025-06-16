@@ -57,6 +57,7 @@
             textBox2 = new TextBox();
             label3 = new Label();
             label4 = new Label();
+            btn_delete = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sct_members).BeginInit();
@@ -89,10 +90,10 @@
             // btn_save
             // 
             btn_save.Font = new Font("Segoe UI", 18F);
-            btn_save.Location = new Point(1717, 987);
+            btn_save.Location = new Point(1678, 987);
             btn_save.Margin = new Padding(3, 2, 3, 2);
             btn_save.Name = "btn_save";
-            btn_save.Size = new Size(175, 43);
+            btn_save.Size = new Size(214, 43);
             btn_save.TabIndex = 23;
             btn_save.Text = "Speichern";
             btn_save.UseVisualStyleBackColor = true;
@@ -338,11 +339,24 @@
             label4.TabIndex = 32;
             label4.Text = "Vorname";
             // 
+            // btn_delete
+            // 
+            btn_delete.Font = new Font("Segoe UI", 18F);
+            btn_delete.Location = new Point(1458, 987);
+            btn_delete.Margin = new Padding(3, 2, 3, 2);
+            btn_delete.Name = "btn_delete";
+            btn_delete.Size = new Size(214, 43);
+            btn_delete.TabIndex = 30;
+            btn_delete.Text = "Benutzer löschen";
+            btn_delete.UseVisualStyleBackColor = true;
+            btn_delete.Click += btn_delete_Click;
+            // 
             // AdminMemberView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1904, 1041);
+            Controls.Add(btn_delete);
             Controls.Add(btn_newMember);
             Controls.Add(lbl_allMembers);
             Controls.Add(btn_save);
@@ -397,5 +411,6 @@
         private Label lbl_email;
         private TextBox tbx_phone;
         private Label lbl_phone;
+        private Button btn_delete;
     }
 }

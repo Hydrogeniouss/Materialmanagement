@@ -99,6 +99,8 @@ namespace application.C_DAL
                 {
                     cmd.Parameters.AddWithValue("@userID", id);
                     cmd.Parameters.AddWithValue("@password", Password);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
             return id;
@@ -117,11 +119,23 @@ namespace application.C_DAL
             {
                 conn.Open();
 
-                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `admin` WHERE @id", conn))
+                // Delete in admin Table
+                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `admin` WHERE user_id =  @id", conn))
                 {
                     cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Admin not in Database/userId is null") : id);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                // Delete in user Table
+                using (MySqlCommand cmd = new MySqlCommand("DELETE FROM `user` WHERE user_id =  @id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Admin not in Database/userId is null") : id);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
+
 
         }
 

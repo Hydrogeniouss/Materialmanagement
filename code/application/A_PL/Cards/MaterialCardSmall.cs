@@ -57,8 +57,8 @@ namespace application.A_PL.Cards
 
         public int Count { get; set; }
 
-        private MaterialCardLarge? Origin { get; }
-        private Label lbl_Name { get; }
+        public MaterialCardLarge Origin { get; }
+        public Label lbl_Name { get; }
         public Label lbl_Brand { get; }
         public Button btn_Delete { get; }
         public NumericUpDown Amount { get; set; }

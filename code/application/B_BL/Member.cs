@@ -28,6 +28,22 @@ namespace application.B_BL
             return new Member(mem.FirstName, mem.LastName, mem.Email, mem.Phone, mem.Pin, mem.Id);
         }
 
+        public bool CheckForeignKeyRelation()
+        {
+            return Rent.CheckForeignKeyRelationForUser(Convert.ToInt32(Id));
+        }
+
+        /// <summary>
+        /// Checks if an userId is used
+        /// </summary>
+        /// <param name="id">userId to check</param>
+        /// <returns>Returns `true` when the given Id is used in member_has_rented_material, else `false` table</returns>
+        public static bool CheckForeignKeyRelation(int id)
+        {
+            return Rent.CheckForeignKeyRelationForUser(id);
+        }
+
+
     }
 
 }
