@@ -12,7 +12,7 @@ namespace application.A_PL
             InitializeComponent();
             _memberId = memberId;
         }
-        
+
         private int _memberId = 0;
 
         private void RentView_Load(object sender, EventArgs e)
@@ -139,6 +139,11 @@ namespace application.A_PL
         {
             new MemberReturnView(_memberId).Show();
             Close();
+        }
+
+        private void MemberRentView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(e.CloseReason == CloseReason.UserClosing) Application.Exit();
         }
     }
 }

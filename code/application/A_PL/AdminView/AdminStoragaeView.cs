@@ -110,5 +110,10 @@ namespace application.A_PL
             new AdminMemberView().Show();
             Close();
         }
+
+        private void AdminStoragaeView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing) Application.Exit();
+        }
     }
 }

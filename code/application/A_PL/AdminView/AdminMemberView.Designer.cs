@@ -372,6 +372,7 @@
             Controls.Add(sct_members);
             Name = "AdminMemberView";
             Text = "AdminMemberView";
+            FormClosed += AdminMemberView_FormClosed;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             sct_members.Panel2.ResumeLayout(false);

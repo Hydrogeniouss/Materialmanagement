@@ -197,6 +197,7 @@
             Controls.Add(sct_rentMaterial);
             Name = "MemberRentView";
             Text = "RentView";
+            FormClosed += MemberRentView_FormClosed;
             Load += RentView_Load;
             ((System.ComponentModel.ISupportInitialize)sct_rentMaterial).EndInit();
             sct_rentMaterial.ResumeLayout(false);

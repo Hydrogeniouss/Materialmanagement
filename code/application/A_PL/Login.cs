@@ -41,5 +41,10 @@ namespace application
             new LoginAdmin().Show();
             Close();
         }
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing) Application.Exit();
+        }
     }
 }
