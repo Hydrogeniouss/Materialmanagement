@@ -1,3 +1,4 @@
+using application.A_PL;
 using application.A_PL.AdminView;
 
 namespace application
@@ -14,8 +15,8 @@ namespace application
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            new Login().Show();
-            //new AdminMemberView().Show();
+            new MemberRentView(2).Show();
+            
 
 
             Application.Run();

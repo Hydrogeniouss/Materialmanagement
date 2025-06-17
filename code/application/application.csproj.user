@@ -28,7 +28,7 @@
     <Compile Update="A_PL\Cards\MaterialCardSmall.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="A_PL\MemberView\MaterialFilter.cs">
+    <Compile Update="A_PL\MemberView\MemberMaterialFilter.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="A_PL\MemberView\MemberRentView.cs">

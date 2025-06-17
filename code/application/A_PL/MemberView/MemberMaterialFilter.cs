@@ -3,10 +3,10 @@ using application.C_DAL;
 
 namespace application.A_PL
 {
-    public partial class MaterialFilter : Form
+    public partial class MemberMaterialFilter : Form
     {
         internal List<Material> Materials = new();
-        public MaterialFilter()
+        public MemberMaterialFilter()
         {
             InitializeComponent();
         }

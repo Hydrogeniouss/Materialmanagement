@@ -44,10 +44,9 @@ namespace application.A_PL
             {
                 if (mcl.Parent == sct_rentMaterial.Panel1)
                 {
-                    if (mcl.BackColor != MaterialCardLarge.STANDARDBACKCOLOR)
+                    if (mcl.BackColor == MaterialCardLarge.STANDARDBACKCOLOR)
                     {
-                        mcl.BackColor = MaterialCardLarge.STANDARDBACKCOLOR;
-
+                        mcl.BackColor = UIConfig.GREEN;
                         //TODO fix placements (buggy when scrolling starts working)
                         int itemsCount = sct_rentMaterial.Panel2.Controls.OfType<Card>().Count();
                         MaterialCardSmall mcs = new MaterialCardSmall(mcl)
@@ -59,11 +58,13 @@ namespace application.A_PL
                         mcs.btn_Delete.Click += MaterialCard_Click; //TODO: Doesnt Work, why??
 
                         sct_rentMaterial.Panel2.Controls.Add(mcs);
+
+                        UpdateCards();
                     }
 
                     else
                     {
-                        mcl.BackColor = Color.RebeccaPurple;
+                        mcl.BackColor = MaterialCardLarge.STANDARDBACKCOLOR;
 
                         sct_rentMaterial.Panel2.Controls.Remove(
                             sct_rentMaterial.Panel2.Controls.OfType<MaterialCardSmall>().Where(
@@ -111,7 +112,7 @@ namespace application.A_PL
 
         private void btn_filter_Click(object sender, EventArgs e)
         {
-            MaterialFilter filterView = new MaterialFilter();
+            MemberMaterialFilter filterView = new MemberMaterialFilter();
             filterView.ShowDialog();
             if (filterView.DialogResult == DialogResult.OK)
             {

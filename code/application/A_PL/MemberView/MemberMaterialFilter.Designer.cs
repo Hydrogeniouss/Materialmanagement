@@ -1,6 +1,6 @@
 ﻿namespace application.A_PL
 {
-    partial class MaterialFilter
+    partial class MemberMaterialFilter
     {
         /// <summary>
         /// Required designer variable.
