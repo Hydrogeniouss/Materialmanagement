@@ -14,8 +14,8 @@ namespace application
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            //new Login().Show();
-            new AdminMemberView().Show();
+            new Login().Show();
+            //new AdminMemberView().Show();
 
 
             Application.Run();
