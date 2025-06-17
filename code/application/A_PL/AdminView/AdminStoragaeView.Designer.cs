@@ -39,7 +39,6 @@
             lbl_Ausleihen = new Label();
             sct_storage = new SplitContainer();
             lbl_members = new Label();
-            lbl_material = new Label();
             lbl_Lager = new Label();
             button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -155,23 +154,13 @@
             lbl_members.Size = new Size(167, 45);
             lbl_members.TabIndex = 32;
             lbl_members.Text = "Mitglieder";
-            // 
-            // lbl_material
-            // 
-            lbl_material.AutoSize = true;
-            lbl_material.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_material.Location = new Point(1386, 40);
-            lbl_material.Name = "lbl_material";
-            lbl_material.Size = new Size(136, 45);
-            lbl_material.TabIndex = 31;
-            lbl_material.Text = "Material";
-            lbl_material.Click += lbl_material_Click;
+            lbl_members.Click += lbl_members_Click;
             // 
             // lbl_Lager
             // 
             lbl_Lager.AutoSize = true;
             lbl_Lager.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Lager.Location = new Point(1240, 40);
+            lbl_Lager.Location = new Point(1448, 40);
             lbl_Lager.Name = "lbl_Lager";
             lbl_Lager.Size = new Size(98, 45);
             lbl_Lager.TabIndex = 30;
@@ -194,7 +183,6 @@
             ClientSize = new Size(1904, 1041);
             Controls.Add(button1);
             Controls.Add(lbl_members);
-            Controls.Add(lbl_material);
             Controls.Add(lbl_Lager);
             Controls.Add(btn_discard);
             Controls.Add(lbl_MatText);
@@ -228,7 +216,6 @@
         private Label lbl_Ausleihen;
         private SplitContainer sct_storage;
         private Label lbl_members;
-        private Label lbl_material;
         private Label lbl_Lager;
         private Button button1;
     }

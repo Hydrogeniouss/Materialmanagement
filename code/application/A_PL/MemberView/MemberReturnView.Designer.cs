@@ -35,7 +35,6 @@
             btn_filter = new Button();
             btn_return = new Button();
             lbl_selectedMaterials = new Label();
-            lbl_material = new Label();
             lbl_return = new Label();
             lbl_borrow = new Label();
             pictureBox2 = new PictureBox();
@@ -122,21 +121,11 @@
             lbl_selectedMaterials.TabIndex = 0;
             lbl_selectedMaterials.Text = "Ausgewähltes Material";
             // 
-            // lbl_material
-            // 
-            lbl_material.AutoSize = true;
-            lbl_material.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_material.Location = new Point(1630, 41);
-            lbl_material.Name = "lbl_material";
-            lbl_material.Size = new Size(136, 45);
-            lbl_material.TabIndex = 12;
-            lbl_material.Text = "Material";
-            // 
             // lbl_return
             // 
             lbl_return.AutoSize = true;
             lbl_return.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_return.Location = new Point(1427, 41);
+            lbl_return.Location = new Point(1560, 41);
             lbl_return.Name = "lbl_return";
             lbl_return.Size = new Size(206, 45);
             lbl_return.TabIndex = 11;
@@ -146,7 +135,7 @@
             // 
             lbl_borrow.AutoSize = true;
             lbl_borrow.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_borrow.Location = new Point(1271, 41);
+            lbl_borrow.Location = new Point(1404, 41);
             lbl_borrow.Name = "lbl_borrow";
             lbl_borrow.Size = new Size(159, 45);
             lbl_borrow.TabIndex = 10;
@@ -190,7 +179,6 @@
             Controls.Add(pictureBox1);
             Controls.Add(lbl_returnText);
             Controls.Add(sct_rentMaterial);
-            Controls.Add(lbl_material);
             Controls.Add(lbl_return);
             Controls.Add(lbl_borrow);
             Controls.Add(pictureBox2);
@@ -217,7 +205,6 @@
         private Button btn_filter;
         private Button btn_return;
         private Label lbl_selectedMaterials;
-        private Label lbl_material;
         private Label lbl_return;
         private Label lbl_borrow;
         private PictureBox pictureBox2;

@@ -51,7 +51,6 @@
             lbl_firstName = new Label();
             lbl_memberHeading = new Label();
             lbl_members = new Label();
-            lbl_material = new Label();
             lbl_Lager = new Label();
             contextMenuStrip1 = new ContextMenuStrip(components);
             textBox2 = new TextBox();
@@ -287,21 +286,11 @@
             lbl_members.TabIndex = 29;
             lbl_members.Text = "Mitglieder";
             // 
-            // lbl_material
-            // 
-            lbl_material.AutoSize = true;
-            lbl_material.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_material.Location = new Point(1379, 40);
-            lbl_material.Name = "lbl_material";
-            lbl_material.Size = new Size(136, 45);
-            lbl_material.TabIndex = 28;
-            lbl_material.Text = "Material";
-            // 
             // lbl_Lager
             // 
             lbl_Lager.AutoSize = true;
             lbl_Lager.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_Lager.Location = new Point(1233, 40);
+            lbl_Lager.Location = new Point(1445, 40);
             lbl_Lager.Name = "lbl_Lager";
             lbl_Lager.Size = new Size(98, 45);
             lbl_Lager.TabIndex = 27;
@@ -364,7 +353,6 @@
             Controls.Add(lbl_members);
             Controls.Add(lbl_selectedMember);
             Controls.Add(btn_filter);
-            Controls.Add(lbl_material);
             Controls.Add(lbl_Lager);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -395,7 +383,6 @@
         private Label lbl_Mitglieder;
         private SplitContainer sct_members;
         private Label lbl_members;
-        private Label lbl_material;
         private Label lbl_Lager;
         private Button btn_printAllMembers;
         private Label lbl_memberHeading;

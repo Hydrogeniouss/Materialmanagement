@@ -105,15 +105,15 @@ namespace application.A_PL
 
         }
 
-        private void lbl_material_Click(object sender, EventArgs e)
-        {
-            new AdminMemberView().Show();
-            Close();
-        }
-
         private void AdminStoragaeView_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing) Application.Exit();
+        }
+
+        private void lbl_members_Click(object sender, EventArgs e)
+        {
+            new AdminMemberView().Show();
+            Close();
         }
     }
 }
