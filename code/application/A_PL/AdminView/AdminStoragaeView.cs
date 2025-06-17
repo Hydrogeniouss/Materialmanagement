@@ -114,8 +114,7 @@ namespace application.A_PL
         }
 
         private void AdminStoragaeView_FormClosing(object sender, FormClosingEventArgs e)
->>>>>>> Stashed changes
-        {
+                {
             if (!UiHelper.ProgramaticallyClosing)
             {
                 UiHelper.ProxyExit();
