@@ -1,6 +1,5 @@
 ﻿using application.B_BL;
 using application.C_DAL;
-using Microsoft.VisualBasic.ApplicationServices;
 
 namespace application.A_PL.Cards
 {
@@ -143,7 +142,7 @@ namespace application.A_PL.Cards
         // Public because is needed in eg. AdminMemberView when filling in information for selected user.
 
         public new const int STANDARDHEIGHT = 33;
-        
+
         public Label lbl_userId { get; }
         public Label lbl_isAdmin { get; }
         public Label lbl_firstName { get; }

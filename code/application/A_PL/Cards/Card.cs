@@ -11,6 +11,7 @@
         public const int STANDARDWIDTH = 930;
         public const int STANDARDHEIGHT = 50;
 
+        public static readonly Color STANDARTUNAVAILABLECOLOR = Color.Gray;
         public static readonly Color STANDARDBACKCOLOR = Color.LightGray; // const not working
         public const int MARGIN = 10;
         public const int PADDING = 5;

@@ -1,7 +1,4 @@
-﻿using application.B_BL;
-using Org.BouncyCastle.Bcpg.OpenPgp;
-
-namespace application.A_PL
+﻿namespace application.A_PL
 {
     public partial class MemberReturnView : Form
     {

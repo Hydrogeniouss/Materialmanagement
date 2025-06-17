@@ -172,7 +172,7 @@ namespace application.C_DAL
                     cmd.Parameters.AddWithValue("@id", id == null ? throw new Exception("Member not in Database/userId is null") : id);
 
                     cmd.ExecuteNonQuery();
-                } 
+                }
             }
 
         }

@@ -26,13 +26,13 @@ namespace application.A_PL
         private void AddMaterials(List<Material> materials)
         {
             sct_rentMaterial.Panel1.Controls.Clear(); //apparently filtering via ofType<Card>() doesnt work, so full clear it is
-            List<MaterialCardLarge> mclList = new(materials.Select(mat => new MaterialCardLarge(mat.Name, mat.Brand.Name, mat.Description, null)));
+            List<MaterialCardLarge> mclList = new(materials.Select(mat => new MaterialCardLarge(mat)));
 
             for (var i = 0; i < mclList.Count; i++)
             {
                 Card mcl = mclList[i];
                 mcl.Location = new Point(Card.MARGIN, (MaterialCardLarge.STANDARDHEIGHT + Card.MARGIN) * i + Card.MARGIN);
-                mcl.Click += MaterialCard_Click;
+                if (mcl.BackColor == Card.STANDARDBACKCOLOR) mcl.Click += MaterialCard_Click;
                 sct_rentMaterial.Panel1.Controls.Add(mcl);
             }
         }

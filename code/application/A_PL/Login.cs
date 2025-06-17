@@ -19,7 +19,7 @@ namespace application
             }
             catch
             {
-                lbl_errorMessage.Text = "Der Vor- oder Nachname oder der PIN ist Falsch.\n" + 
+                lbl_errorMessage.Text = "Der Vor- oder Nachname oder der PIN ist Falsch.\n" +
                     "Möglicherweise hat die Verbindung zur Datenbank Fehlgesschlagen";
 
                 return;
