@@ -195,7 +195,7 @@
             Controls.Add(sct_storage);
             Name = "AdminStoragaeView";
             Text = "AdminStoragaeVeiw";
-            FormClosed += AdminStoragaeView_FormClosed;
+            FormClosing += AdminStoragaeView_FormClosing;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)sct_storage).EndInit();

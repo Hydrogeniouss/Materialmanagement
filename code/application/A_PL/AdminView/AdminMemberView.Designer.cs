@@ -360,7 +360,7 @@
             Controls.Add(sct_members);
             Name = "AdminMemberView";
             Text = "AdminMemberView";
-            FormClosed += AdminMemberView_FormClosed;
+            ForeColorChanged += AdminMemberView_ForeColorChanged;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             sct_members.Panel2.ResumeLayout(false);

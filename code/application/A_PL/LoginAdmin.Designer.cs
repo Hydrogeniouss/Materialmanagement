@@ -196,7 +196,7 @@
             Controls.Add(panel1);
             Name = "LoginAdmin";
             Text = "LoginAdmin";
-            FormClosed += LoginAdmin_FormClosed;
+            FormClosing += LoginAdmin_FormClosing;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

@@ -139,12 +139,20 @@ namespace application.A_PL
         private void lbl_return_Click(object sender, EventArgs e)
         {
             new MemberReturnView(_memberId).Show();
-            Close();
+            UiHelper.ProxyClose(this);
         }
 
-        private void MemberRentView_FormClosed(object sender, FormClosedEventArgs e)
+        private void MemberRentView_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(e.CloseReason == CloseReason.UserClosing) Application.Exit();
+            if (!UiHelper.ProgramaticallyClosing)
+            {
+                UiHelper.ProxyExit();
+            }
+            else
+            {
+                UiHelper.ProgramaticallyClosing = false; // Reset for next use
+            }
+
         }
     }
 }

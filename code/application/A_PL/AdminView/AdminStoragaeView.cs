@@ -106,8 +106,25 @@ namespace application.A_PL
         }
 
         private void AdminStoragaeView_FormClosed(object sender, FormClosedEventArgs e)
+        private void lbl_material_Click(object sender, EventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing) Application.Exit();
+            new AdminMemberView().Show();
+            Close();
+        }
+
+        private void AdminStoragaeView_FormClosing(object sender, FormClosingEventArgs e)
+>>>>>>> Stashed changes
+        {
+            if (!UiHelper.ProgramaticallyClosing)
+            {
+                UiHelper.ProxyExit();
+            }
+            else
+            {
+                UiHelper.ProgramaticallyClosing = false; // Reset for next use
+            }
+
         }
 
         private void lbl_members_Click(object sender, EventArgs e)

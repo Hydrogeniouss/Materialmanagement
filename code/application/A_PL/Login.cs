@@ -28,7 +28,7 @@ namespace application
             if (mem.Pin.ToString() == tbx_pin.Text.Trim())
             {
                 new MemberRentView((int)mem.Id!).Show();
-                Close();
+                UiHelper.ProxyClose(this);
             }
             else
             {
@@ -39,12 +39,19 @@ namespace application
         private void btn_loginAsAdmin_Click(object sender, EventArgs e)
         {
             new LoginAdmin().Show();
-            Close();
+            UiHelper.ProxyClose(this);
         }
 
-        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing) Application.Exit();
+            if (!UiHelper.ProgramaticallyClosing)
+            {
+                UiHelper.ProxyExit();
+            }
+            else
+            {
+                UiHelper.ProgramaticallyClosing = false; // Reset for next use
+            }
         }
     }
 }

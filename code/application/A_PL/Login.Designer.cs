@@ -198,7 +198,7 @@
             MaximizeBox = false;
             Name = "Login";
             Text = "Form1";
-            FormClosed += Login_FormClosed;
+            FormClosing += Login_FormClosing;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

@@ -184,9 +184,17 @@ namespace application.A_PL.AdminView
             Close();
         }
 
-        private void AdminMemberView_FormClosed(object sender, FormClosedEventArgs e)
+        private void AdminMemberView_ForeColorChanged(object sender, EventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing) Application.Exit();
+            if (!UiHelper.ProgramaticallyClosing)
+            {
+                UiHelper.ProxyExit();
+            }
+            else
+            {
+                UiHelper.ProgramaticallyClosing = false; // Reset for next use
+            }
+
         }
     }
 }

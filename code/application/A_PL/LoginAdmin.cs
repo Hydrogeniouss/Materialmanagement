@@ -43,9 +43,17 @@ namespace application.A_PL
             Close();
         }
 
-        private void LoginAdmin_FormClosed(object sender, FormClosedEventArgs e)
+        private void LoginAdmin_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing) Application.Exit();
+            if (!UiHelper.ProgramaticallyClosing)
+            {
+                UiHelper.ProxyExit();
+            }
+            else
+            {
+                UiHelper.ProgramaticallyClosing = false; // Reset for next use
+            }
+
         }
     }
 }
