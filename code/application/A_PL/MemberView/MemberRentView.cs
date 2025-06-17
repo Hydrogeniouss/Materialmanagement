@@ -44,9 +44,9 @@ namespace application.A_PL
             {
                 if (mcl.Parent == sct_rentMaterial.Panel1)
                 {
-                    if (mcl.BackColor != MaterialCardLarge.STANDARDBACKCOLOR)
+                    if (mcl.BackColor != Color.MediumPurple)
                     {
-                        mcl.BackColor = MaterialCardLarge.STANDARDBACKCOLOR;
+                        mcl.BackColor = Color.MediumPurple;
 
                         //TODO fix placements (buggy when scrolling starts working)
                         int itemsCount = sct_rentMaterial.Panel2.Controls.OfType<Card>().Count();
