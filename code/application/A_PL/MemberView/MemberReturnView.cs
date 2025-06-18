@@ -1,6 +1,5 @@
-﻿using application.B_BL;
-using application.C_DAL;
-using application.A_PL.Cards;
+﻿using application.A_PL.Cards;
+using application.B_BL;
 namespace application.A_PL;
 
 public partial class MemberReturnView : Form
@@ -77,6 +76,7 @@ public partial class MemberReturnView : Form
         for (int i = 0; i < cards.Count; i++)
         {
             Card card = cards[i];
+
             card.Location = new Point(Card.MARGIN, (card.Height + Card.MARGIN) * i + Card.MARGIN);
         }
 
@@ -135,6 +135,7 @@ public partial class MemberReturnView : Form
             mat.AmountAvailable += rcs.Origin.OriginRent.Quantity;
             mat.UpdateOnDatabase();
         }
+        FillRents(Rent.FromDatabase(true, _memberId));
         sct_rentMaterial.Panel2.Controls.Clear();
     }
 

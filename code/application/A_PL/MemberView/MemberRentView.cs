@@ -169,6 +169,9 @@ namespace application.A_PL
                 }
 
             });
+            sct_rentMaterial.Panel2.Controls.OfType<MaterialCardSmall>().ToList().ForEach(
+            mat => mat.Origin.BackColor = MaterialCardSmall.STANDARDBACKCOLOR);
+            UpdateCards();
             sct_rentMaterial.Panel2.Controls.Clear();
         }
 
