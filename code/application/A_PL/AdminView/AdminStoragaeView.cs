@@ -59,10 +59,7 @@ namespace application.A_PL
 
             for (int i = 0; i < materialToMember.Count; i++)
             {
-                RentCard rentCard = new RentCard(
-                    materialToMember.Keys.ToArray()[i],
-                    materialToMember.Values.ToArray()[i],
-                    rents[i])
+                RentCard rentCard = new RentCard(rents[i])
                 {
                     Location = new Point(
                         RentCard.MARGIN,
@@ -87,7 +84,7 @@ namespace application.A_PL
             Rent[] rents;
             try
             {
-                rents = Rent.FromDatabase().OrderByDescending(x => x.DateOfAquisition).ToArray();
+                rents = Rent.FromDatabase(false).OrderByDescending(x => x.DateOfAquisition).ToArray();
             }
             catch (Exception ex)
             {

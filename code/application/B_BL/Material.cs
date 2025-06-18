@@ -20,7 +20,7 @@ namespace application.B_BL
         public static new Material FromDatabase(int id)
         {
             MaterialData md = MaterialData.FromDatabase(id);
-            return new Material(md.Name, md.Description, md.AmountTotal, md.AmountAvailable, md.Brand, md.Type, md.ImageFilepath);
+            return new Material(md.Name, md.Description, md.AmountTotal, md.AmountAvailable, md.Brand, md.Type, md.ImageFilepath, md.Id);
         }
 
 

@@ -111,7 +111,7 @@ namespace application.A_PL
                 Card card = cards[i];
                 card.Location = new Point(Card.MARGIN, (card.Height + Card.MARGIN) * i + Card.MARGIN);
             }
-            
+
             cards = sct_rentMaterial.Panel2.Controls.OfType<Card>().ToList();
             for (int i = 0; i < cards.Count; i++)
             {
@@ -144,7 +144,7 @@ namespace application.A_PL
             {
                 if (DialogResult.Retry == MessageBox.Show("Material-Daten konnten nicht geladen werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
                 {
-                    btn_borrow_Click(sender, e);    
+                    btn_borrow_Click(sender, e);
                 }
                 return;
             }
@@ -153,7 +153,7 @@ namespace application.A_PL
             {
                 MaterialData mat = MaterialData.FromDatabase(Convert.ToInt32(rent.MaterialId));
                 mat.AmountAvailable -= rent.Quantity;
-                
+
                 try
                 {
                     mat.UpdateOnDatabase();

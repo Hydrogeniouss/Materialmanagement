@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Text;
 
 namespace application.C_DAL
 {
@@ -19,21 +20,30 @@ namespace application.C_DAL
         public int? UserId { get; set; }
         public int? MaterialId { get; set; }
 
-        public static List<RentData> FromDatabase(bool isOnlyRented = false)
+        public static List<RentData> FromDatabase(bool isOnlyRented = false, int? userID = null)
         {
             List<RentData> materials = new List<RentData>();
 
             using (MySqlConnection conn = DataAccessHelper.CreateConnection())
             {
+                StringBuilder sql = new StringBuilder("SELECT * FROM `member_has_rented_material` ");
                 conn.Open();
 
                 if (isOnlyRented)
                 {
+                    sql.Append("WHERE date_of_returnal IS NULL ");
+                    if (userID != null) sql.Append("AND user_id = @userId ");
 
-                    using (MySqlCommand cmd = new MySqlCommand("SELECT* FROM `member_has_rented_material` WHERE date_of_returnal IS null", conn))
+
+                    using (MySqlCommand cmd = new())
                     {
+                        cmd.Connection = conn;
+                        cmd.CommandText = sql.ToString();
+                        if (userID != null) cmd.Parameters.AddWithValue("@userId", userID);
+
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
+
                             List<RentData> hasRented = new();
                             while (reader.Read())
                             {
@@ -54,8 +64,14 @@ namespace application.C_DAL
                 }
                 else
                 {
-                    using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM `member_has_rented_material`", conn))
+                    using (MySqlCommand cmd = new())
                     {
+                        if (userID != null) sql.Append("WHERE user_id = @userId ");
+
+                        cmd.Connection = conn;
+                        cmd.CommandText = sql.ToString();
+                        if (userID != null) cmd.Parameters.AddWithValue("@userId", userID);
+
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             List<RentData> hasRented = new();
@@ -116,5 +132,22 @@ namespace application.C_DAL
                 }
             }
         }
+        public void UpdateOnDatabase()
+        {
+            using (MySqlConnection conn = DataAccessHelper.CreateConnection())
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new("UPDATE `member_has_rented_material` SET `quantity`=@quantity,`date_of_aquisition`=@dateOfAquisition,`date_of_returnal`=@dateOfReturnal WHERE member_has_rented_material.user_id = @userId AND member_has_rented_material.material_id = @materialId", conn))
+                {
+                    cmd.Parameters.AddWithValue("@userId", UserId);
+                    cmd.Parameters.AddWithValue("@materialId", MaterialId);
+                    cmd.Parameters.AddWithValue("@quantity", Quantity);
+                    cmd.Parameters.AddWithValue("@dateOfAquisition", DateOfAquisition);
+                    cmd.Parameters.AddWithValue("@dateOfReturnal", DateOfReturnal.HasValue ? (object)DateOfReturnal.Value : DBNull.Value);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }

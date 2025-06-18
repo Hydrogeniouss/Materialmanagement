@@ -1,11 +1,14 @@
 ﻿using application.B_BL;
-
+using application.C_DAL;
 namespace application.A_PL.Cards
 {
     public class RentCard : Card
     {
-        public RentCard(Material originMaterial, Member originMember, Rent originRent)
+        public RentCard(Rent originRent)
         {
+            OriginRent = originRent;
+            OriginMaterial = Material.FromDatabase((int)originRent.MaterialId);
+            OriginMember = Member.FromDatabase((int)originRent.UserId);
             Height = STANDARDHEIGHT;
 
             Controls.Add(lbl_dateOfAquisition = new Label()
@@ -30,7 +33,7 @@ namespace application.A_PL.Cards
             {
                 AutoSize = true,
                 Location = new Point(225 + PADDING * 3, PADDING),
-                Text = originMaterial.Name,
+                Text = OriginMaterial.Name,
                 Font = new Font("Segoe UI", 12, FontStyle.Regular)
             });
 
@@ -38,7 +41,7 @@ namespace application.A_PL.Cards
             {
                 AutoSize = true,
                 Location = new Point(lbl_materialName.Right + PADDING, PADDING),
-                Text = originMaterial.Brand.Name,
+                Text = OriginMaterial.Brand.Name,
                 Font = new Font("Segoe UI", 12, FontStyle.Regular)
             });
 
@@ -46,7 +49,7 @@ namespace application.A_PL.Cards
             {
                 AutoSize = true,
                 Location = new Point(600 + PADDING, PADDING),
-                Text = originMaterial.Type.Name,
+                Text = OriginMaterial.Type.Name,
                 Font = new Font("Segoe UI", 12, FontStyle.Regular)
             });
 
@@ -54,7 +57,7 @@ namespace application.A_PL.Cards
             {
                 AutoSize = true,
                 Location = new Point(750, PADDING),
-                Text = $"{originMember.FirstName} {originMember.LastName}",
+                Text = $"{OriginMember.FirstName} {OriginMember.LastName}",
                 Font = new Font("Segoe UI", 12, FontStyle.Regular)
             });
 
@@ -62,6 +65,10 @@ namespace application.A_PL.Cards
         }
 
         public new const int STANDARDHEIGHT = 33;
+
+        public Rent OriginRent { get; set; }
+        public Material OriginMaterial { get; set; }
+        public Member OriginMember { get; set; }
 
         public Label lbl_dateOfAquisition { get; }
         public Label lbl_count { get; }
