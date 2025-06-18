@@ -26,7 +26,7 @@
 	- Filter
 - MemberReturnView
 - UiHelper
-# Gabriel
+# Gabriel - 35 - 40h
 (@Gabelfisch)
 
 ## DAL
