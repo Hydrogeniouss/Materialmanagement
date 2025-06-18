@@ -1,5 +1,5 @@
 
-# Marnie 
+# Marnie - 20 - 25h
 (@Hydrogenius)
 ## DAL
 
