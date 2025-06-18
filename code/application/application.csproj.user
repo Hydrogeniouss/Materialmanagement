@@ -10,6 +10,9 @@
     <Compile Update="A_PL\AdminView\AdminStoragaeView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="A_PL\Cards\RentCardSmall.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="A_PL\Cards\UserCard.cs">
       <SubType>Component</SubType>
     </Compile>

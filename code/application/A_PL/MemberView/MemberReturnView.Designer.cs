@@ -32,7 +32,6 @@
             btn_discard = new Button();
             sct_rentMaterial = new SplitContainer();
             lbl_MatText = new Label();
-            btn_filter = new Button();
             btn_return = new Button();
             lbl_selectedMaterials = new Label();
             lbl_return = new Label();
@@ -68,14 +67,12 @@
             // 
             sct_rentMaterial.Panel1.AutoScroll = true;
             sct_rentMaterial.Panel1.Controls.Add(lbl_MatText);
-            sct_rentMaterial.Panel1.Controls.Add(btn_filter);
             // 
             // sct_rentMaterial.Panel2
             // 
             sct_rentMaterial.Panel2.AutoScroll = true;
             sct_rentMaterial.Panel2.Controls.Add(btn_discard);
             sct_rentMaterial.Panel2.Controls.Add(btn_return);
-            sct_rentMaterial.Panel2.Controls.Add(lbl_selectedMaterials);
             sct_rentMaterial.Size = new Size(1904, 900);
             sct_rentMaterial.SplitterDistance = 952;
             sct_rentMaterial.TabIndex = 6;
@@ -90,17 +87,6 @@
             lbl_MatText.TabIndex = 1;
             lbl_MatText.Text = "Materialien";
             // 
-            // btn_filter
-            // 
-            btn_filter.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btn_filter.Location = new Point(703, 24);
-            btn_filter.Margin = new Padding(3, 2, 3, 2);
-            btn_filter.Name = "btn_filter";
-            btn_filter.Size = new Size(95, 34);
-            btn_filter.TabIndex = 0;
-            btn_filter.Text = "Filter";
-            btn_filter.UseVisualStyleBackColor = true;
-            // 
             // btn_return
             // 
             btn_return.Location = new Point(662, 603);
@@ -110,12 +96,13 @@
             btn_return.TabIndex = 1;
             btn_return.Text = "GENERATED PROGRAMATICALLY";
             btn_return.UseVisualStyleBackColor = true;
+            btn_return.Click += btn_return_Click;
             // 
             // lbl_selectedMaterials
             // 
             lbl_selectedMaterials.AutoSize = true;
             lbl_selectedMaterials.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_selectedMaterials.Location = new Point(21, 18);
+            lbl_selectedMaterials.Location = new Point(957, 81);
             lbl_selectedMaterials.Name = "lbl_selectedMaterials";
             lbl_selectedMaterials.Size = new Size(392, 50);
             lbl_selectedMaterials.TabIndex = 0;
@@ -178,17 +165,18 @@
             ClientSize = new Size(1904, 1041);
             Controls.Add(pictureBox1);
             Controls.Add(lbl_returnText);
+            Controls.Add(lbl_selectedMaterials);
             Controls.Add(sct_rentMaterial);
             Controls.Add(lbl_return);
             Controls.Add(lbl_borrow);
             Controls.Add(pictureBox2);
             Name = "MemberReturnView";
             Text = "ReturnView";
+            FormClosing += MemberReturnView_FormClosing;
             Load += ReturnView_Load;
             sct_rentMaterial.Panel1.ResumeLayout(false);
             sct_rentMaterial.Panel1.PerformLayout();
             sct_rentMaterial.Panel2.ResumeLayout(false);
-            sct_rentMaterial.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)sct_rentMaterial).EndInit();
             sct_rentMaterial.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -202,7 +190,6 @@
         private Button btn_discard;
         private SplitContainer sct_rentMaterial;
         private Label lbl_MatText;
-        private Button btn_filter;
         private Button btn_return;
         private Label lbl_selectedMaterials;
         private Label lbl_return;

@@ -15,5 +15,16 @@ namespace application.B_BL
                 .Select(x => new Rent(x.Quantity, x.DateOfAquisition, x.DateOfReturnal, x.UserId, x.MaterialId))
                 .ToList();
         }
+        public static new List<Rent> FromDatabase(bool isOnlyRented = false, int? memberID = null)
+        {
+            return RentData.FromDatabase(isOnlyRented, memberID)
+                .Select(x => new Rent(x.Quantity, x.DateOfAquisition, x.DateOfReturnal, x.UserId, x.MaterialId))
+                .ToList();
+        }
+        public void Return()
+        {
+            this.DateOfReturnal = DateTime.Now;
+            UpdateOnDatabase();
+        }
     }
 }
