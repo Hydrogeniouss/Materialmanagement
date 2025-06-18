@@ -18,6 +18,7 @@ public partial class MemberReturnView : Form
         }
     }
 
+
     private void RentCard_Click(object? sender, EventArgs e)
     {
         if (sender is RentCard rct)
@@ -102,9 +103,20 @@ public partial class MemberReturnView : Form
 
     private void ReturnView_Load(object sender, EventArgs e)
     {
-        btn_return.Text = $"Zurückgeben\n({DateTime.Now})";
+        try
+        {
+            btn_return.Text = $"Zurückgeben\n({DateTime.Now})";
 
-        List<Rent> rentData = Rent.FromDatabase(true, _memberId);
+            List<Rent> rentData = Rent.FromDatabase(true, _memberId);
+        }
+        catch (Exception ex)
+        {
+            if (DialogResult.Retry == MessageBox.Show("Rückgabe-Daten konnten nicht geladen werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+            {
+                ReturnView_Load(sender, e);
+            }
+            return;
+        }
     }
 
     private void lbl_borrow_Click(object sender, EventArgs e)
@@ -128,31 +140,42 @@ public partial class MemberReturnView : Form
 
     private void btn_return_Click(object sender, EventArgs e)
     {
-        foreach (RentCardSmall rcs in sct_rentMaterial.Panel2.Controls.OfType<RentCardSmall>())
+        try
         {
-            rcs.Origin.OriginRent.Return();
-            Material mat = rcs.Origin.OriginMaterial;
-            mat.AmountAvailable += rcs.Origin.OriginRent.Quantity;
-            mat.UpdateOnDatabase();
+            foreach (RentCardSmall rcs in sct_rentMaterial.Panel2.Controls.OfType<RentCardSmall>())
+            {
+                rcs.Origin.OriginRent.Return();
+                Material mat = rcs.Origin.OriginMaterial;
+                mat.AmountAvailable += rcs.Origin.OriginRent.Quantity;
+                mat.UpdateOnDatabase();
+            }
+            FillRents(Rent.FromDatabase(true, _memberId));
+            sct_rentMaterial.Panel2.Controls.Clear();
         }
-        FillRents(Rent.FromDatabase(true, _memberId));
-        sct_rentMaterial.Panel2.Controls.Clear();
-    }
-
-
-    /* Preset for try catch for database access @marnie
-            try
+        catch (Exception ex)
+        {
+            if (DialogResult.Retry == MessageBox.Show("Rückgabe konnte nicht durchgeführt werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
             {
-                //DB Access
+                btn_return_Click(sender, e);
             }
-            catch (Exception ex)
-            {
-                if (DialogResult.Retry == MessageBox.Show("Daten konnten nicht geladen werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+            return;
+        }
+
+
+        /* Preset for try catch for database access @marnie
+                try
                 {
-                    // Method call for the method this code is in itself
+                    //DB Access
                 }
-                return;
-            }
-    */
+                catch (Exception ex)
+                {
+                    if (DialogResult.Retry == MessageBox.Show("Daten konnten nicht geladen werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                    {
+                        // Method call for the method this code is in itself
+                    }
+                    return;
+                }
+        */
+    }
 }
 
