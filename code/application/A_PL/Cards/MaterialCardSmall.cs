@@ -45,7 +45,7 @@ namespace application.A_PL.Cards
                 Width = 50,
                 Height = Height - PADDING * 2,
                 Minimum = 1,
-                Maximum = MaterialData.FromDatabase(new MaterialFilterData() { Name = lbl_Name.Text }).ToList()[0].AmountAvailable,
+                Maximum = origin.originMaterial.AmountAvailable,
                 Value = 1
             });
 

@@ -14,6 +14,5 @@
             Application.Exit();
             ProgramaticallyClosing = false;
         }
-
     }
 }

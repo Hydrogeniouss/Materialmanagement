@@ -8,7 +8,7 @@ namespace application.A_PL.Cards
         {
 
             Height = STANDARDHEIGHT;
-
+            originMaterial = material;
 
             lbl_Name = new Label()
             {
@@ -56,6 +56,7 @@ namespace application.A_PL.Cards
 
         public new const int STANDARDHEIGHT = 190;
 
+        public Material originMaterial { get; set; }
 
         public Label lbl_Name { get; }
         public Label lbl_Brand { get; }

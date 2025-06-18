@@ -19,7 +19,19 @@ namespace application.A_PL
         {
             btn_borrow.Text = $"Ausleihen\n({DateTime.Now})";
             //TODO: Here, material brand Name and Type is switched :(
-            AddMaterials(Material.FromDatabase());
+
+            try
+            {
+                AddMaterials(Material.FromDatabase());
+            }
+            catch (Exception ex)
+            {
+                if (DialogResult.Retry == MessageBox.Show("Material-Daten konnten nicht geladen werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                {
+                    RentView_Load(sender, e);
+                }
+                return;
+            }
 
         }
 
@@ -89,8 +101,6 @@ namespace application.A_PL
                     UpdateCards();
                 }
             }
-
-
         }
 
         private void UpdateCards()
@@ -101,7 +111,7 @@ namespace application.A_PL
                 Card card = cards[i];
                 card.Location = new Point(Card.MARGIN, (card.Height + Card.MARGIN) * i + Card.MARGIN);
             }
-
+            
             cards = sct_rentMaterial.Panel2.Controls.OfType<Card>().ToList();
             for (int i = 0; i < cards.Count; i++)
             {
@@ -114,6 +124,7 @@ namespace application.A_PL
         {
             MemberMaterialFilter filterView = new MemberMaterialFilter();
             filterView.ShowDialog();
+
             if (filterView.DialogResult == DialogResult.OK)
             {
                 AddMaterials(filterView.Materials);
@@ -122,16 +133,41 @@ namespace application.A_PL
 
         private void btn_borrow_Click(object sender, EventArgs e)
         {
-            List<RentData> rents = sct_rentMaterial.Panel2.Controls.OfType<MaterialCardSmall>()
-                .Select(mcs => new RentData((int)mcs.Amount.Value, DateTime.Now, null, _memberId, MaterialData.FromDatabase(new MaterialFilterData() { Name = mcs.lbl_Name.Text }).ToList()[0].Id)).ToList();
-
+            // Loading Rent Data
+            List<RentData> rents;
+            try
+            {
+                rents = sct_rentMaterial.Panel2.Controls.OfType<MaterialCardSmall>()
+                    .Select(mcs => new RentData((int)mcs.Amount.Value, DateTime.Now, null, _memberId, MaterialData.FromDatabase(new MaterialFilterData() { Name = mcs.lbl_Name.Text }).ToList()[0].Id)).ToList();
+            }
+            catch (Exception ex)
+            {
+                if (DialogResult.Retry == MessageBox.Show("Material-Daten konnten nicht geladen werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                {
+                    btn_borrow_Click(sender, e);    
+                }
+                return;
+            }
 
             rents.ForEach(rent =>
             {
-                MaterialData mat = MaterialData.FromDatabase((int)Convert.ToInt32(rent.MaterialId));
-                mat.AmountAvailable -= (int)rent.Quantity;
-                mat.UpdateOnDatabase();
-                rent.InsertIntoDatabase();
+                MaterialData mat = MaterialData.FromDatabase(Convert.ToInt32(rent.MaterialId));
+                mat.AmountAvailable -= rent.Quantity;
+                
+                try
+                {
+                    mat.UpdateOnDatabase();
+                    rent.InsertIntoDatabase();
+                }
+                catch (Exception ex)
+                {
+                    if (DialogResult.Retry == MessageBox.Show("Material konnte nicht ausgeliehen werden, die Daten konnten nicht gespeichert werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                    {
+                        btn_borrow_Click(sender, e);
+                    }
+                    return;
+                }
+
             });
             sct_rentMaterial.Panel2.Controls.Clear();
         }

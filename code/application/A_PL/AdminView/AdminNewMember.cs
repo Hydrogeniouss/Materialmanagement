@@ -1,4 +1,5 @@
 ﻿using application.B_BL;
+using System.Drawing;
 namespace application.A_PL.AdminView
 {
     public partial class AdminNewMember : Form
@@ -33,12 +34,23 @@ namespace application.A_PL.AdminView
 
             else
             {
-                if (rad_admin.Checked)
-                    new Admin(tbx_firstName.Text, tbx_lastName.Text, tbx_email.Text, tbx_phone.Text, tbx_passKey.Text)
-                        .InsertIntoDatabase();
-                else
-                    new Member(tbx_firstName.Text, tbx_lastName.Text, tbx_email.Text, tbx_phone.Text, Convert.ToInt32(tbx_passKey.Text))
-                        .InsertIntoDatabase();
+                try
+                {
+                    if (rad_admin.Checked)
+                        new Admin(tbx_firstName.Text, tbx_lastName.Text, tbx_email.Text, tbx_phone.Text, tbx_passKey.Text)
+                            .InsertIntoDatabase();
+                    else
+                        new Member(tbx_firstName.Text, tbx_lastName.Text, tbx_email.Text, tbx_phone.Text, Convert.ToInt32(tbx_passKey.Text))
+                            .InsertIntoDatabase();
+                }
+                catch (Exception ex)
+                {
+                    if (DialogResult.Retry == MessageBox.Show("Daten konnten nicht Gespeichert werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                    {
+                        btn_save_Click(sender, e);
+                    }
+                    return;
+                }
 
                 DialogResult = DialogResult.OK;
                 Close();

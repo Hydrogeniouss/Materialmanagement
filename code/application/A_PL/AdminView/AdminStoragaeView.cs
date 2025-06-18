@@ -23,14 +23,38 @@ namespace application.A_PL
             sct_storage.Panel1.Controls.Clear();
 
             // loading all rents and ordering by date of aquisition
-            Rent[] rents = Rent.FromDatabase(true).ToArray();
-            Dictionary<Material, Member> materialToMember = new();
-
-            foreach (Rent rent in rents)
+            Rent[] rents;
+            try
             {
-                materialToMember.Add(
-                    Material.FromDatabase((int)rent.MaterialId!), Member.FromDatabase((int)rent.UserId!)
-                );
+                rents = Rent.FromDatabase(true).ToArray();
+            }
+            catch (Exception ex)
+            {
+                if (DialogResult.Retry == MessageBox.Show("Ausleih-Daten konnten nicht geladen werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                {
+                    AddRentCards();
+                }
+                return;
+            }
+
+            // loading all Materials and Members, belonging to the rents
+            Dictionary<Material, Member> materialToMember = new();
+            try
+            {
+                foreach (Rent rent in rents)
+                {
+                    materialToMember.Add(
+                        Material.FromDatabase((int)rent.MaterialId!), Member.FromDatabase((int)rent.UserId!)
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                if (DialogResult.Retry == MessageBox.Show("Mitglieder/Material-Daten konnten nicht geladen werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                {
+                    AddRentCards();
+                }
+                return;
             }
 
             for (int i = 0; i < materialToMember.Count; i++)
@@ -60,15 +84,38 @@ namespace application.A_PL
             sct_storage.Panel2.Controls.Clear();
 
             // loading all rents and ordering by date of aquisition
-            Rent[] rents = Rent.FromDatabase().OrderByDescending(x => x.DateOfAquisition).ToArray();
-            Dictionary<Material, Member> materialToMember = new();
-
-            // Adding Material and Member over N to M relation of rent
-            foreach (Rent rent in rents)
+            Rent[] rents;
+            try
             {
-                materialToMember.Add(
-                    Material.FromDatabase((int)rent.MaterialId!), Member.FromDatabase((int)rent.UserId!)
-                );
+                rents = Rent.FromDatabase().OrderByDescending(x => x.DateOfAquisition).ToArray();
+            }
+            catch (Exception ex)
+            {
+                if (DialogResult.Retry == MessageBox.Show("Ausleih-Daten konnten nicht geladen werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                {
+                    AddRentHistoryCards();
+                }
+                return;
+            }
+
+            Dictionary<Material, Member> materialToMember = new();
+            // Adding Material and Member over N to M relation of rent
+            try
+            {
+                foreach (Rent rent in rents)
+                {
+                    materialToMember.Add(
+                        Material.FromDatabase((int)rent.MaterialId!), Member.FromDatabase((int)rent.UserId!)
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                if (DialogResult.Retry == MessageBox.Show("Mitglieder/Material-Daten konnten nicht geladen werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                {
+                    AddRentCards();
+                }
+                return;
             }
 
             // Adding Rents to the rent history Panel
@@ -105,16 +152,8 @@ namespace application.A_PL
 
         }
 
-        private void AdminStoragaeView_FormClosed(object sender, FormClosedEventArgs e)
-        private void lbl_material_Click(object sender, EventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing) Application.Exit();
-            new AdminMemberView().Show();
-            Close();
-        }
-
         private void AdminStoragaeView_FormClosing(object sender, FormClosingEventArgs e)
-                {
+        {
             if (!UiHelper.ProgramaticallyClosing)
             {
                 UiHelper.ProxyExit();

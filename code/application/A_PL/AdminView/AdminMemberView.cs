@@ -1,5 +1,6 @@
 ﻿using application.A_PL.Cards;
 using application.B_BL;
+using System.Drawing;
 
 namespace application.A_PL.AdminView
 {
@@ -22,7 +23,21 @@ namespace application.A_PL.AdminView
             sct_members.Panel1.Controls.Clear();
 
             int yLastLocation = 0;
-            List<Admin> admins = Admin.FromDatabase().OrderBy(ad => ad.Id).ToList();
+
+            // Loading Admin Data
+            List<Admin> admins;
+            try
+            {
+                admins = Admin.FromDatabase().OrderBy(ad => ad.Id).ToList();
+            }
+            catch (Exception ex)
+            {
+                if (DialogResult.Retry == MessageBox.Show("Administrator-Daten konnten nicht geladen werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                {
+                    InsertUsers();
+                }
+                return;
+            }
 
             for (int i = 0; i < admins.Count; i++)
             {
@@ -41,7 +56,20 @@ namespace application.A_PL.AdminView
                 yLastLocation = uc.Bottom;
             }
 
-            List<Member> members = Member.FromDatabase().OrderBy(mem => mem.Id).ToList();
+            // Loading member data
+            List<Member> members;
+            try
+            {
+                members = Member.FromDatabase().OrderBy(mem => mem.Id).ToList();
+            }
+            catch (Exception ex)
+            {
+                if (DialogResult.Retry == MessageBox.Show("Mitglieder-Daten konnten nicht geladen werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                {
+                    InsertUsers();
+                }
+                return;
+            }
 
             for (int i = 0; i < members.Count; i++)
             {
@@ -111,7 +139,19 @@ namespace application.A_PL.AdminView
                     Member mem = new(tbx_firstName.Text, tbx_lastName.Text, tbx_email.Text, tbx_phone.Text, Convert.ToInt32(tbx_passKey.Text));
                     mem.Id = ((Member)SelectedCard!.OriginUser).Id; // Button only enabled while card is selected.
 
-                    mem.UpdateOnDatabase();
+                    try
+                    {
+                        mem.UpdateOnDatabase();
+                    }
+                    catch (Exception ex)
+                    {
+                        if (DialogResult.Retry == MessageBox.Show("Daten konnten nicht gespeichert werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                        {
+                            btn_save_Click(sender, e);
+                        }
+                        return;
+                    }
+
                     InsertUsers();
 
                 }
@@ -120,7 +160,18 @@ namespace application.A_PL.AdminView
                     Admin ad = new(tbx_firstName.Text, tbx_lastName.Text, tbx_email.Text, tbx_phone.Text, tbx_passKey.Text);
                     ad.Id = ((Admin)SelectedCard!.OriginUser).Id; // Button only enabled while card is selected.
 
-                    ad.UpdateOnDatabase();
+                    try
+                    {
+                        ad.UpdateOnDatabase();
+                    }
+                    catch (Exception ex)
+                    {
+                        if (DialogResult.Retry == MessageBox.Show("Daten konnten nicht gespeichert werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                        {
+                            btn_save_Click(sender, e);
+                        }
+                        return;
+                    }
                     InsertUsers();
                 }
             }
@@ -153,23 +204,48 @@ namespace application.A_PL.AdminView
                 if (lbl_memberHeading.Text.Contains("Member"))
                 {
                     int userId = Convert.ToInt32(((Member)SelectedCard!.OriginUser).Id);
+                    
                     if (Member.CheckForeignKeyRelation(userId))
                     {
-                        Member.DeleteOnDatabase(Convert.ToInt32(userId)); // Button only enabled while card is selected.
+                        // deleting Member
+                        try
+                        {
+                            Member.DeleteOnDatabase(Convert.ToInt32(userId)); // Button only enabled while card is selected.
+                        }
+                        catch (Exception ex)
+                        {
+                            if (DialogResult.Retry == MessageBox.Show("Daten konnten nicht gelöscht werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                            {
+                                btn_delete_Click(sender, e);
+                            }
+                            return;
+                        }
+
                         ClearUserInfo();
                         InsertUsers();
                     }
                     else
                     {
                         MessageBox.Show("Dieses Mitglied kann nicht gelöscht werden. Es ist relevant für die Verleihhistorie.");
-                    }
-
+                    }  
                 }
                 else
                 {
                     int userId = Convert.ToInt32(((Admin)SelectedCard!.OriginUser).Id);
-                    Admin.DeleteOnDatabase(userId); // Button only enabled while card is selected.
-
+                    
+                    // deleting Admin
+                    try
+                    {
+                        Admin.DeleteOnDatabase(userId); // Button only enabled while card is selected.
+                    }
+                    catch (Exception ex)
+                    {
+                        if (DialogResult.Retry == MessageBox.Show("Daten konnten nicht gelöscht werden. Fehler:\n" + ex.Message, "Fehler", MessageBoxButtons.RetryCancel))
+                        {
+                            btn_delete_Click(sender, e);
+                        }
+                        return;
+                    }
                     ClearUserInfo();
                     InsertUsers();
                 }
